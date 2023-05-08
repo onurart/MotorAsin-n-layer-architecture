@@ -11,4 +11,7 @@ namespace MotorAsinBasketRobot.Entities.Dtos.BasketStatus
         public string? ProductCode { get; set; }
         public string? CustomerCode { get; set; }
     }
+
+
+
 }
