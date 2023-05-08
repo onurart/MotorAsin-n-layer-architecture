@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33516.290
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MotorAsinBasketRobot.Entities", "MotorAsinBasketRobot.Entities\MotorAsinBasketRobot.Entities.csproj", "{B4887BC5-631C-43F3-97D0-C0D92FB0916E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MotorAsinBasketRobot.Core", "MotorAsinBasketRobot.Core\MotorAsinBasketRobot.Core.csproj", "{563ECD20-6AD1-45D4-B66C-78BF4AFBF30B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MotorAsinBasketRobot.Shared", "MotorAsinBasketRobot.Shared\MotorAsinBasketRobot.Shared.csproj", "{8846611C-5110-4971-A135-33320CFAC9CA}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MotorAsinBasketRobot.DataAccess", "MotorAsinBasketRobot.DataAccess\MotorAsinBasketRobot.DataAccess.csproj", "{6413CB0B-F9EB-4282-B057-8EFB8EF95120}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MotorAsinBasketRobot.Business", "MotorAsinBasketRobot.Business\MotorAsinBasketRobot.Business.csproj", "{62F01AD1-A81E-493C-90AA-BB4DDEE25C6A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MotorAsinBasketRobot.WebAPI", "MotorAsinBasketRobot.WebAPI\MotorAsinBasketRobot.WebAPI.csproj", "{929291B1-CC5A-42CF-B732-14A1866C01F3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B4887BC5-631C-43F3-97D0-C0D92FB0916E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B4887BC5-631C-43F3-97D0-C0D92FB0916E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B4887BC5-631C-43F3-97D0-C0D92FB0916E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B4887BC5-631C-43F3-97D0-C0D92FB0916E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{563ECD20-6AD1-45D4-B66C-78BF4AFBF30B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{563ECD20-6AD1-45D4-B66C-78BF4AFBF30B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{563ECD20-6AD1-45D4-B66C-78BF4AFBF30B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{563ECD20-6AD1-45D4-B66C-78BF4AFBF30B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8846611C-5110-4971-A135-33320CFAC9CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8846611C-5110-4971-A135-33320CFAC9CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8846611C-5110-4971-A135-33320CFAC9CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8846611C-5110-4971-A135-33320CFAC9CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6413CB0B-F9EB-4282-B057-8EFB8EF95120}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6413CB0B-F9EB-4282-B057-8EFB8EF95120}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6413CB0B-F9EB-4282-B057-8EFB8EF95120}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6413CB0B-F9EB-4282-B057-8EFB8EF95120}.Release|Any CPU.Build.0 = Release|Any CPU
+		{62F01AD1-A81E-493C-90AA-BB4DDEE25C6A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62F01AD1-A81E-493C-90AA-BB4DDEE25C6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62F01AD1-A81E-493C-90AA-BB4DDEE25C6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62F01AD1-A81E-493C-90AA-BB4DDEE25C6A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{929291B1-CC5A-42CF-B732-14A1866C01F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{929291B1-CC5A-42CF-B732-14A1866C01F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{929291B1-CC5A-42CF-B732-14A1866C01F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{929291B1-CC5A-42CF-B732-14A1866C01F3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9A02F6D5-E576-4494-A6FF-EA107C892A89}
+	EndGlobalSection
+EndGlobal
