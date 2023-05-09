@@ -24,28 +24,32 @@ namespace MotorAsinBasketRobot.Business.Concrete
             _productDal = productDal;
             productValidator = new ProductValidator(_productDal, speCodeDal);
         }
-
-        public async Task<IDataResult<IList<Product>>> GetList(ProductListPramertDto parameter)
+        public async Task<IDataResult<Product>> Create(Product product)
         {
             try
             {
-                return new SuccessDataResult<IList<Product>>
-                (await _productDal.GetListAsync(b => b.IsActive == parameter.Statu, b => b.Code), Messages.ProductGetAll);
+                await productValidator.CheckCreateAsync(product.Code);
+                return new SuccessDataResult<Product>(await _productDal.CreateAsync(product), Messages.ProductAdded);
+
             }
             catch (Exception ex)
             {
-                return new ErrorDataResult<IList<Product>>(ex.Message);
+
+                return new ErrorDataResult<Product>(ex.Message);
             }
         }
-        public async Task<IDataResult<string>> GetCode(ProductCodeParameterDto parameter)
+
+
+        public async Task<IDataResult<Product>> Delete(Product product)
         {
             try
             {
-                return new SuccessDataResult<string>(await _productDal.GetCodeAsync(x => x.Code, b => b.IsActive == parameter.Statu), Messages.ProductGet);
+                return new SuccessDataResult<Product>(await _productDal.DeleteAsync(product), Messages.ProductDeleted);
             }
             catch (Exception ex)
             {
-                return new ErrorDataResult<string>("", ex.Message);
+
+                return new ErrorDataResult<Product>(ex.Message);
             }
         }
         public async Task<IDataResult<Product>> Get(int id)
@@ -61,33 +65,31 @@ namespace MotorAsinBasketRobot.Business.Concrete
         }
 
 
-        public async Task<IDataResult<Product>> Create(Product product)
+
+
+        public async Task<IDataResult<string>> GetCode(ProductCodeParameterDto parameter)
         {
             try
             {
-                await productValidator.CheckCreateAsync(product.Code);
-                return new SuccessDataResult<Product>(await _productDal.CreateAsync(product), Messages.ProductAdded);
-
+                return new SuccessDataResult<string>(await _productDal.GetCodeAsync(x => x.Code, b => b.IsActive == parameter.Statu), Messages.ProductGet);
             }
             catch (Exception ex)
             {
-
-                return new ErrorDataResult<Product>(ex.Message);
+                return new ErrorDataResult<string>("", ex.Message);
             }
         }
-        public async Task<IDataResult<Product>> Delete(Product product)
+        public async Task<IDataResult<IList<Product>>> GetList(ProductListPramertDto parameter)
         {
             try
             {
-                return new SuccessDataResult<Product>(await _productDal.DeleteAsync(product), Messages.ProductDeleted);
+                return new SuccessDataResult<IList<Product>>
+                (await _productDal.GetListAsync(b => b.IsActive == parameter.Statu, b => b.Code), Messages.ProductGetAll);
             }
             catch (Exception ex)
             {
-
-                return new ErrorDataResult<Product>(ex.Message);
+                return new ErrorDataResult<IList<Product>>(ex.Message);
             }
         }
-
         public async Task<IDataResult<Product>> Update(Product product)
         {
             try
@@ -101,7 +103,6 @@ namespace MotorAsinBasketRobot.Business.Concrete
                 return new ErrorDataResult<Product>(product, ex.Message);
             }
         }
-
         public Task<IDataResult<PagedResult<Product>>> GetPagedList(ProductListPramertDto parameter)
         {
             throw new NotImplementedException();

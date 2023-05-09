@@ -6,11 +6,6 @@ using MotorAsinBasketRobot.Core.DataAccess.Utilities.Results;
 using MotorAsinBasketRobot.DataAccess.Abstract;
 using MotorAsinBasketRobot.Entities.Concrete;
 using MotorAsinBasketRobot.Entities.Dtos.BasketStatus;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MotorAsinBasketRobot.Business.Concrete
 {
@@ -61,11 +56,11 @@ namespace MotorAsinBasketRobot.Business.Concrete
                 return new ErrorDataResult<BasketStatus>(ex.Message);
             }
         }
-        public async Task<IDataResult<string>> GetCode(BasketStatus parameterDto)
+        public async Task<IDataResult<string>> GetCode(BasketStatusCodeParameterDto parameterDto)
         {
             try
             {
-                return new SuccessDataResult<string>(await _basketStatusDal.GetCodeAsync(x => x.Code, x => x.IsActive == parameterDto.IsActive), Messages.BasketStatussGet);
+                return new SuccessDataResult<string>(await _basketStatusDal.GetCodeAsync(x => x.Code, x => x.IsActive == parameterDto.Statu), Messages.BasketStatussGet);
             }
             catch (Exception ex)
             {

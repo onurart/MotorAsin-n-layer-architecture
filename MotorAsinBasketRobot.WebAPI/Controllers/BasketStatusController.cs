@@ -41,25 +41,21 @@ namespace MotorAsinBasketRobot.WebAPI.Controllers
         //    return BadRequest(result.Message);
         //}
         [HttpGet("GetList")]
-
         public async Task<IActionResult> GetList([FromQuery] BasketStatusListParameterDto parameterDto)
         {
             IDataResult<IList<BasketStatus>> result = await _basketStatusService.GetList(parameterDto);
             if (result.Success)
             {
-                return Ok(_mapper.Map<IList<BasketStatus>, IList<ListBasketStatusDto>>(result.Data));
+                return Ok(_mapper.Map<IList<BasketStatus>, IList<BasketStatus>>(result.Data));
             }
             return BadRequest(result.Message);
         }
-
-
-
         [HttpPut("Update")]
         public async Task<IActionResult> Update([FromQuery] int id, [FromBody] UpdateBasketStatus updateDto)
         {
-            BasketStatus category = _mapper.Map<UpdateBasketStatus, BasketStatus>(updateDto);
-            category.Id = id;
-            IDataResult<BasketStatus> result = await _basketStatusService.Update(category);
+            BasketStatus basketStatus = _mapper.Map<UpdateBasketStatus, BasketStatus>(updateDto);
+            basketStatus.Id = id;
+            IDataResult<BasketStatus> result = await _basketStatusService.Update(basketStatus);
             if (result.Success)
             {
                 return Ok(_mapper.Map<BasketStatus, SelectBaskeStatustDto>(result.Data));

@@ -1,12 +1,9 @@
 ﻿using AutoMapper;
-using AutoMapper.Internal.Mappers;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MotorAsinBasketRobot.Business.Abstract;
 using MotorAsinBasketRobot.Core.DataAccess.Utilities.Results;
 using MotorAsinBasketRobot.Entities.Concrete;
 using MotorAsinBasketRobot.Entities.Dtos.Product;
-
 namespace MotorAsinBasketRobot.WebAPI.Controllers
 {
     [Route("api/[controller]")]
@@ -15,7 +12,6 @@ namespace MotorAsinBasketRobot.WebAPI.Controllers
     {
         private readonly IProductService _productService;
         private readonly IMapper mapper;
-
         public ProductController(IProductService productService, IMapper mapper)
         {
             _productService = productService;
@@ -51,7 +47,6 @@ namespace MotorAsinBasketRobot.WebAPI.Controllers
             }
             return BadRequest(result.Message);
         }
-
         [HttpPut("Update")]
         public async Task<IActionResult> Update([FromQuery] int id, [FromBody] UpdateProductDto updateDto)
         {
@@ -64,7 +59,6 @@ namespace MotorAsinBasketRobot.WebAPI.Controllers
             }
             return BadRequest(result.Message);
         }
-
         [HttpDelete("Delete")]
         public async Task<IActionResult> Delete([FromBody] SelectProductDto deletedDto)
         {

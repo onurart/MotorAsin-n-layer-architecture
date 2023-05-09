@@ -15,6 +15,6 @@ namespace MotorAsinBasketRobot.Business.Abstract
         //Task<IDataResult<IList<BasketStatus>>> GetByIdList(BasketStatusListParameterDto parameterDto);
         //Task<IDataResult<PagedResult<BasketStatus>>> GetPagedList(CategoryListParameterDto parameterDto);
         //Task<IDataResult<PagedResult<BasketStatus>>> GetByIdPagedList(CategoryListParameterDto parameterDto);
-        Task<IDataResult<string>> GetCode(BasketStatus parameterDto);
+        Task<IDataResult<string>> GetCode(BasketStatusCodeParameterDto parameterDto);
     }
 }

@@ -17,6 +17,9 @@ namespace MotorAsinBasketRobot.Business.DependecyResolvers.Autofac
             builder.RegisterType<BasketStatusManager>().As<IBasketStatusService>();
             builder.RegisterType<EfBasketStatusDal>().As<IBasketStatusDal>();
             
+            builder.RegisterType<CustomerManager>().As<ICustomerService>();
+            builder.RegisterType<EfCustomerDal>().As<ICustomerDal>();
+            
             
             builder.RegisterType<SpeCodeManager>().As<ISpeCodeService>();
             builder.RegisterType<EfSpeCodeDal>().As<ISpeCodeDal>();

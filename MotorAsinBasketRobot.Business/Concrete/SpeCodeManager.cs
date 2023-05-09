@@ -49,7 +49,7 @@ namespace MotorAsinBasketRobot.Business.Concrete
         {
             try
             {
-                return  new  SuccessDataResult<IList<SpeCode>>(await speCodeDal.GetListAsync(b => b.Statu == parameter.Statu,b => b.Code,null), Messages.SpeCodesGot);
+                return  new  SuccessDataResult<IList<SpeCode>>(await speCodeDal.GetListAsync(b => b.Statu == parameter.Statu,b => b.Code,null), Messages.CustomerGet);
             }
             catch (Exception ex)
             {
