@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MotorAsinBasketRobot.Shared.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,7 @@ namespace MotorAsinBasketRobot.Entities.Concrete
 {
     public class MASqlConnection : BaseEntity
     {
-        //public EnmConnetion? EnmConnetion { get; set; }
+        public EnmConnetion? EnmConnetion { get; set; }
         public string? CustomerCode { get; set; }
         public string? ServerName { get; set; }
         public string? DbName { get; set; }

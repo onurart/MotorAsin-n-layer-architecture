@@ -16,7 +16,7 @@ namespace MotorAsinBasketRobot.DataAccess.Concrete.EntityFramework.Context
         {
             //IConfigurationRoot config = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
             //optionsBuilder.UseSqlServer(config.GetConnectionString("SqlConnection"));
-            optionsBuilder.UseSqlServer("Data Source=ONURUMUTLUOGLU;Initial Catalog=TestingMotorTeknoloji;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False");
+            optionsBuilder.UseSqlServer("Data Source=192.168.181.150;Initial Catalog=MotorAssinBasketRobotProject;User ID=onursa;Password=4473634;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False");
         }
 
 

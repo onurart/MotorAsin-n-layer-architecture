@@ -7,12 +7,14 @@ using MotorAsinBasketRobot.DataAccess.Abstract;
 using MotorAsinBasketRobot.DataAccess.Concrete.EntityFramework;
 using MotorAsinBasketRobot.Entities.Concrete;
 using MotorAsinBasketRobot.Entities.Dtos.MASqlConnection;
+using MotorAsinBasketRobot.Shared.Enums;
 
 namespace MotorAsinBasketRobot.Business.Concrete
 {
     public class MASqlConnectionManager : IMASqlConnectionService
     {
         private readonly IMASqlConnectionDal _mASqlConnectionDal;
+        private readonly IMASqlConnectionService _mASqlConnectionDall;
 
         private readonly IMASqlConnectionValidator _mASqlConnectionValidator;
 
@@ -27,7 +29,7 @@ namespace MotorAsinBasketRobot.Business.Concrete
             try
             {
                 return new SuccessDataResult<IList<MASqlConnection>>
-                (await _mASqlConnectionDal.GetListAsync(b => b.IsActive == parameter.Statu, b => b.Code), Messages.MASqlConnectionGetAll);
+                (await _mASqlConnectionDal.GetListAsync(b => b.IsActive == parameter.IsActive, b => b.Code), Messages.MASqlConnectionGetAll);
             }
             catch (Exception ex)
             {
@@ -57,6 +59,16 @@ namespace MotorAsinBasketRobot.Business.Concrete
             throw new NotImplementedException();
         }
         public Task<IDataResult<MASqlConnection>> Update(MASqlConnection entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<IDataResult<MASqlConnection>> CustomerCodeAsync(string code, EnmConnetion customerServer)
+        {
+            return await _mASqlConnectionDall.CustomerCodeAsync(code, customerServer);
+        }
+
+        Task<IDataResult<MASqlConnection>> IMASqlConnectionService.GetCustomerAsync()
         {
             throw new NotImplementedException();
         }

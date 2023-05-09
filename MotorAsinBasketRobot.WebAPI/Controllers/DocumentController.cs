@@ -4,6 +4,7 @@ using MotorAsinBasketRobot.Business.Abstract;
 using MotorAsinBasketRobot.Core.DataAccess.Utilities.Results;
 using MotorAsinBasketRobot.Entities.Concrete;
 using MotorAsinBasketRobot.Entities.Dtos.Documents;
+using MotorAsinBasketRobot.Shared.Enums;
 
 namespace MotorAsinBasketRobot.WebAPI.Controllers
 {
@@ -13,11 +14,56 @@ namespace MotorAsinBasketRobot.WebAPI.Controllers
     {
         private readonly IDocumentService _documentService;
         private readonly IMapper _mapper;
+        private readonly IMASqlConnectionService _service;
         public DocumentController(IDocumentService documentService, IMapper mapper)
         {
             _documentService = documentService;
             _mapper = mapper;
         }
+
+
+        [HttpGet("GetCustomerCategory")]
+        public async Task<IActionResult> GetCustomerCategory(string customerCode)
+        {
+            IDataResult<MASqlConnection> adminResult = await _service.CustomerCodeAsync("MODU", EnmConnetion.AdminDb);
+
+            IDataResult<MASqlConnection> result = await _service.CustomerCodeAsync(customerCode, EnmConnetion.CustomerServerDb);
+
+            IDataResult<MASqlConnection> result2 = await _service.CustomerCodeAsync(customerCode, EnmConnetion.CustomerMotorasinDb);
+
+            IEnumerable<Documents> documents;
+            if (result.Success && adminResult.Success && result2.Success)
+            {
+                //await _service.UpdateConnections($"Data Source={result.Data.ServerName};Initial Catalog={result.Data.DbName};User ID={result.Data.UserName};Password={result.Data.Password};Connect Timeout={result.Data.Timeout};Encrypt={result.Data.Encrypt};Trust Server Certificate={result.Data.Certificate};Application Intent={result.Data.ApplicationIntent};Multi Subnet Failover={result.Data.Failover}");
+                try
+                {
+                    //documents = await _documentService.GetList();
+                }
+                catch (Exception)
+                {
+                    documents = new List<Documents>();
+                }
+                finally
+                {
+                    //await _service.UpdateConnections($"Data Source={adminResult.Data.ServerName};Initial Catalog={adminResult.Data.DbName};User ID={adminResult.Data.UserName};Password={adminResult.Data.Password};Connect Timeout={adminResult.Data.Timeout};Encrypt={adminResult.Data.Encrypt};Trust Server Certificate={result.Data.Certificate};Application Intent={adminResult.Data.ApplicationIntent};Multi Subnet Failover={adminResult.Data.Failover}");
+                }
+
+                //foreach (Documents document in documents)
+                //{
+                //    await _documentService.Create(document);
+                //}
+
+                return Ok(result.Data);
+            }
+            else
+            {
+                return BadRequest("Müşteri bulunamadı!");
+            }
+        }
+
+
+
+
         [HttpGet("GetList")]
         public async Task<IActionResult> GetList([FromQuery] DocumentListPramertDto dto)
         {

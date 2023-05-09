@@ -72,7 +72,7 @@ namespace MotorAsinBasketRobot.Business.Concrete
             try
             {
                 return new SuccessDataResult<IList<BasketStatus>>
-               (await _basketStatusDal.GetListAsync(b => b.IsActive == parameterDto.Statu, b => b.Code), Messages.BasketStatussGet);
+               (await _basketStatusDal.GetListAsync(b => b.IsActive == parameterDto.IsActive, b => b.Code), Messages.BasketStatussGet);
             }
             catch (Exception ex)
             {
