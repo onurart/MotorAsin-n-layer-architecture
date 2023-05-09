@@ -10,17 +10,25 @@ namespace MotorAsinBasketRobot.Business.DependecyResolvers.Autofac
     {
         protected override void Load(ContainerBuilder builder)
         {
+            builder.RegisterType<BasketStatusManager>().As<IBasketStatusService>();
+            builder.RegisterType<EfBasketStatusDal>().As<IBasketStatusDal>();
+
+            builder.RegisterType<CustomerManager>().As<ICustomerService>();
+            builder.RegisterType<EfCustomerDal>().As<ICustomerDal>();
+
+            builder.RegisterType<DocumentManager>().As<IDocumentService>();
+            builder.RegisterType<EfDocumentsDal>().As<IDocumentsDal>();
+
+
+            builder.RegisterType<MASqlConnectionManager>().As<IMASqlConnectionService>();
+            builder.RegisterType<EfMASqlConnectionDal>().As<IMASqlConnectionDal>();
+
+
+
 
             builder.RegisterType<ProductManager>().As<IProductService>();
             builder.RegisterType<EfProductDal>().As<IProductDal>();
-            
-            builder.RegisterType<BasketStatusManager>().As<IBasketStatusService>();
-            builder.RegisterType<EfBasketStatusDal>().As<IBasketStatusDal>();
-            
-            builder.RegisterType<CustomerManager>().As<ICustomerService>();
-            builder.RegisterType<EfCustomerDal>().As<ICustomerDal>();
-            
-            
+
             builder.RegisterType<SpeCodeManager>().As<ISpeCodeService>();
             builder.RegisterType<EfSpeCodeDal>().As<ISpeCodeDal>();
             base.Load(builder);

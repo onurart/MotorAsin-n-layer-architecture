@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MotorAsinBasketRobot.Core.Entities.Abstract;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MotorAsinBasketRobot.Entities.Dtos.Product
 {
-    public class SelectProductDto
+    public class SelectProductDto: IBaseDto, IStatu
     {
         public int? ProductReferance { get; set; }
         public string? ProductCode { get; set; }

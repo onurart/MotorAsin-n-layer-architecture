@@ -4,14 +4,8 @@ using MotorAsinBasketRobot.Business.Validator.Abstract;
 using MotorAsinBasketRobot.Business.Validator.Concrete;
 using MotorAsinBasketRobot.Core.DataAccess.Utilities.Results;
 using MotorAsinBasketRobot.DataAccess.Abstract;
-using MotorAsinBasketRobot.DataAccess.Concrete;
 using MotorAsinBasketRobot.Entities.Concrete;
 using MotorAsinBasketRobot.Entities.Dtos.Product;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MotorAsinBasketRobot.Business.Concrete
 {
