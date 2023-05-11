@@ -30,7 +30,7 @@ namespace MotorAsinBasketRobot.Business.Concrete
         {
             try
             {
-                await _customerValidator.CheckCreateAsync(entity.Code);
+              //  await _customerValidator.CheckCreateAsync(entity.Code);
                 return new SuccessDataResult<Customer>(await _customerDal.CreateAsync(entity), Messages.CustomerAdded);
             }
             catch (Exception ex)
@@ -55,7 +55,7 @@ namespace MotorAsinBasketRobot.Business.Concrete
         {
             try
             {
-                return new SuccessDataResult<Customer>(await _customerDal.GetAsync(id, b => b.Id == id, b => b.Code), Messages.ProductGet);
+                return new SuccessDataResult<Customer>(await _customerDal.GetAsync(id, b => b.Id == id, b => b.Id), Messages.ProductGet);
             }
             catch (Exception ex)
             {
@@ -67,7 +67,7 @@ namespace MotorAsinBasketRobot.Business.Concrete
         {
             try
             {
-                return new SuccessDataResult<string>(await _customerDal.GetCodeAsync(x => x.Code, b => b.IsActive == parameterDto.Statu), Messages.ProductGet);
+                return new SuccessDataResult<string>(await _customerDal.GetCodeAsync(x => x.CustomerCode, b => b.IsActive == parameterDto.Statu), Messages.ProductGet);
             }
             catch (Exception ex)
             {
@@ -93,7 +93,7 @@ namespace MotorAsinBasketRobot.Business.Concrete
         {
             try
             {
-                await _customerValidator.CheckUpdateAsync(entity.Id, entity.Code, entity);
+                //await _customerValidator.CheckUpdateAsync(entity.Id, entity.Id, entity);
                 return new SuccessDataResult<Customer>(await _customerDal.UpdateAsync(entity), Messages.ProductUpdated);
 
             }

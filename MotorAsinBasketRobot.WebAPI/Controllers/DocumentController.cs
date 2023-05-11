@@ -22,44 +22,44 @@ namespace MotorAsinBasketRobot.WebAPI.Controllers
         }
 
 
-        [HttpGet("GetCustomerCategory")]
-        public async Task<IActionResult> GetCustomerCategory(string customerCode)
-        {
-            IDataResult<MASqlConnection> adminResult = await _service.CustomerCodeAsync("MODU", EnmConnetion.AdminDb);
+        //[HttpGet("ClientGetCustomer")]
+        //public async Task<IActionResult> ClientGetCustomer(string customerCode)
+        //{
+        //    IDataResult<MASqlConnection> adminResult = await _service.CustomerCodeAsync("MODU", EnmConnetion.AdminDb);
 
-            IDataResult<MASqlConnection> result = await _service.CustomerCodeAsync(customerCode, EnmConnetion.CustomerServerDb);
+        //    IDataResult<MASqlConnection> customerServerDb = await _service.CustomerCodeAsync(customerCode, EnmConnetion.CustomerServerDb);
 
-            IDataResult<MASqlConnection> result2 = await _service.CustomerCodeAsync(customerCode, EnmConnetion.CustomerMotorasinDb);
+        //    IDataResult<MASqlConnection> customerMotorasinDb = await _service.CustomerCodeAsync(customerCode, EnmConnetion.CustomerMotorasinDb);
 
-            IEnumerable<Documents> documents;
-            if (result.Success && adminResult.Success && result2.Success)
-            {
-                //await _service.UpdateConnections($"Data Source={result.Data.ServerName};Initial Catalog={result.Data.DbName};User ID={result.Data.UserName};Password={result.Data.Password};Connect Timeout={result.Data.Timeout};Encrypt={result.Data.Encrypt};Trust Server Certificate={result.Data.Certificate};Application Intent={result.Data.ApplicationIntent};Multi Subnet Failover={result.Data.Failover}");
-                try
-                {
-                    //documents = await _documentService.GetList();
-                }
-                catch (Exception)
-                {
-                    documents = new List<Documents>();
-                }
-                finally
-                {
-                    //await _service.UpdateConnections($"Data Source={adminResult.Data.ServerName};Initial Catalog={adminResult.Data.DbName};User ID={adminResult.Data.UserName};Password={adminResult.Data.Password};Connect Timeout={adminResult.Data.Timeout};Encrypt={adminResult.Data.Encrypt};Trust Server Certificate={result.Data.Certificate};Application Intent={adminResult.Data.ApplicationIntent};Multi Subnet Failover={adminResult.Data.Failover}");
-                }
+        //    IDataResult<IEnumerable<Documents>> documents;
+        //    if (customerServerDb.Success && adminResult.Success && customerMotorasinDb.Success)
+        //    {
+        //        await _service.UpdateConnections($"Data Source={customerServerDb.Data.ServerName};Initial Catalog={customerServerDb.Data.DbName};User ID={customerServerDb.Data.UserName};Password={customerServerDb.Data.Password};Connect Timeout={customerServerDb.Data.Timeout};Encrypt={customerServerDb.Data.Encrypt};Trust Server Certificate={customerServerDb.Data.Certificate};Application Intent={customerServerDb.Data.ApplicationIntent};Multi Subnet Failover={customerServerDb.Data.Failover}");
+        //        try
+        //        {
+        //            documents = await _documentService.GetList(new DocumentListPramertDto { IsActive=true});
+        //        }
+        //        catch (Exception)
+        //        {
+        //           //documents =  new List<Documents>();
+        //        }
+        //        finally
+        //        {
+        //            await _service.UpdateConnections($"Data Source={adminResult.Data.ServerName};Initial Catalog={adminResult.Data.DbName};User ID={adminResult.Data.UserName};Password={adminResult.Data.Password};Connect Timeout={adminResult.Data.Timeout};Encrypt={adminResult.Data.Encrypt};Trust Server Certificate={adminResult.Data.Certificate};Application Intent={adminResult.Data.ApplicationIntent};Multi Subnet Failover={adminResult.Data.Failover}");
+        //        }
 
-                //foreach (Documents document in documents)
-                //{
-                //    await _documentService.Create(document);
-                //}
+        //        //foreach (Documents document in documents)
+        //        //{
+        //        //    await _documentService.Create(document);
+        //        //}
 
-                return Ok(result.Data);
-            }
-            else
-            {
-                return BadRequest("Müşteri bulunamadı!");
-            }
-        }
+        //        return Ok(customerServerDb.Data);
+        //    }
+        //    else
+        //    {
+        //        return BadRequest("Müşteri bulunamadı!");
+        //    }
+        //}
 
 
 

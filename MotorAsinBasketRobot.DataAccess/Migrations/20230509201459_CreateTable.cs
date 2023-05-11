@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace MotorAsinBasketRobot.DataAccess.Migrations
 {
     /// <inheritdoc />
-    public partial class IdIntConvert : Migration
+    public partial class CreateTable : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -15,12 +15,19 @@ namespace MotorAsinBasketRobot.DataAccess.Migrations
                 name: "BasketStatuses",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ProductCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CustomerCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    TenantId = table.Column<long>(type: "bigint", nullable: true),
                     IsActive = table.Column<bool>(type: "bit", nullable: true),
-                    Code = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: true),
+                    CreatorId = table.Column<long>(type: "bigint", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    LastModifiedId = table.Column<long>(type: "bigint", nullable: true),
+                    LastModificationTime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DeletedId = table.Column<long>(type: "bigint", nullable: true),
+                    DeletedTime = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -31,12 +38,19 @@ namespace MotorAsinBasketRobot.DataAccess.Migrations
                 name: "Customers",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CustomerReferance = table.Column<int>(type: "int", nullable: true),
                     CustomerCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    TenantId = table.Column<long>(type: "bigint", nullable: true),
                     IsActive = table.Column<bool>(type: "bit", nullable: true),
-                    Code = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: true),
+                    CreatorId = table.Column<long>(type: "bigint", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    LastModifiedId = table.Column<long>(type: "bigint", nullable: true),
+                    LastModificationTime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DeletedId = table.Column<long>(type: "bigint", nullable: true),
+                    DeletedTime = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -47,7 +61,7 @@ namespace MotorAsinBasketRobot.DataAccess.Migrations
                 name: "Documents",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     DocumetType = table.Column<short>(type: "smallint", nullable: true),
                     LineType = table.Column<short>(type: "smallint", nullable: true),
@@ -55,9 +69,17 @@ namespace MotorAsinBasketRobot.DataAccess.Migrations
                     TlToltal = table.Column<double>(type: "float", nullable: true),
                     ProductReferance = table.Column<int>(type: "int", nullable: true),
                     CustomerReferance = table.Column<int>(type: "int", nullable: true),
+                    DocumentNo = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     DocumentDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    TenantId = table.Column<long>(type: "bigint", nullable: true),
                     IsActive = table.Column<bool>(type: "bit", nullable: true),
-                    Code = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: true),
+                    CreatorId = table.Column<long>(type: "bigint", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    LastModifiedId = table.Column<long>(type: "bigint", nullable: true),
+                    LastModificationTime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DeletedId = table.Column<long>(type: "bigint", nullable: true),
+                    DeletedTime = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -68,13 +90,20 @@ namespace MotorAsinBasketRobot.DataAccess.Migrations
                 name: "IncomingOrderRequests",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Desction = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     RequestsTimes = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    TenantId = table.Column<long>(type: "bigint", nullable: true),
                     IsActive = table.Column<bool>(type: "bit", nullable: true),
-                    Code = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: true),
+                    CreatorId = table.Column<long>(type: "bigint", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    LastModifiedId = table.Column<long>(type: "bigint", nullable: true),
+                    LastModificationTime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DeletedId = table.Column<long>(type: "bigint", nullable: true),
+                    DeletedTime = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -85,8 +114,9 @@ namespace MotorAsinBasketRobot.DataAccess.Migrations
                 name: "MASqlConnections",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    EnmConnetion = table.Column<int>(type: "int", nullable: true),
                     CustomerCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ServerName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     DbName = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -96,8 +126,16 @@ namespace MotorAsinBasketRobot.DataAccess.Migrations
                     Failover = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Certificate = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ApplicationIntent = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Timeout = table.Column<float>(type: "real", nullable: true),
+                    TenantId = table.Column<long>(type: "bigint", nullable: true),
                     IsActive = table.Column<bool>(type: "bit", nullable: true),
-                    Code = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: true),
+                    CreatorId = table.Column<long>(type: "bigint", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    LastModifiedId = table.Column<long>(type: "bigint", nullable: true),
+                    LastModificationTime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DeletedId = table.Column<long>(type: "bigint", nullable: true),
+                    DeletedTime = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -108,7 +146,7 @@ namespace MotorAsinBasketRobot.DataAccess.Migrations
                 name: "Offers",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ProductReferance = table.Column<int>(type: "int", nullable: true),
                     ProductCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -116,8 +154,15 @@ namespace MotorAsinBasketRobot.DataAccess.Migrations
                     ProductGroup2 = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ProductGroup3 = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ProductGroup4 = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    TenantId = table.Column<long>(type: "bigint", nullable: true),
                     IsActive = table.Column<bool>(type: "bit", nullable: true),
-                    Code = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: true),
+                    CreatorId = table.Column<long>(type: "bigint", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    LastModifiedId = table.Column<long>(type: "bigint", nullable: true),
+                    LastModificationTime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DeletedId = table.Column<long>(type: "bigint", nullable: true),
+                    DeletedTime = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -128,14 +173,21 @@ namespace MotorAsinBasketRobot.DataAccess.Migrations
                 name: "ProductCampaigns",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ProductReferance = table.Column<int>(type: "int", nullable: true),
                     ProductCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ProductGroup = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     MinOrder = table.Column<double>(type: "float", nullable: true),
+                    TenantId = table.Column<long>(type: "bigint", nullable: true),
                     IsActive = table.Column<bool>(type: "bit", nullable: true),
-                    Code = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: true),
+                    CreatorId = table.Column<long>(type: "bigint", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    LastModifiedId = table.Column<long>(type: "bigint", nullable: true),
+                    LastModificationTime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DeletedId = table.Column<long>(type: "bigint", nullable: true),
+                    DeletedTime = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -146,7 +198,7 @@ namespace MotorAsinBasketRobot.DataAccess.Migrations
                 name: "Products",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ProductReferance = table.Column<int>(type: "int", nullable: true),
                     ProductCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -154,8 +206,15 @@ namespace MotorAsinBasketRobot.DataAccess.Migrations
                     ProductGroup2 = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ProductGroup3 = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ProductGroup4 = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    TenantId = table.Column<long>(type: "bigint", nullable: true),
                     IsActive = table.Column<bool>(type: "bit", nullable: true),
-                    Code = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: true),
+                    CreatorId = table.Column<long>(type: "bigint", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    LastModifiedId = table.Column<long>(type: "bigint", nullable: true),
+                    LastModificationTime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DeletedId = table.Column<long>(type: "bigint", nullable: true),
+                    DeletedTime = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {

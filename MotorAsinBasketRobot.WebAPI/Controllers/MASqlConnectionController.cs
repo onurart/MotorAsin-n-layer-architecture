@@ -1,11 +1,9 @@
 ﻿using AutoMapper;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MotorAsinBasketRobot.Business.Abstract;
 using MotorAsinBasketRobot.Core.DataAccess.Utilities.Results;
 using MotorAsinBasketRobot.Entities.Concrete;
 using MotorAsinBasketRobot.Entities.Dtos.MASqlConnection;
-using MotorAsinBasketRobot.Entities.Dtos.Product;
 
 namespace MotorAsinBasketRobot.WebAPI.Controllers
 {

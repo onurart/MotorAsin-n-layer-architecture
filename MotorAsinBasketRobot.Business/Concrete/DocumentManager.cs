@@ -30,7 +30,7 @@ namespace MotorAsinBasketRobot.Business.Concrete
         {
             try
             {
-                await _documentValidator.CheckCreateAsync(entity.Code);
+               // await _documentValidator.CheckCreateAsync(entity.Code);
                 return new SuccessDataResult<Documents>(await _documentDal.CreateAsync(entity), Messages.DocumentAdded);
             }
             catch (Exception ex)
@@ -57,7 +57,7 @@ namespace MotorAsinBasketRobot.Business.Concrete
         {
             try
             {
-                return new SuccessDataResult<Documents>(await _documentDal.GetAsync(id, b => b.Id == id, b => b.Code), Messages.DocumentGet);
+                return new SuccessDataResult<Documents>(await _documentDal.GetAsync(id, b => b.Id == id, b => b.Id), Messages.DocumentGet);
             }
             catch (Exception ex)
             {
@@ -69,7 +69,7 @@ namespace MotorAsinBasketRobot.Business.Concrete
         {
             try
             {
-                return new SuccessDataResult<string>(await _documentDal.GetCodeAsync(x => x.Code, b => b.IsActive == parameter.Statu), Messages.DocumentGet);
+                return new SuccessDataResult<string>(await _documentDal.GetCodeAsync(x => x.DocumentNo, b => b.IsActive == parameter.Statu), Messages.DocumentGet);
             }
             catch (Exception ex)
             {
@@ -82,7 +82,7 @@ namespace MotorAsinBasketRobot.Business.Concrete
             try
             {
                 return new SuccessDataResult<IList<Documents>>
-                (await _documentDal.GetListAsync(b => b.IsActive == parameter.IsActive, b => b.Code), Messages.DocumentGetAll);
+                (await _documentDal.GetListAsync(b => b.IsActive == parameter.IsActive, b => b.Id), Messages.DocumentGetAll);
             }
             catch (Exception ex)
             {
@@ -94,7 +94,7 @@ namespace MotorAsinBasketRobot.Business.Concrete
         {
             try
             {
-                await _documentValidator.CheckUpdateAsync(entity.Id, entity.Code, entity);
+            //   await _documentValidator.CheckUpdateAsync(entity.Id, entity.Id, entity);
                 return new SuccessDataResult<Documents>(await _documentDal.UpdateAsync(entity), Messages.DocumentUpdated);
 
             }

@@ -35,10 +35,10 @@ namespace MotorAsinBasketRobot.Core.DataAccess.Utilities.Results
         //    items.CopyTo(array, arrayIndex);
         //}
 
-        //public IEnumerator<T> GetEnumerator()
-        //{
-        //   return items.GetEnumerator();
-        //}
+        public IEnumerator<T> GetEnumerator()
+        {
+            return items.GetEnumerator();
+        }
 
         //public int IndexOf(T item)
         //{

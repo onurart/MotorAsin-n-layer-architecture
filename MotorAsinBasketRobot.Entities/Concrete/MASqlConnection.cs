@@ -19,5 +19,6 @@ namespace MotorAsinBasketRobot.Entities.Concrete
         public string? Failover { get; set; }
         public string? Certificate { get; set; }
         public string? ApplicationIntent { get; set; }
+        public float? Timeout { get; set; }
     }
 }

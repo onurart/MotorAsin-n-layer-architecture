@@ -7,17 +7,17 @@ using System.Threading.Tasks;
 
 namespace MotorAsinBasketRobot.Entities.Concrete
 {
-    public class BaseEntity : IEntityDetail, IMultiTenant
+    public class BaseEntity : IEntityDetail//, IMultiTenant
     {
-        //public DateTime CreatedDate { get; set; }
-        //public Guid CreatorId { get; set; }
-        //public DateTime? LastModificationTime { get; set; }
-        //public Guid? LastModifierId { get; set; }
-        public int Id { get; set; }
-        //public Guid? TenantId { get; set; }
-        public bool? IsActive { get; set; }
-        public string? Code { get; set; }
-
-
+        public long Id { get; set; }
+        public long? TenantId { get; set; }
+        public bool IsActive { get; set; }
+        public bool IsDeleted { get; set; }
+        public long? CreatorId { get; set; }
+        public DateTime? CreatedDate { get; set; }
+        public long? LastModifiedId { get; set; }
+        public DateTime? LastModificationTime { get; set; }
+        public long? DeletedId { get; set; }
+        public DateTime? DeletedTime { get; set; }
     }
 }

@@ -8,5 +8,7 @@ namespace MotorAsinBasketRobot.Core.Entities.Abstract
 {
     public interface IMultiTenant
     {
+        public long TenantId { get; set; }  
+        public DateTime? TenantDate { get; set; }   
     }
 }

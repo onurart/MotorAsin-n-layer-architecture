@@ -24,7 +24,7 @@ namespace MotorAsinBasketRobot.Business.Concrete
         {
             try
             {
-                await _basketStatusValidator.CheckCreateAsync(entity.Code);
+               // await _basketStatusValidator.CheckCreateAsync(entity.Code);
                 return new SuccessDataResult<BasketStatus>(await _basketStatusDal.CreateAsync(entity), Messages.BasketStatusAdded);
 
             }
@@ -56,23 +56,13 @@ namespace MotorAsinBasketRobot.Business.Concrete
                 return new ErrorDataResult<BasketStatus>(ex.Message);
             }
         }
-        public async Task<IDataResult<string>> GetCode(BasketStatusCodeParameterDto parameterDto)
-        {
-            try
-            {
-                return new SuccessDataResult<string>(await _basketStatusDal.GetCodeAsync(x => x.Code, x => x.IsActive == parameterDto.Statu), Messages.BasketStatussGet);
-            }
-            catch (Exception ex)
-            {
-                return new ErrorDataResult<string>(ex.Message);
-            }
-        }
+
         public async Task<IDataResult<IList<BasketStatus>>> GetList(BasketStatusListParameterDto parameterDto)
         {
             try
             {
                 return new SuccessDataResult<IList<BasketStatus>>
-               (await _basketStatusDal.GetListAsync(b => b.IsActive == parameterDto.IsActive, b => b.Code), Messages.BasketStatussGet);
+               (await _basketStatusDal.GetListAsync(b => b.IsActive == parameterDto.IsActive, b => b.Id), Messages.BasketStatussGet);
             }
             catch (Exception ex)
             {
@@ -83,7 +73,7 @@ namespace MotorAsinBasketRobot.Business.Concrete
         {
             try
             {
-                await _basketStatusValidator.CheckUpdateAsync(entity.Id, entity.Code, entity);
+               // await _basketStatusValidator.CheckUpdateAsync(entity.Id, entity);
                 return new SuccessDataResult<BasketStatus>(await _basketStatusDal.UpdateAsync(entity), Messages.BasketStatusUpdated);
             }
             catch (Exception ex)

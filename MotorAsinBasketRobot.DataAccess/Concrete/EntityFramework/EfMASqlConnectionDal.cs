@@ -12,5 +12,10 @@ namespace MotorAsinBasketRobot.DataAccess.Concrete.EntityFramework
 {
     public class EfMASqlConnectionDal : EfEntityRepositoryBase<MASqlConnection, AppDbContext>, IMASqlConnectionDal
     {
+        public async Task UpdateConnectionString(string connString)
+        {
+            AppDbContext.ConnString = connString;
+            await Task.CompletedTask;
+        }
     }
 }

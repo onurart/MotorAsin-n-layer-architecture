@@ -14,22 +14,18 @@ namespace MotorAsinBasketRobot.Business.Concrete
     public class MASqlConnectionManager : IMASqlConnectionService
     {
         private readonly IMASqlConnectionDal _mASqlConnectionDal;
-        private readonly IMASqlConnectionService _mASqlConnectionDall;
-
         private readonly IMASqlConnectionValidator _mASqlConnectionValidator;
-
         public MASqlConnectionManager(IMASqlConnectionDal mASqlConnectionDal, ISpeCodeDal speCodeDal)
         {
             _mASqlConnectionDal = mASqlConnectionDal;
             _mASqlConnectionValidator = new MASqlConnectionValidator(_mASqlConnectionDal,speCodeDal);
         }
-
         public async Task<IDataResult<IList<MASqlConnection>>> GetList(MASqlConnectionListPramertDto parameter)
         {
             try
             {
                 return new SuccessDataResult<IList<MASqlConnection>>
-                (await _mASqlConnectionDal.GetListAsync(b => b.IsActive == parameter.IsActive, b => b.Code), Messages.MASqlConnectionGetAll);
+                (await _mASqlConnectionDal.GetListAsync(b => b.IsActive == parameter.IsActive && b.EnmConnetion==parameter.Connecion, b => b.Id), Messages.MASqlConnectionGetAll);
             }
             catch (Exception ex)
             {
@@ -40,7 +36,7 @@ namespace MotorAsinBasketRobot.Business.Concrete
         {
             try
             {
-                await _mASqlConnectionValidator.CheckCreateAsync(entity.Code);
+                //await _mASqlConnectionValidator.CheckCreateAsync(entity.Code);
                 return new SuccessDataResult<MASqlConnection>(await _mASqlConnectionDal.CreateAsync(entity), Messages.MASqlConnectionAdded);
 
             }
@@ -62,15 +58,47 @@ namespace MotorAsinBasketRobot.Business.Concrete
         {
             throw new NotImplementedException();
         }
-
+        //public async Task<IDataResult<MASqlConnection>> CustomerCodeAsync(string code, EnmConnetion customerServer)
+        //{
+        //    return await _mASqlConnectionDall.CustomerCodeAsync(code, customerServer);
+        //}  => Bu böyle yazılmaz
+        //public async Task<IDataResult<MASqlConnection>> CustomerCodeAsync(string code, EnmConnetion customerServer)
+        //{
+        //    try
+        //    {
+        //        return new SuccessDataResult<MASqlConnection>(
+        //            await _mASqlConnectionDal.GetAsync(
+        //                b => b.IsActive == true && b.EnmConnetion == customerServer && (b.CustomerCode == code || b.CustomerCode == "MODU")
+        //            ),
+        //            Messages.MASqlConnectionGetAll
+        //        );
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return new ErrorDataResult<MASqlConnection>(ex.Message);
+        //    }
+        //}
         public async Task<IDataResult<MASqlConnection>> CustomerCodeAsync(string code, EnmConnetion customerServer)
         {
-            return await _mASqlConnectionDall.CustomerCodeAsync(code, customerServer);
+            try
+            {
+                return new SuccessDataResult<MASqlConnection>
+                (await _mASqlConnectionDal.GetAsync(
+                     b => b.IsActive == true && b.EnmConnetion == customerServer && b.CustomerCode == code), Messages.MASqlConnectionGetAll);
+            }
+            catch (Exception ex)
+            {
+                return new ErrorDataResult<MASqlConnection>(ex.Message);
+            }
         }
-
         Task<IDataResult<MASqlConnection>> IMASqlConnectionService.GetCustomerAsync()
         {
             throw new NotImplementedException();
+        }
+
+        public async Task UpdateConnections(string connString)
+        {
+            await _mASqlConnectionDal.UpdateConnectionString(connString);
         }
     }
 }

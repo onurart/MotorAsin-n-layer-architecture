@@ -10,5 +10,6 @@ namespace MotorAsinBasketRobot.Business.Abstract
         Task<IDataResult<MASqlConnection>> CustomerCodeAsync(string code, EnmConnetion customerServer);
         Task<IDataResult<MASqlConnection>> GetCustomerAsync();
         Task<IDataResult<IList<MASqlConnection>>> GetList(MASqlConnectionListPramertDto parameter);
+        Task UpdateConnections(string connString);
     }
 }

@@ -22,7 +22,7 @@ namespace MotorAsinBasketRobot.Business.Concrete
         {
             try
             {
-                await productValidator.CheckCreateAsync(product.Code);
+               // await productValidator.CheckCreateAsync(product.Code);
                 return new SuccessDataResult<Product>(await _productDal.CreateAsync(product), Messages.ProductAdded);
 
             }
@@ -50,7 +50,7 @@ namespace MotorAsinBasketRobot.Business.Concrete
         {
             try
             {
-                return new SuccessDataResult<Product>(await _productDal.GetAsync(id, b => b.Id == id, b => b.Code), Messages.ProductGet);
+                return new SuccessDataResult<Product>(await _productDal.GetAsync(id, b => b.Id == id, b => b.Id), Messages.ProductGet);
             }
             catch (Exception ex)
             {
@@ -65,7 +65,7 @@ namespace MotorAsinBasketRobot.Business.Concrete
         {
             try
             {
-                return new SuccessDataResult<string>(await _productDal.GetCodeAsync(x => x.Code, b => b.IsActive == parameter.Statu), Messages.ProductGet);
+                return new SuccessDataResult<string>(await _productDal.GetCodeAsync(x => x.ProductCode, b => b.IsActive == parameter.Statu), Messages.ProductGet);
             }
             catch (Exception ex)
             {
@@ -77,7 +77,7 @@ namespace MotorAsinBasketRobot.Business.Concrete
             try
             {
                 return new SuccessDataResult<IList<Product>>
-                (await _productDal.GetListAsync(b => b.IsActive == parameter.IsActive, b => b.Code), Messages.ProductGetAll);
+                (await _productDal.GetListAsync(b => b.IsActive == parameter.IsActive, b => b.Id), Messages.ProductGetAll);
             }
             catch (Exception ex)
             {
@@ -88,7 +88,7 @@ namespace MotorAsinBasketRobot.Business.Concrete
         {
             try
             {
-                await productValidator.CheckUpdateAsync(product.Id, product.Code, product);
+               // await productValidator.CheckUpdateAsync(product.Id, product.Code, product);
                 return new SuccessDataResult<Product>(await _productDal.UpdateAsync(product), Messages.ProductUpdated);
 
             }

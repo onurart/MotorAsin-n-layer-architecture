@@ -14,6 +14,7 @@ namespace MotorAsinBasketRobot.Entities.Concrete
         public double? TlToltal { get; set; }
         public int? ProductReferance { get; set; }
         public int? CustomerReferance { get; set; }
+        public string DocumentNo { get; set; }
         public DateTime? DocumentDate { get; set; }
     }
 }

@@ -8,5 +8,6 @@ namespace MotorAsinBasketRobot.Core.Entities.Abstract
 {
     public interface IEntityDetail : IEntity
     {
+        public long Id { get; set; }
     }
 }

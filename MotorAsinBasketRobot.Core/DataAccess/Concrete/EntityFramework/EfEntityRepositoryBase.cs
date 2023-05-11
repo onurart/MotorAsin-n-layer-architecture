@@ -1,12 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MotorAsinBasketRobot.Core.DataAccess.Abstract;
 using MotorAsinBasketRobot.Core.Entities.Abstract;
+using System;
 using System.Linq.Expressions;
 
 namespace MotorAsinBasketRobot.Core.DataAccess.Concrete.EntityFramework
 {
     public class EfEntityRepositoryBase<T, TContext> : IEntityRepository<T> where TContext : DbContext, new() where T : class, IBaseEntity
     {
+
         public async Task<T> GetAsync(object id, Expression<Func<T, bool>> predicate = null)
         {
             using (TContext context = new TContext())

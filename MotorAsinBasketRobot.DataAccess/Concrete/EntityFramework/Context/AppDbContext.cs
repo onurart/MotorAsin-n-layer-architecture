@@ -11,14 +11,14 @@ namespace MotorAsinBasketRobot.DataAccess.Concrete.EntityFramework.Context
 {
     public class AppDbContext : DbContext
     {
-       
+        public static string ConnString = "Data Source=192.168.181.150;Initial Catalog=MotorAssinBasketRobotProject;User ID=onursa;Password=4473634;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False";
+        //public static string ConnString = "Data Source=ONURUMUTLUOGLU;Initial Catalog=MotorAssinBasketRobotProject;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False";
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             //IConfigurationRoot config = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
             //optionsBuilder.UseSqlServer(config.GetConnectionString("SqlConnection"));
-            optionsBuilder.UseSqlServer("Data Source=192.168.181.150;Initial Catalog=MotorAssinBasketRobotProject;User ID=onursa;Password=4473634;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False");
+            optionsBuilder.UseSqlServer(ConnString);
         }
-
 
         public virtual DbSet<BasketStatus> BasketStatuses { get; set; }
         public virtual DbSet<Customer> Customers { get; set; }
