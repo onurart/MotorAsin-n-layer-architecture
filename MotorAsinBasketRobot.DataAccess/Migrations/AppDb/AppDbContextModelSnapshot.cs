@@ -3,20 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MotorAsinBasketRobot.DataAccess.Concrete.EntityFramework.Context;
 
 #nullable disable
 
-namespace MotorAsinBasketRobot.DataAccess.Migrations
+namespace MotorAsinBasketRobot.DataAccess.Migrations.AppDb
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230509201459_CreateTable")]
-    partial class CreateTable
+    partial class AppDbContextModelSnapshot : ModelSnapshot
     {
-        /// <inheritdoc />
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -33,10 +30,10 @@ namespace MotorAsinBasketRobot.DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
 
-                    b.Property<DateTime>("CreatedDate")
+                    b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<long>("CreatorId")
+                    b.Property<long?>("CreatorId")
                         .HasColumnType("bigint");
 
                     b.Property<string>("CustomerCode")
@@ -48,10 +45,10 @@ namespace MotorAsinBasketRobot.DataAccess.Migrations
                     b.Property<DateTime?>("DeletedTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<bool?>("IsActive")
+                    b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
-                    b.Property<bool?>("IsDeleted")
+                    b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
                     b.Property<DateTime?>("LastModificationTime")
@@ -62,9 +59,6 @@ namespace MotorAsinBasketRobot.DataAccess.Migrations
 
                     b.Property<string>("ProductCode")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<long?>("TenantId")
-                        .HasColumnType("bigint");
 
                     b.HasKey("Id");
 
@@ -79,10 +73,10 @@ namespace MotorAsinBasketRobot.DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
 
-                    b.Property<DateTime>("CreatedDate")
+                    b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<long>("CreatorId")
+                    b.Property<long?>("CreatorId")
                         .HasColumnType("bigint");
 
                     b.Property<string>("CustomerCode")
@@ -97,19 +91,16 @@ namespace MotorAsinBasketRobot.DataAccess.Migrations
                     b.Property<DateTime?>("DeletedTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<bool?>("IsActive")
+                    b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
-                    b.Property<bool?>("IsDeleted")
+                    b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
                     b.Property<DateTime?>("LastModificationTime")
                         .HasColumnType("datetime2");
 
                     b.Property<long?>("LastModifiedId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long?>("TenantId")
                         .HasColumnType("bigint");
 
                     b.HasKey("Id");
@@ -128,10 +119,10 @@ namespace MotorAsinBasketRobot.DataAccess.Migrations
                     b.Property<short?>("Billed")
                         .HasColumnType("smallint");
 
-                    b.Property<DateTime>("CreatedDate")
+                    b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<long>("CreatorId")
+                    b.Property<long?>("CreatorId")
                         .HasColumnType("bigint");
 
                     b.Property<int?>("CustomerReferance")
@@ -147,16 +138,15 @@ namespace MotorAsinBasketRobot.DataAccess.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("DocumentNo")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<short?>("DocumetType")
                         .HasColumnType("smallint");
 
-                    b.Property<bool?>("IsActive")
+                    b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
-                    b.Property<bool?>("IsDeleted")
+                    b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
                     b.Property<DateTime?>("LastModificationTime")
@@ -170,9 +160,6 @@ namespace MotorAsinBasketRobot.DataAccess.Migrations
 
                     b.Property<int?>("ProductReferance")
                         .HasColumnType("int");
-
-                    b.Property<long?>("TenantId")
-                        .HasColumnType("bigint");
 
                     b.Property<double?>("TlToltal")
                         .HasColumnType("float");
@@ -190,10 +177,10 @@ namespace MotorAsinBasketRobot.DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
 
-                    b.Property<DateTime>("CreatedDate")
+                    b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<long>("CreatorId")
+                    b.Property<long?>("CreatorId")
                         .HasColumnType("bigint");
 
                     b.Property<long?>("DeletedId")
@@ -206,10 +193,10 @@ namespace MotorAsinBasketRobot.DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool?>("IsActive")
+                    b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
-                    b.Property<bool?>("IsDeleted")
+                    b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
                     b.Property<DateTime?>("LastModificationTime")
@@ -221,9 +208,6 @@ namespace MotorAsinBasketRobot.DataAccess.Migrations
                     b.Property<DateTime>("RequestsTimes")
                         .HasColumnType("datetime2");
 
-                    b.Property<long?>("TenantId")
-                        .HasColumnType("bigint");
-
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -231,79 +215,6 @@ namespace MotorAsinBasketRobot.DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("IncomingOrderRequests");
-                });
-
-            modelBuilder.Entity("MotorAsinBasketRobot.Entities.Concrete.MASqlConnection", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
-
-                    b.Property<string>("ApplicationIntent")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Certificate")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<long>("CreatorId")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("CustomerCode")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("DbName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<long?>("DeletedId")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTime?>("DeletedTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Encrypt")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("EnmConnetion")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Failover")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool?>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<bool?>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("LastModificationTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<long?>("LastModifiedId")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("Password")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ServerName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<long?>("TenantId")
-                        .HasColumnType("bigint");
-
-                    b.Property<float?>("Timeout")
-                        .HasColumnType("real");
-
-                    b.Property<string>("UserName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("MASqlConnections");
                 });
 
             modelBuilder.Entity("MotorAsinBasketRobot.Entities.Concrete.Offer", b =>
@@ -314,10 +225,10 @@ namespace MotorAsinBasketRobot.DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
 
-                    b.Property<DateTime>("CreatedDate")
+                    b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<long>("CreatorId")
+                    b.Property<long?>("CreatorId")
                         .HasColumnType("bigint");
 
                     b.Property<long?>("DeletedId")
@@ -326,10 +237,10 @@ namespace MotorAsinBasketRobot.DataAccess.Migrations
                     b.Property<DateTime?>("DeletedTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<bool?>("IsActive")
+                    b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
-                    b.Property<bool?>("IsDeleted")
+                    b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
                     b.Property<DateTime?>("LastModificationTime")
@@ -355,9 +266,6 @@ namespace MotorAsinBasketRobot.DataAccess.Migrations
 
                     b.Property<int?>("ProductReferance")
                         .HasColumnType("int");
-
-                    b.Property<long?>("TenantId")
-                        .HasColumnType("bigint");
 
                     b.HasKey("Id");
 
@@ -372,10 +280,10 @@ namespace MotorAsinBasketRobot.DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
 
-                    b.Property<DateTime>("CreatedDate")
+                    b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<long>("CreatorId")
+                    b.Property<long?>("CreatorId")
                         .HasColumnType("bigint");
 
                     b.Property<long?>("DeletedId")
@@ -384,10 +292,10 @@ namespace MotorAsinBasketRobot.DataAccess.Migrations
                     b.Property<DateTime?>("DeletedTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<bool?>("IsActive")
+                    b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
-                    b.Property<bool?>("IsDeleted")
+                    b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
                     b.Property<DateTime?>("LastModificationTime")
@@ -414,9 +322,6 @@ namespace MotorAsinBasketRobot.DataAccess.Migrations
                     b.Property<int?>("ProductReferance")
                         .HasColumnType("int");
 
-                    b.Property<long?>("TenantId")
-                        .HasColumnType("bigint");
-
                     b.HasKey("Id");
 
                     b.ToTable("Products");
@@ -430,10 +335,10 @@ namespace MotorAsinBasketRobot.DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
 
-                    b.Property<DateTime>("CreatedDate")
+                    b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<long>("CreatorId")
+                    b.Property<long?>("CreatorId")
                         .HasColumnType("bigint");
 
                     b.Property<long?>("DeletedId")
@@ -442,10 +347,10 @@ namespace MotorAsinBasketRobot.DataAccess.Migrations
                     b.Property<DateTime?>("DeletedTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<bool?>("IsActive")
+                    b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
-                    b.Property<bool?>("IsDeleted")
+                    b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
                     b.Property<DateTime?>("LastModificationTime")
@@ -465,9 +370,6 @@ namespace MotorAsinBasketRobot.DataAccess.Migrations
 
                     b.Property<int?>("ProductReferance")
                         .HasColumnType("int");
-
-                    b.Property<long?>("TenantId")
-                        .HasColumnType("bigint");
 
                     b.HasKey("Id");
 

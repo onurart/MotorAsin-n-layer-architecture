@@ -96,9 +96,9 @@ namespace MotorAsinBasketRobot.Business.Concrete
             throw new NotImplementedException();
         }
 
-        public async Task UpdateConnections(string connString)
+        public async Task UpdateConnections(MASqlConnection maSqlConnection)
         {
-            await _mASqlConnectionDal.UpdateConnectionString(connString);
+            await _mASqlConnectionDal.UpdateConnectionString(maSqlConnection);
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using MotorAsinBasketRobot.Core.DataAccess.Abstract;
+using MotorAsinBasketRobot.DataAccess.Concrete.EntityFramework;
 using MotorAsinBasketRobot.DataAccess.Concrete.EntityFramework.Context;
 using MotorAsinBasketRobot.Entities.Concrete;
 using System;
@@ -12,6 +13,6 @@ namespace MotorAsinBasketRobot.DataAccess.Abstract
     public interface IMASqlConnectionDal:IEntityRepository<MASqlConnection>
     {
 
-        Task UpdateConnectionString(string connString);
+        Task UpdateConnectionString(MASqlConnection MASqlConnection);
     }
 }

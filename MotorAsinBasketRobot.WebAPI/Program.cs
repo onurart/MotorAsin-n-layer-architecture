@@ -32,18 +32,14 @@ builder.Services.AddQuartz(q =>
 
     q.AddTrigger(opts => opts
         .ForJob(jobKey)
-        .WithIdentity("DocumenTriggers")
+         .WithIdentity("DocumentsJob", "null")
+       //.WithIdentity("DocumenTriggers")
        //This Cron interval can be described as "run every minute" (when second is zero)
-       .WithCronSchedule("0/50 * * ? * * *")
+       //.WithCronSchedule("0/59 * * ? * * *")
+       .WithCronSchedule("0 */1 * ? * * *") // Her iki dakikada bir çalýþacak cron ifadesi
     );
 });
 builder.Services.AddQuartzHostedService(q => q.WaitForJobsToComplete = true);
-
-
-
-
-
-
 
 
 var app = builder.Build();

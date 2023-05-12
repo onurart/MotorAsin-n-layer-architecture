@@ -20,5 +20,6 @@ namespace MotorAsinBasketRobot.Entities.Concrete
         public string? Certificate { get; set; }
         public string? ApplicationIntent { get; set; }
         public float? Timeout { get; set; }
+        public Int16 Format { get; set; }
     }
 }
