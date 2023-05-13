@@ -1,4 +1,5 @@
 ﻿using MotorAsinBasketRobot.Business.Abstract;
+using MotorAsinBasketRobot.Business.Constants;
 using MotorAsinBasketRobot.Business.Validator.Abstract;
 using MotorAsinBasketRobot.Business.Validator.Concrete;
 using MotorAsinBasketRobot.Core.DataAccess.Utilities.Results;
@@ -32,6 +33,18 @@ namespace MotorAsinBasketRobot.Business.Concrete
         public Task<IDataResult<ProductCampaign>> Get(int id)
         {
             throw new NotImplementedException();
+        }
+
+        public async Task<IDataResult<string>> GetCode(ProductCampaignCodeParameterDto parameter)
+        {
+            try
+            {
+                return new SuccessDataResult<string>(await _productCampaignDal.GetCodeAsync(x => x.ProductCode, b => b.IsActive == parameter.Statu), Messages.DocumentGet);
+            }
+            catch (Exception ex)
+            {
+                return new ErrorDataResult<string>("", ex.Message);
+            }
         }
 
         public async Task<IDataResult<IList<ProductCampaign>>> GetList(ProductCampaignListPramertDto parameter)

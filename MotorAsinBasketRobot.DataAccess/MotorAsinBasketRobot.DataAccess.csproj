@@ -21,4 +21,8 @@
     <ProjectReference Include="..\MotorAsinBasketRobot.Entities\MotorAsinBasketRobot.Entities.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Migrations\AppDb\" />
+  </ItemGroup>
+
 </Project>

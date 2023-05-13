@@ -7,6 +7,7 @@ using Quartz.Impl;
 using Quartz;
 using MotorAsinBasketRobot.WebAPI.Tasks.Jobs;
 using MotorAsinBasketRobot.WebAPI.Tasks.Triggers;
+using MotorAsinBasketRobot.Entities.Concrete;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory()).ConfigureContainer<ContainerBuilder>(builder =>
@@ -26,18 +27,44 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddQuartz(q =>
 {
     q.UseMicrosoftDependencyInjectionScopedJobFactory();
-    // Just use the name of your job that you created in the Jobs folder.
     var jobKey = new JobKey("DocumentsJob");
     q.AddJob<DocumentsJob>(opts => opts.WithIdentity(jobKey));
-
     q.AddTrigger(opts => opts
         .ForJob(jobKey)
          .WithIdentity("DocumentsJob", "null")
-       //.WithIdentity("DocumenTriggers")
-       //This Cron interval can be described as "run every minute" (when second is zero)
-       //.WithCronSchedule("0/59 * * ? * * *")
-       .WithCronSchedule("0 */1 * ? * * *") // Her iki dakikada bir çalýþacak cron ifadesi
-    );
+      .WithIdentity("DocumenTriggers")
+   .WithCronSchedule("0/5 * * ? * * *"));
+
+
+    var basketStatusKey = new JobKey("BasketStatusJob");
+    q.AddJob<BasketStatusJob>(opts => opts.WithIdentity(basketStatusKey));
+    q.AddTrigger(opts => opts
+        .ForJob(basketStatusKey)
+         .WithIdentity("BasketStatusJob", "null")
+    .WithCronSchedule("0/5 * * ? * * *"));
+
+
+    var customerKey = new JobKey("CustomersJob");
+    q.AddJob<CustomersJob>(opts => opts.WithIdentity(customerKey));
+    q.AddTrigger(opts => opts
+        .ForJob(customerKey)
+         .WithIdentity("CustomersJob", "null")
+             .WithCronSchedule("0/5 * * ? * * *"));// 1 saniye
+
+
+    //var ProductCampaignKey = new JobKey("ProductCampaignJob");
+    //q.AddJob<ProductCampaignsJob>(opts => opts.WithIdentity(ProductCampaignKey));
+    //q.AddTrigger(opts => opts
+    //    .ForJob(ProductCampaignKey)
+    //     .WithIdentity("DocumenTriggers", "null")
+    //.WithCronSchedule("0/5 * * ? * * *"));// 1 saniye
+    ////.WithCronSchedule("0 */5 * ? * * *"));
+
+
+
+
+
+
 });
 builder.Services.AddQuartzHostedService(q => q.WaitForJobsToComplete = true);
 
