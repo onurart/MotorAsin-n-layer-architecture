@@ -34,6 +34,6 @@ namespace MotorAsinBasketRobot.DataAccess.Concrete.EntityFramework.Context
         public virtual DbSet<IncomingOrderRequests> IncomingOrderRequests { get; set; }
         public virtual DbSet<Offer> Offers { get; set; }
         public virtual DbSet<Product> Products { get; set; }
-        public virtual DbSet<ProductCampaign> ProductCampaigns { get; set; }
+        //public virtual DbSet<ProductCampaign> ProductCampaigns { get; set; }
     }
 }

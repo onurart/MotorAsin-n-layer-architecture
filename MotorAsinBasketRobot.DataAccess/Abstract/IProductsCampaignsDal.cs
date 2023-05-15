@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MotorAsinBasketRobot.DataAccess.Abstract
 {
-    public interface IProductCampaignDal:IEntityRepository<ProductCampaign>
+    public interface IProductsCampaignsDal: IEntityRepository<ProductsCampaigns>
     {
     }
 }

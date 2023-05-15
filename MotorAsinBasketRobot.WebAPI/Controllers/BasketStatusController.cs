@@ -1,11 +1,5 @@
 ﻿using AutoMapper;
-using AutoMapper.Internal.Mappers;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using MotorAsinBasketRobot.Business.Abstract;
-using MotorAsinBasketRobot.Core.DataAccess.Utilities.Results;
-using MotorAsinBasketRobot.Entities.Concrete;
-using MotorAsinBasketRobot.Entities.Dtos.BasketStatus;
 
 namespace MotorAsinBasketRobot.WebAPI.Controllers
 {

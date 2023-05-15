@@ -1,19 +1,19 @@
 ﻿using Quartz.Impl;
 namespace MotorAsinBasketRobot.WebAPI.Tasks.Triggers
 {
-    public class DocumenTriggers
+    public class BasketStatusTriggers
     {
-        public static void DocumentStarts()
+        public static void BasketStatusStarts()
         {
             ISchedulerFactory schedulerFactory = new StdSchedulerFactory();
             IScheduler scheduler = schedulerFactory.GetScheduler().GetAwaiter().GetResult();
             if (!scheduler.IsStarted)
                 scheduler.Start().GetAwaiter().GetResult();
-            IJobDetail job = JobBuilder.Create<DocumentsJob>()
-                                      .WithIdentity("DocumentsJob", null)
+            IJobDetail job = JobBuilder.Create<BasketStatusJob>()
+                                      .WithIdentity("BasketStatusJob", null)
                                       .Build();
             ITrigger trigger = TriggerBuilder.Create()
-                                             .WithIdentity("DocumentsTrigger", null)                             
+                                             .WithIdentity("BasketStatusJob",null)
                                              .Build();
             scheduler.ScheduleJob(job, trigger).GetAwaiter().GetResult();
         }

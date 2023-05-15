@@ -1,0 +1,12 @@
+﻿global using MotorAsinBasketRobot.Business.Abstract;
+global using MotorAsinBasketRobot.Core.DataAccess.Utilities.Results;
+global using MotorAsinBasketRobot.Entities.Concrete;
+global using MotorAsinBasketRobot.Entities.Dtos.BasketStatus;
+global using MotorAsinBasketRobot.Shared.Enums;
+global using MotorAsinBasketRobot.Entities.Dtos.Customer;
+global using MotorAsinBasketRobot.Entities.Dtos.Documents;
+global using Quartz;
+global using Autofac;
+global using Autofac.Extensions.DependencyInjection;
+global using MotorAsinBasketRobot.Business.DependecyResolvers.Autofac;
+global using MotorAsinBasketRobot.WebAPI.Tasks.Jobs;

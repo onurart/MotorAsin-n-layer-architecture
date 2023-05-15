@@ -36,5 +36,10 @@
         public static string MASqlConnectionGetAll = "Dbler başarıyla getirildi.";
         public static string MASqlConnectionAdded = "Db başarıyla eklendi.";
         public static string MASqlConnectionDeleted = "Db başarıyla silindi.";
+        //====================================================================================
+        public static string ProductsCampaignsget = "Ürünler Kampanyalar başarıyla getirildi.";
+        public static string ProductsCampaignsgetall = "Tüm Ürünler Kampanyalar başarıyla getirildi.";
+        public static string ProductsCampaignsadded = "ÜrünlerKampanyalar başarıyla eklendi.";
+        public static string ProductsCampaignsdeleted = "ÜrünlerKampanyalar başarıyla silindi.";
     }
 }

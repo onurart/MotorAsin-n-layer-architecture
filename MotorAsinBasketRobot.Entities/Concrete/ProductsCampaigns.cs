@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MotorAsinBasketRobot.Entities.Concrete
 {
-    public class ProductCampaign : BaseEntity
+    public class ProductsCampaigns: BaseEntity
     {
         public int? ProductReferance { get; set; }
         public string? ProductCode { get; set; }

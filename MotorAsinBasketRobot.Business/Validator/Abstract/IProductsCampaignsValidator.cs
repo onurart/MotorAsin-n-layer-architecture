@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace MotorAsinBasketRobot.Business.Validator.Abstract
 {
-    internal interface IProductCampaignValidator
+    public interface IProductsCampaignsValidator
     {
         Task CheckCreateAsync(string code);
-        Task CheckUpdateAsync(int id, string code, ProductCampaign entity);
+        Task CheckUpdateAsync(int id, string code, Documents entity);
         Task CheckDeleteAsync(int id);
     }
 }

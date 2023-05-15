@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MotorAsinBasketRobot.Entities.Dtos.ProductCampaign
+namespace MotorAsinBasketRobot.Entities.Dtos.ProductsCampaigns
 {
-    public class ProductCampaignCodeParameterDto : IBaseDto, IStatu
+    public class ProductsCampaignsCodeParameterDto : IBaseDto, IStatu
     {
         public bool? Statu { get; set; }
     }

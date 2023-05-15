@@ -1,4 +1,5 @@
-﻿using MotorAsinBasketRobot.Business.Validator.Abstract;
+﻿using MotorAsinBasketRobot.Business.Concrete;
+using MotorAsinBasketRobot.Business.Validator.Abstract;
 using MotorAsinBasketRobot.DataAccess.Abstract;
 using MotorAsinBasketRobot.Entities.Concrete;
 using System;
@@ -9,14 +10,13 @@ using System.Threading.Tasks;
 
 namespace MotorAsinBasketRobot.Business.Validator.Concrete
 {
-    public class ProductCampaignValidator : IProductCampaignValidator
+    public class ProductsCampaignsValidator: IProductsCampaignsValidator
     {
-        private readonly IProductCampaignDal _productCampaignDal;
+        private readonly IProductsCampaignsDal _productsCampaignsDal;
         private readonly ISpeCodeDal _speCodeDal;
-
-        public ProductCampaignValidator(IProductCampaignDal productCampaignDal, ISpeCodeDal speCodeDal)
+public ProductsCampaignsValidator(IProductsCampaignsDal productsCampaignsDal, ISpeCodeDal speCodeDal)
         {
-            _productCampaignDal = productCampaignDal;
+            _productsCampaignsDal = productsCampaignsDal;
             _speCodeDal = speCodeDal;
         }
 
@@ -30,7 +30,7 @@ namespace MotorAsinBasketRobot.Business.Validator.Concrete
             throw new NotImplementedException();
         }
 
-        public Task CheckUpdateAsync(int id, string code, ProductCampaign entity)
+        public Task CheckUpdateAsync(int id, string code, Documents entity)
         {
             throw new NotImplementedException();
         }

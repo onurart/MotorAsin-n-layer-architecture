@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace MotorAsinBasketRobot.DataAccess.Concrete.EntityFramework
 {
-    public class EfProductCampaignDal : EfEntityRepositoryBase<ProductCampaign, AppDbContext>, IProductCampaignDal
+    public class EfProductsCampaignsDal:EfEntityRepositoryBase<ProductsCampaigns,AppDbContext>,IProductsCampaignsDal
     {
     }
 }

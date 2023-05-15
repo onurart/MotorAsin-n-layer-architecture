@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MotorAsinBasketRobot.Entities.Dtos.Product
 {
-    public class ProductListPramertDto: PageListParameterDto, IBaseDto, IStatu
+    public class ProductListPramertDto:  IBaseDto, IStatu
     {
         public bool Statu { get; set; }
         public string? Code { get; set; }
