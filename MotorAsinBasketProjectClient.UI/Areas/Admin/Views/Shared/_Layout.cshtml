@@ -1,0 +1,210 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - MotorAsinBasketRobotProject.UI</title>
+    <link href="~/css/devextreme/dx.light.compact.css" rel="stylesheet" />
+    <link href="~/css/mycss/dx.material.custom-scheme.css" rel="stylesheet" />
+    <link href="~/css/mycss/gridstyle.css" rel="stylesheet" />
+    <link href="~/css/devextreme/dx-gantt.css" rel="stylesheet" />
+    <link href="~/css/devextreme/dx-diagram.css" rel="stylesheet" />
+    <script src="~/js/devextreme/jquery.min.js"></script>
+    <script src="~/js/devextreme/bootstrap.js"></script>
+    <script src="~/js/devextreme/cldr.js"></script>
+    <script src="~/js/devextreme/cldr/event.js"></script>
+    <script src="~/js/devextreme/cldr/supplemental.js"></script>
+    <script src="~/js/devextreme/cldr/unresolved.js"></script>
+    <script src="~/js/devextreme/globalize.js"></script>
+    <script src="~/js/devextreme/globalize/message.js"></script>
+    <script src="~/js/devextreme/globalize/number.js"></script>
+    <script src="~/js/devextreme/globalize/currency.js"></script>
+    <script src="~/js/devextreme/globalize/date.js"></script>
+    <script src="~/js/devextreme/cldr/Core.js"></script>
+    <script src="~/js/devextreme/jszip.js"></script>
+    <script src="~/js/devextreme/dx.all.js"></script>
+    <script src="~/js/devextreme/localization/dx.messages.tr.js"></script>
+    <script src="~/js/devextreme/globalize/tr.js"></script>
+    <script src="~/js/devextreme/aspnet/dx.aspnet.mvc.js"></script>
+    <script src="~/js/devextreme/aspnet/dx.aspnet.data.js"></script>
+    <script src="~/js/devextreme/exceljs.js"></script>
+    <script src="~/js/devextreme/jspdf.umd.js"></script>
+    <link rel="stylesheet" href="~/WebDesign/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/WebDesign/fonts/style.css">
+    <link rel="stylesheet" href="~/WebDesign/css/main.css">
+    <link rel="stylesheet" href="~/WebDesign/vendor/megamenu/css/megamenu.css">
+    <link rel="stylesheet" href="~/WebDesign/vendor/search-filter/search-filter.css">
+    <link rel="stylesheet" href="~/WebDesign/vendor/search-filter/custom-search-filter.css">
+</head>
+<body>
+    <div id="loading-wrapper">
+        <div class="spinner-border"></div>
+        Loading...
+    </div>
+
+
+    <div class="page-wrapper">
+        @await Component.InvokeAsync("AdminSideMenu")
+        <div class="main-container">
+
+            <!-- Page header starts -->
+            <div class="page-header">
+
+                <!-- Row start -->
+                <div class="row gutters">
+                    <div class="col-xl-8 col-lg-8 col-md-8 col-sm-6 col-9">
+
+                        @await Component.InvokeAsync("AdminSearch")
+
+                    </div>
+                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-3">
+
+                        <!-- Header actions start -->
+                        <ul class="header-actions">
+                            @await Component.InvokeAsync("AdminTasks")
+                            <li class="dropdown">
+                                <a href="#" id="notifications" data-toggle="dropdown" aria-haspopup="true">
+                                    <i class="icon-alert-triangle"></i>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-end lrg" aria-labelledby="notifications">
+                                    <div class="dropdown-menu-header">
+                                        Notifications (7)
+                                    </div>
+                                    <div class="customScroll">
+                                        <ul class="header-notifications">
+                                            <li>
+                                                <a href="#">
+                                                    <div class="user-img online">
+                                                        <img src="~/WebDesign/img/user6.png" alt="User">
+                                                    </div>
+                                                    <div class="details">
+                                                        <div class="user-title">Larkyn</div>
+                                                        <div class="noti-details">Check out every table in detail.</div>
+                                                        <div class="noti-date">April 25, 04:00 pm</div>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <div class="user-img busy">
+                                                        <img src="~/WebDesign/img/user10.png" alt="User">
+                                                    </div>
+                                                    <div class="details">
+                                                        <div class="user-title">Braxten</div>
+                                                        <div class="noti-details">Approved new design.</div>
+                                                        <div class="noti-date">April 10, 12:00 am</div>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <div class="user-img away">
+                                                        <img src="~/WebDesign/img/user21.png" alt="User">
+                                                    </div>
+                                                    <div class="details">
+                                                        <div class="user-title">Maria</div>
+                                                        <div class="noti-details">Membership has been ended.</div>
+                                                        <div class="noti-date">March 20, 07:30 pm</div>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <div class="user-img busy">
+                                                        <img src="~/WebDesign/img/user15.png" alt="User">
+                                                    </div>
+                                                    <div class="details">
+                                                        <div class="user-title">Alex</div>
+                                                        <div class="noti-details">Design Review.</div>
+                                                        <div class="noti-date">April 18, 09:30 am</div>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <div class="user-img online">
+                                                        <img src="~/WebDesign/img/user5.png" alt="User">
+                                                    </div>
+                                                    <div class="details">
+                                                        <div class="user-title">Sunny</div>
+                                                        <div class="noti-details">UI Discussion</div>
+                                                        <div class="noti-date">April 21, 05:00 pm</div>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                            @await Component.InvokeAsync("AdminUserSettings")
+                        </ul>
+                        <!-- Header actions end -->
+
+                    </div>
+                </div>
+                <!-- Row end -->
+
+            </div>
+            @RenderBody()
+        </div>
+    </div>
+
+
+    <script>
+        DevExpress.localization.locale(navigator.language);
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"></script>
+
+    <script>
+        function exportToPDF(e) {
+            var doc = new jsPDF();
+            DevExpress.pdfExporter.exportDataGrid({
+                jsPDFDocument: doc,
+                component: e.component,
+                indent: 5,
+            }).then(function () {
+                doc.save("Companies.pdf");
+            });
+        }
+    </script>
+    <!-- Required jQuery first, then Bootstrap Bundle JS -->
+    @*<script src="~/WebDesign/js/jquery.min.js"></script>*@
+    <script src="~/WebDesign/js/bootstrap.bundle.min.js"></script>
+    <script src="~/WebDesign/js/modernizr.js"></script>
+    <script src="~/WebDesign/js/moment.js"></script>
+
+
+    <!-- *************
+        ************ Vendor Js Files *************
+    ************* -->
+    <!-- Megamenu JS -->
+    <script src="~/WebDesign/vendor/megamenu/js/megamenu.js"></script>
+    <script src="~/WebDesign/vendor/megamenu/js/custom.js"></script>
+
+    <!-- Slimscroll JS -->
+    <script src="~/WebDesign/vendor/slimscroll/slimscroll.min.js"></script>
+    <script src="~/WebDesign/vendor/slimscroll/custom-scrollbar.js"></script>
+
+    <!-- Search Filter JS -->
+    <script src="~/WebDesign/vendor/search-filter/search-filter.js"></script>
+    <script src="~/WebDesign/vendor/search-filter/custom-search-filter.js"></script>
+
+    <!-- Apex Charts -->
+    @*<script src="~/WebDesign/vendor/apex/apexcharts.min.js"></script>*@
+    @*    <script src="~/WebDesign/vendor/apex/custom/home/salesGraph.js"></script>
+    <script src="~/WebDesign/vendor/apex/custom/home/ordersGraph.js"></script>
+    <script src="~/WebDesign/vendor/apex/custom/home/earningsGraph.js"></script>
+    <script src="~/WebDesign/vendor/apex/custom/home/visitorsGraph.js"></script>
+    <script src="~/WebDesign/vendor/apex/custom/home/customersGraph.js"></script>
+    <script src="~/WebDesign/vendor/apex/custom/home/sparkline.js"></script>
+    *@
+    <!-- Circleful Charts -->
+    <script src="~/WebDesign/vendor/circliful/circliful.min.js"></script>
+    <script src="~/WebDesign/vendor/circliful/circliful.custom.js"></script>
+
+    <!-- Main Js Required -->
+    <script src="~/WebDesign/js/main.js"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
