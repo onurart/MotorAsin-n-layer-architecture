@@ -8,6 +8,7 @@
     <Folder Include="ApiServices\" />
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="Exceptions\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="7.0.5" />
@@ -17,6 +18,7 @@
     <PackageReference Include="DevExtreme.AspNet.Data" Version="2.9.0" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MotorAsinBasketRobot.Business\MotorAsinBasketRobot.Business.csproj" />
     <ProjectReference Include="..\MotorAsinBasketRobot.DataAccess\MotorAsinBasketRobot.DataAccess.csproj" />
     <ProjectReference Include="..\MotorAsinBasketRobot.Entities\MotorAsinBasketRobot.Entities.csproj" />
   </ItemGroup>

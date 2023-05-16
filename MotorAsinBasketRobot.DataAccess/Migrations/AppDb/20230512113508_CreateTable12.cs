@@ -112,12 +112,9 @@ namespace MotorAsinBasketRobot.DataAccess.Migrations.AppDb
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ProductReferance = table.Column<int>(type: "int", nullable: true),
+                    CustomerCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ProductCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ProductGroup1 = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ProductGroup2 = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ProductGroup3 = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ProductGroup4 = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Quantity = table.Column<int>(type: "int", nullable: true),
                     IsActive = table.Column<bool>(type: "bit", nullable: false),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     CreatorId = table.Column<long>(type: "bigint", nullable: true),

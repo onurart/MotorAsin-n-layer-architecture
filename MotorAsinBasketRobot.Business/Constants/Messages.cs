@@ -41,5 +41,10 @@
         public static string ProductsCampaignsgetall = "Tüm Ürünler Kampanyalar başarıyla getirildi.";
         public static string ProductsCampaignsadded = "ÜrünlerKampanyalar başarıyla eklendi.";
         public static string ProductsCampaignsdeleted = "ÜrünlerKampanyalar başarıyla silindi.";
+        //====================================================================================
+        public static string Offerget = "Offer Kampanyalar başarıyla getirildi.";
+        public static string Offergetall = "Tüm Ürünler Kampanyalar başarıyla getirildi.";
+        public static string Offeradded = "Offer başarıyla eklendi.";
+        public static string Offerdeleted = "Offer başarıyla silindi.";
     }
 }

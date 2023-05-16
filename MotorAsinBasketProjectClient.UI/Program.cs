@@ -1,5 +1,10 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileProviders;
+using MotorAsinBasketProjectClient.UI.Extenisons;
+using MotorAsinBasketRobot.Business.EmailService.EmailEntity;
+using MotorAsinBasketRobot.Business.EmailService.EmailService;
+using MotorAsinBasketRobot.Business.EmailService.IService;
 using MotorAsinBasketRobot.DataAccess.Concrete.EntityFramework.Context;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,6 +18,23 @@ builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(buil
 builder.Services.Configure<SecurityStampValidatorOptions>(options =>
 {
     options.ValidationInterval = TimeSpan.FromMinutes(30);
+});
+
+builder.Services.AddSingleton<IFileProvider>(new PhysicalFileProvider(Directory.GetCurrentDirectory()));
+builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("SqlConnection"));
+builder.Services.AddIdentityWithExt();
+builder.Services.AddScoped<IEmailService, EmailService>();
+builder.Services.ConfigureApplicationCookie(opt =>
+{
+    var cookieBuilder = new CookieBuilder();
+
+    cookieBuilder.Name = "MotorAssinBasketRobotProjectAppCookie";
+    opt.LoginPath = new PathString("/WebLogin/SignIn");
+    opt.LogoutPath = new PathString("/Member/logout");
+    opt.AccessDeniedPath = new PathString("/Member/AccessDenied");
+    opt.Cookie = cookieBuilder;
+    opt.ExpireTimeSpan = TimeSpan.FromDays(60);
+    opt.SlidingExpiration = true;
 });
 
 var app = builder.Build();

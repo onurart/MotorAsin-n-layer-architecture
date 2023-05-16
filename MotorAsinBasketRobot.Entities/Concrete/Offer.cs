@@ -8,9 +8,9 @@ namespace MotorAsinBasketRobot.Entities.Concrete
 {
     public class Offer : BaseEntity
     {
-        public int? Quantity { get; set; }
-        public string? ProductCode { get; set; }
         public string? CustomerCode { get; set; }
+        public string? ProductCode { get; set; }
+        public int? Quantity { get; set; }
 
     }
 }

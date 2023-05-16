@@ -10,6 +10,12 @@ namespace MotorAsinBasketRobot.Business.DependecyResolvers.Autofac
     {
         protected override void Load(ContainerBuilder builder)
         {
+            builder.RegisterType<ProductsCampaignsManager>().As<IProductsCampaignsService>();
+            builder.RegisterType<EfProductsCampaignsDal>().As<IProductsCampaignsDal>();
+
+            builder.RegisterType<MASqlConnectionManager>().As<IMASqlConnectionService>();
+            builder.RegisterType<EfMASqlConnectionDal>().As<IMASqlConnectionDal>();
+
             builder.RegisterType<BasketStatusManager>().As<IBasketStatusService>();
             builder.RegisterType<EfBasketStatusDal>().As<IBasketStatusDal>();
 
@@ -19,21 +25,15 @@ namespace MotorAsinBasketRobot.Business.DependecyResolvers.Autofac
             builder.RegisterType<DocumentManager>().As<IDocumentService>();
             builder.RegisterType<EfDocumentsDal>().As<IDocumentsDal>();
 
-
-
             builder.RegisterType<ProductManager>().As<IProductService>();
             builder.RegisterType<EfProductDal>().As<IProductDal>();
 
-
-            builder.RegisterType<ProductsCampaignsManager>().As<IProductsCampaignsService>();
-            builder.RegisterType<EfProductsCampaignsDal>().As<IProductsCampaignsDal>();
-
-
-            builder.RegisterType<MASqlConnectionManager>().As<IMASqlConnectionService>();
-            builder.RegisterType<EfMASqlConnectionDal>().As<IMASqlConnectionDal>();
-
             builder.RegisterType<SpeCodeManager>().As<ISpeCodeService>();
             builder.RegisterType<EfSpeCodeDal>().As<ISpeCodeDal>();
+
+            builder.RegisterType<OfferManager>().As<IOfferService>();
+            builder.RegisterType<EfOfferDal>().As<IOfferDal>();
+
             base.Load(builder);
         }
     }
