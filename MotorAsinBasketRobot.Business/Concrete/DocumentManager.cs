@@ -76,21 +76,6 @@ namespace MotorAsinBasketRobot.Business.Concrete
                 return new ErrorDataResult<string>("", ex.Message);
             }
         }
-
-        //public async Task<IDataResult<IList<Documents>>> GetList(DocumentListPramertDto parameter)
-        //{
-        //    try
-        //    {
-        //        IList<Documents> documentList = await _documentDal.GetListAsync(b => b.IsActive == parameter.IsActive, b => b.Id);
-        //        return new SuccessDataResult<IList<Documents>>(documentList, Messages.DocumentGetAll);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return new ErrorDataResult<IList<Documents>>(ex.Message);
-        //    }
-         // }
-
-
         public async Task<IDataResult<IList<Documents>>> GetList(DocumentListPramertDto parameter)
         {
             try

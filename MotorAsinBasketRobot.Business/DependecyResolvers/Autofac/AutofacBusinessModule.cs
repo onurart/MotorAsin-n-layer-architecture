@@ -20,14 +20,17 @@ namespace MotorAsinBasketRobot.Business.DependecyResolvers.Autofac
             builder.RegisterType<EfDocumentsDal>().As<IDocumentsDal>();
 
 
-            builder.RegisterType<MASqlConnectionManager>().As<IMASqlConnectionService>();
-            builder.RegisterType<EfMASqlConnectionDal>().As<IMASqlConnectionDal>();
-
-
-
 
             builder.RegisterType<ProductManager>().As<IProductService>();
             builder.RegisterType<EfProductDal>().As<IProductDal>();
+
+
+            builder.RegisterType<ProductsCampaignsManager>().As<IProductsCampaignsService>();
+            builder.RegisterType<EfProductsCampaignsDal>().As<IProductsCampaignsDal>();
+
+
+            builder.RegisterType<MASqlConnectionManager>().As<IMASqlConnectionService>();
+            builder.RegisterType<EfMASqlConnectionDal>().As<IMASqlConnectionDal>();
 
             builder.RegisterType<SpeCodeManager>().As<ISpeCodeService>();
             builder.RegisterType<EfSpeCodeDal>().As<ISpeCodeDal>();

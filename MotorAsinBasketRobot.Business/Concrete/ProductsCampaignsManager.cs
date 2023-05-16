@@ -78,7 +78,8 @@ namespace MotorAsinBasketRobot.Business.Concrete
         {
             try
             {
-                return new SuccessDataResult<IList<ProductsCampaigns>>(await _productsCampaignsService.GetListAsync(b => b.IsActive == parameter.IsActive, b => b.Id), Messages.ProductsCampaignsgetall);
+                return new SuccessDataResult<IList<ProductsCampaigns>>
+                (await _productsCampaignsService.GetListAsync(b => b.IsActive == parameter.IsActive, b => b.Id), Messages.ProductsCampaignsgetall);
             }
             catch (Exception ex)
             {

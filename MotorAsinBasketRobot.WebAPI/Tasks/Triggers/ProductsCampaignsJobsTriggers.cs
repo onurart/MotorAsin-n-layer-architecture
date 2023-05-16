@@ -11,10 +11,10 @@ namespace MotorAsinBasketRobot.WebAPI.Tasks.Triggers
             if (!scheduler.IsStarted)
                 scheduler.Start().GetAwaiter().GetResult();
             IJobDetail job = JobBuilder.Create<ProductsCampaignsJobs>()
-                                      .WithIdentity("ProductsCampaignsJobs")
+                                      .WithIdentity("ProductsCampaignsJobs", null)
                                       .Build();
             ITrigger trigger = TriggerBuilder.Create()
-                                             .WithIdentity("ProductsCampaignsJobsTriggers")
+                                             .WithIdentity("ProductsCampaignsJobsTriggers", null)
                                              .Build();
             scheduler.ScheduleJob(job, trigger).GetAwaiter().GetResult();
         }

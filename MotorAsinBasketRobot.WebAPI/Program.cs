@@ -12,6 +12,15 @@ builder.Services.AddQuartz(q =>
 {
     q.UseMicrosoftDependencyInjectionScopedJobFactory();
 
+    var pproductKey = new JobKey("ProductsCampaignsJobs");
+    q.AddJob<ProductsCampaignsJobs>(opts => opts.WithIdentity(pproductKey));
+    q.AddTrigger(opts => opts
+    .ForJob(pproductKey)
+    .WithIdentity("ProductsCampaignsJobsTriggers", "null")
+    //.WithCronSchedule("0/20 * * ? * * *"));
+    .WithCronSchedule("0 23 10 1/1 * ? *"));
+
+
     var jobKey = new JobKey("DocumentsJob");
     q.AddJob<DocumentsJob>(opts => opts.WithIdentity(jobKey));
     q.AddTrigger(opts => opts
@@ -42,13 +51,10 @@ builder.Services.AddQuartz(q =>
     .WithCronSchedule("0 50 16 1/1 * ? *"));
 
 
-    var pproductKey = new JobKey("ProductsCampaignsJobs");
-    q.AddJob<ProductsCampaignsJobs>(opts => opts.WithIdentity(pproductKey));
-    q.AddTrigger(opts => opts
-    .ForJob(pproductKey)
-    .WithIdentity("ProductsCampaignsJobsTriggers", "null")
-    .WithCronSchedule("0 23 17 1/1 * ? *"));
 });
+builder.Services.AddQuartzHostedService(q => q.WaitForJobsToComplete = true);
+
+
 builder.Services.AddQuartzHostedService(q => q.WaitForJobsToComplete = true);
 var app = builder.Build();
 if (app.Environment.IsDevelopment())
