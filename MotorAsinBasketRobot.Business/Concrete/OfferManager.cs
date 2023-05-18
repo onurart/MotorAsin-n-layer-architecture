@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace MotorAsinBasketRobot.Business.Concrete
 {
-    public class OfferManager:IOfferService
+    public class OfferManager : IOfferService
     {
         private readonly IOfferDal _offerDal;
         private readonly IOfferValidator _offerValidator;
@@ -39,12 +39,15 @@ namespace MotorAsinBasketRobot.Business.Concrete
             throw new NotImplementedException();
         }
 
-        public  async Task<IDataResult<IList<Offer>>> GetList(OfferListPramertDto parameter)
+        public async Task<IDataResult<IList<Offer>>> GetList(OfferListPramertDto parameter)
         {
             try
             {
                 return new SuccessDataResult<IList<Offer>>
-                    (await _offerDal.GetListAsync(b => b.IsActive == parameter.IsActive, b => b.Id), Messages.Offergetall);
+                //(await _offerDal.GetListAsync(b => b.IsActive == true, b => b.Id), Messages.Offergetall);
+                (await _offerDal.GetListAsync(b => b.IsActive == parameter.IsActive, b => b.Id), Messages.Offergetall);
+
+                //(await _offerDal.GetListAsync(b => b.IsActive == parameter.IsActive && parameter.Code == b.ProductCode, b => b.Id), Messages.Offergetall);
             }
             catch (Exception ex)
             {

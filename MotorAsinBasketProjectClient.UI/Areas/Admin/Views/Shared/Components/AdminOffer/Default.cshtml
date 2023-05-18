@@ -1,0 +1,181 @@
+﻿@using DevExtreme.AspNet.Mvc.Builders
+@using DevExtreme.AspNet.Mvc;
+@{
+    var tabs = new[] {
+        new { id = 1, text = "Aktif Kayıtlar",content = "Aktif Kayıtlar" },
+        new { id = 0, text = "Pasif Kayıtlar", content = "Pasif Kayıtlar" },
+    };
+}
+<style>
+    .dx-toolbar .dx-toolbar-item:last-child {
+        display: inline-block;
+        position: relative;
+        margin: 10px;
+        padding: 0 20px;
+        text-align: center;
+        text-decoration: none;
+        font: bold 12px/25px Arial, sans-serif;
+        text-shadow: 1px 1px 1px rgba(255,255,255, .22);
+        -webkit-border-radius: 30px;
+        -moz-border-radius: 30px;
+        border-radius: 30px;
+        -webkit-box-shadow: 1px 1px 1px rgba(0,0,0, .29), inset 1px 1px 1px rgba(255,255,255, .44);
+        -moz-box-shadow: 1px 1px 1px rgba(0,0,0, .29), inset 1px 1px 1px rgba(255,255,255, .44);
+        box-shadow: 1px 1px 1px rgba(0,0,0, .29), inset 1px 1px 1px rgba(255,255,255, .44);
+        -webkit-transition: all 0.15s ease;
+        -moz-transition: all 0.15s ease;
+        -o-transition: all 0.15s ease;
+        -ms-transition: all 0.15s ease;
+        transition: all 0.15s ease;
+        color: #3e5706;
+        background: #a5cd4e; /* Old browsers */
+        background: -moz-linear-gradient(top, #a5cd4e 0%, #6b8f1a 100%); /* FF3.6+ */
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#a5cd4e), color-stop(100%,#6b8f1a)); /* Chrome,Safari4+ */
+        background: -webkit-linear-gradient(top, #a5cd4e 0%,#6b8f1a 100%); /* Chrome10+,Safari5.1+ */
+        background: -o-linear-gradient(top, #a5cd4e 0%,#6b8f1a 100%); /* Opera 11.10+ */
+        background: -ms-linear-gradient(top, #a5cd4e 0%,#6b8f1a 100%); /* IE10+ */
+        background: linear-gradient(top, #a5cd4e 0%,#6b8f1a 100%); /* W3C */
+    }
+
+    .big {
+        padding: 0 40px;
+        padding-top: 10px;
+        height: 45px;
+        text-transform: uppercase;
+        font: bold 20px/22px Arial, sans-serif;
+    }
+
+        .big span {
+            display: block;
+            text-transform: none;
+            font: italic normal 12px/18px Georgia, sans-serif;
+            text-shadow: 1px 1px 1px rgba(255,255,255, .12);
+        }
+
+    .button:hover {
+        -webkit-box-shadow: 1px 1px 1px rgba(0,0,0,.29), inset 0px 0px 2px rgba(0,0,0, .5);
+        -moz-box-shadow: 1px 1px 1px rgba(0,0,0,.29), inset 0px 0px 2px rgba(0,0,0, .5);
+        box-shadow: 1px 1px 1px rgba(0,0,0,.29), inset 0px 0px 2px rgba(0,0,0, .5);
+    }
+
+    .button:active {
+        -webkit-box-shadow: inset 0px 0px 3px rgba(0,0,0, .8);
+        -moz-box-shadow: inset 0px 0px 3px rgba(0,0,0, .8);
+        box-shadow: inset 0px 0px 3px rgba(0,0,0, .8);
+    }
+</style>
+<div>
+    @(Html.DevExtreme().Tabs()
+        .ID("tabs-container")
+        .DataSource(tabs)
+        .SelectedIndex(0)
+        .OnItemClick("tabs_itemClick")
+        )
+    @(Html.DevExtreme().DataGrid<MotorAsinBasketRobot.Entities.Concrete.Offer>()
+        .DataSource(d => d.Mvc()
+        .Controller("Offer")
+        .LoadAction("GetOfferList")
+        .LoadParams(new { dataType = new JS("function() {return dataType; }") })
+        .Key("Id"))
+        .ID("accountGrid")
+        .ColumnMinWidth(100)
+        .ColumnAutoWidth(true)
+        @*.Selection(s => s.Mode(SelectionMode.Multiple))*@
+        .Export(e => e.Enabled(true).AllowExportSelectedData(true))
+        .ShowBorders(false)
+        .Paging(paging => paging.PageSize(10))
+        .Pager(pager =>
+        {
+            pager.Visible(true);
+            pager.DisplayMode(GridPagerDisplayMode.Full);
+            pager.ShowPageSizeSelector(true);
+            pager.AllowedPageSizes(new JS("[5, 10,30,70,120,180, 1000, 'all']"));
+            pager.ShowInfo(true);
+            pager.ShowNavigationButtons(true);
+        })
+
+        .SearchPanel(s => s
+        .Visible(true)
+        .HighlightCaseSensitive(true).Width(600))
+        .Sorting(sorting => sorting.Mode(GridSortingMode.Multiple))
+        .Columns(columns =>
+        {
+            columns.AddFor(m => m.CustomerCode).Caption("Müşteri kodu");
+            columns.AddFor(m => m.ProductCode).Caption("Ürün Kodu");
+            columns.AddFor(m => m.Quantity).Caption("Miktar");
+
+
+
+        })
+        .OnToolbarPreparing("onToolbarPreparing")
+
+        .FilterRow(f => f.Visible(true))
+        .HeaderFilter(f => f.Visible(true))
+        .Height(740)
+        .ShowBorders(true)
+        .Grouping(g => g.AutoExpandAll(false))
+        .Editing(editing =>
+        {
+            @*editing.Mode(GridEditMode.Popup);*@
+            @*editing.AllowUpdating(true);*@
+            @*editing.AllowAdding(true);*@
+            @*editing.AllowDeleting(true);*@
+        })
+
+        )
+</div>
+<script>
+    var dataType = 1;
+    function tabs_itemClick(e) {
+        dataType = e.itemData.id;
+        $("#accountGrid").dxDataGrid("instance").refresh();
+    }
+    function onToolbarPreparing(e) {
+        // Export butonu oluşturma
+        e.toolbarOptions.items.unshift({
+            widget: "dxButton",
+            location: "before",
+            options: {
+                text: "Verileri Dışa Aktar",
+                onClick: function () {
+                    // Tüm verileri JSON formatında dışa aktarma
+                    var gridDataSource = $("#accountGrid").dxDataGrid("getDataSource")['_items'];
+                    var json = JSON.stringify(gridDataSource);
+
+                    // Dışa aktarılan verileri indirme
+                    var blob = new Blob([json], { type: "application/json" });
+                    var url = URL.createObjectURL(blob);
+
+                    var a = document.createElement("a");
+                    a.href = url;
+                    a.download = "data.json";
+                    a.click();
+                }
+            }
+        });
+    }
+            //function onToolbarPreparing(e) {
+        //    // Export butonu oluşturma
+        //    e.toolbarOptions.items.unshift({
+        //        widget: "dxButton",
+        //        location: "before",
+        //        options: {
+        //            text: "Verileri Dışa Aktar",
+        //            onClick: function () {
+        //                // Seçili verileri JSON formatında dışa aktarma
+        //                var selectedRowsData = $("#accountGrid").dxDataGrid("getSelectedRowsData");
+        //                var json = JSON.stringify(selectedRowsData);
+
+        //                // Dışa aktarılan verileri indirme
+        //                var blob = new Blob([json], { type: "application/json" });
+        //                var url = URL.createObjectURL(blob);
+
+        //                var a = document.createElement("a");
+        //                a.href = url;
+        //                a.download = "data.json";
+        //                a.click();
+        //            }
+        //        }
+        //    });
+        //}
+</script>

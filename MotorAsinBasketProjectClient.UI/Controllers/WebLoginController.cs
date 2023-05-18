@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using MotorAsinBasketProjectClient.UI.Extenisons;
-using MotorAsinBasketRobot.Business.EmailService.EmailService;
 using MotorAsinBasketRobot.Business.EmailService.IService;
 using MotorAsinBasketRobot.Entities.Identity;
 using MotorAsinBasketRobot.Entities.ViewModel;
@@ -11,15 +10,14 @@ namespace MotorAsinBasketProjectClient.UI.Controllers
     public class WebLoginController : Controller
     {
         private readonly UserManager<AppUser> _UserManager;
-        private readonly SignInManager<AppUser> _SignInManager;
+        private readonly SignInManager<AppUser> _signInManager;
         private readonly IEmailService _emailService;
 
         public WebLoginController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, IEmailService emailService)
         {
             _UserManager = userManager;
-            _SignInManager = signInManager;
+            _signInManager = signInManager;
             _emailService = emailService;
-
         }
 
         public IActionResult Index()
@@ -43,14 +41,14 @@ namespace MotorAsinBasketProjectClient.UI.Controllers
             {
                 return View();
             }
-            returnUrl ??= Url.Action("Index", "Admin");
+            returnUrl ??= Url.Action("AdminDashboard", "Admin");
             var hasUser = await _UserManager.FindByEmailAsync(model.Email);
             if (hasUser == null)
             {
                 ModelState.AddModelError(string.Empty, "Email veya şifre yanlış");
                 return View();
             }
-            var signInResult = await _SignInManager.PasswordSignInAsync(hasUser, model.Password, model.RememberMe, true);
+            var signInResult = await _signInManager.PasswordSignInAsync(hasUser, model.Password, model.RememberMe, true);
             if (signInResult.IsLockedOut)
             {
                 ModelState.AddModelErrorList(new List<string>() { "3 dakika boyunca giriş yapamazsınız." });
@@ -65,7 +63,7 @@ namespace MotorAsinBasketProjectClient.UI.Controllers
         }
         [HttpPost]
         public async Task<IActionResult> SignUp(SignUpViewModel request)
-        {
+         {
             try
             {
                 if (!ModelState.IsValid)
@@ -107,6 +105,12 @@ namespace MotorAsinBasketProjectClient.UI.Controllers
 
 
 
+        }
+
+        public async Task<IActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
+            return RedirectToAction("Index", "Home");
         }
     }
 }

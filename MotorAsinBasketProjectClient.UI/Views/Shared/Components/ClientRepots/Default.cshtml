@@ -1,0 +1,153 @@
+﻿@using DevExtreme.AspNet.Mvc.Builders;
+
+<button id="downloadData">Verileri İndir</button>
+
+@(Html.DevExtreme().TabPanel()
+   .Items(items =>
+   {
+       items.Add()
+            .Title("Döküman")
+            .Template(@<text>
+                @(
+            Html.DevExtreme().DataGrid<MotorAsinBasketRobot.Entities.Concrete.Documents>()
+            .DataSource(d => d.Mvc().Controller("Document").LoadAction("GetDocument"))
+            .ID("tabDokuman")
+            .AllowColumnResizing(true)
+            .ColumnMinWidth(50)
+            .SearchPanel(s => s
+            .Visible(true)
+            .HighlightCaseSensitive(true).Width(300))
+            .Sorting(sorting => sorting.Mode(GridSortingMode.Multiple))
+            .Columns(columns =>
+            {
+            columns.AddFor(m => m.Id).Width(100);
+            columns.AddFor(m => m.LineType).Caption("Satir Tipi").CssClass("text-center");
+            columns.AddFor(m => m.CustomerReferance).Caption("Müşteri No");
+            columns.AddFor(m => m.ProductReferance).Caption("Ürün No").CssClass("text-center");
+            columns.AddFor(m => m.Billed).Caption("Faturalandırılan").CssClass("text-center");
+            columns.AddFor(m => m.DocumetType).Caption("Belge Türü").CssClass("text-center");
+            columns.AddFor(m => m.DocumentDate).Caption("Belge tarihi").CssClass("text-center");
+        })
+            .ColumnAutoWidth(true)
+            .Selection(s => s.Mode(SelectionMode.Multiple))
+            .Export(e => e.Enabled(true).AllowExportSelectedData(true))
+            .FilterRow(f => f.Visible(true))
+            .HeaderFilter(f => f.Visible(true))
+            .ShowBorders(true)
+            .Grouping(g => g.AutoExpandAll(false))
+            .ShowBorders(true))
+                </text>);
+       items.Add()
+          .Title("Sepet Durumu")
+          .Template(@<text>
+              @(
+          Html.DevExtreme().DataGrid<MotorAsinBasketRobot.Entities.Concrete.BasketStatus>()
+          .DataSource(d => d.Mvc().Controller("BasketStatus").LoadAction("GetBasket"))
+          .SearchPanel(s => s
+          .Visible(true)
+          .HighlightCaseSensitive(true).Width(300))
+          .Sorting(sorting => sorting.Mode(GridSortingMode.Multiple))
+          .Columns(columns =>
+          {
+            columns.AddFor(m => m.Id).Width(190).CssClass("text-center");
+            columns.AddFor(m => m.CustomerCode).Caption("Satir Tipi").CssClass("text-center");
+            columns.AddFor(m => m.ProductCode).Caption("Müşteri No").CssClass("text-center");
+        })
+
+          .FilterRow(f => f.Visible(true))
+          .HeaderFilter(f => f.Visible(true))
+          .ShowBorders(true)
+          .Grouping(g => g.AutoExpandAll(false))
+          // Other grid options
+          )
+              </text>);
+       items.Add()
+            .Title("Müşteri")
+            .Template(@<text>
+                @(Html.DevExtreme().DataGrid<MotorAsinBasketRobot.Entities.Concrete.BasketStatus>()
+            .DataSource(d => d.Mvc().Controller("Customer").LoadAction("GetCustomer"))
+            .Columns(columns =>
+            {
+            columns.AddFor(m => m.Id).Caption("No").Width(190);
+            columns.AddFor(m => m.CustomerCode).Caption("Müşteri Kodu");
+            columns.AddFor(m => m.ProductCode).Caption("Ürün Kodu");
+        })
+            // Other grid options
+            )
+                </text>);
+       items.Add()
+          .Title("Ürün Kampanyası")
+          .Template(@<text>
+              @(Html.DevExtreme().DataGrid<MotorAsinBasketRobot.Entities.Concrete.ProductsCampaigns>()
+          .DataSource(d => d.Mvc().Controller("ProductCampaign").LoadAction("GetProductCampaign"))
+          .Columns(columns =>
+          {
+            columns.AddFor(m => m.Id).Caption("No").Width(190);
+            columns.AddFor(m => m.ProductReferance).Caption("Ürün No").CssClass("text-center").Width(190);
+            columns.AddFor(m => m.ProductCode).Caption("Ürün Kodu").CssClass("text-center");
+            columns.AddFor(m => m.MinOrder).Caption("Minimum Sipariş").CssClass("text-center");
+            columns.AddFor(m => m.ProductGroup).Caption("Ürün Grup").CssClass("text-center");
+        })
+          // Other grid options
+          )
+              </text>);
+       items.Add()
+   .Title("Ürünler")
+   .Template(@<text>
+       @(Html.DevExtreme().DataGrid<MotorAsinBasketRobot.Entities.Concrete.Product>()
+    .DataSource(d => d.Mvc().Controller("Product").LoadAction("GetProductAll"))
+    .Columns(columns =>
+    {
+            columns.AddFor(m => m.Id).Caption("No").Width(190);
+            columns.AddFor(m => m.ProductReferance).Caption("Ürün No").CssClass("text-center").Width(190);
+            columns.AddFor(m => m.ProductCode).Caption("Ürün Kodu").CssClass("text-center");
+            columns.AddFor(m => m.ProductGroup1).Caption("Minimum Sipariş").CssClass("text-center");
+            columns.AddFor(m => m.ProductGroup2).Caption("Ürün Grubu").CssClass("text-center");
+            columns.AddFor(m => m.ProductGroup3).Caption("Ürün Grubu").CssClass("text-center");
+            columns.AddFor(m => m.ProductGroup4).Caption("Ürün Grubu").CssClass("text-center");
+        })
+    // Other grid options
+    )
+       </text>);
+   })
+)
+<div id="tabsContainer"></div>
+<script>
+    function downloadData() {
+        // API adresi
+        var apiUrl = 'https://localhost:7202/api/Document/getall';
+
+        // HTTP isteği oluştur
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', apiUrl, true);
+        xhr.responseType = 'json';
+
+        // İstek tamamlandığında
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                // Gelen verileri işle
+                var data = xhr.response;
+                var csvData = 'Column1,Column2,Column3\n';
+                for (var i = 0; i < data.length; i++) {
+                    csvData += data[i].column1 + ',' + data[i].column2 + ',' + data[i].column3 + '\n';
+                }
+
+                // Dosya oluştur
+                var blob = new Blob([csvData], { type: 'text/csv' });
+                var url = window.URL.createObjectURL(blob);
+
+                // Dosya indirme işlemini başlat
+                var a = document.createElement('a');
+                a.href = url;
+                a.download = 'data.json';
+                a.click();
+            }
+        };
+
+        // İstek gönder
+        xhr.send();
+    }
+
+
+</script>
+
