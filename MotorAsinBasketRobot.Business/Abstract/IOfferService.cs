@@ -13,5 +13,6 @@ namespace MotorAsinBasketRobot.Business.Abstract
     public interface IOfferService:IBaseService<Offer>
     {
         Task<IDataResult<IList<Offer>>> GetList(OfferListPramertDto parameter);
+        Task<IDataResult<List<Offer>>> TestGetListAsync();
     }
 }

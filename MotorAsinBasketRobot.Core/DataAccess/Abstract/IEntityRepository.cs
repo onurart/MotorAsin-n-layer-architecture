@@ -1,4 +1,5 @@
-﻿using MotorAsinBasketRobot.Core.Entities.Abstract;
+﻿using MotorAsinBasketRobot.Core.DataAccess.Utilities.Results;
+using MotorAsinBasketRobot.Core.Entities.Abstract;
 using System.Linq.Expressions;
 
 namespace MotorAsinBasketRobot.Core.DataAccess.Abstract
@@ -36,5 +37,6 @@ namespace MotorAsinBasketRobot.Core.DataAccess.Abstract
         Task<T> CreateAsync(T entity);
         Task<T> UpdateAsync(T entity);
         Task<T> DeleteAsync(T entity);
+        Task<IDataResult<List<T>>> TestGetListAsync();
     }
 }

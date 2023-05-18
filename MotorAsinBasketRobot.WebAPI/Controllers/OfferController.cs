@@ -29,5 +29,16 @@ namespace MotorAsinBasketRobot.WebAPI.Controllers
             }
             return BadRequest(result.Message);
         }
+
+        //[HttpGet("GetList")]
+        //public async Task<IActionResult> GetList()
+        //{
+        //    var list = await _offerService.TestGetListAsync();
+        //    if (list.Success)
+        //    {
+        //        return Ok(list.Data);
+        //    }
+        //    return BadRequest(list.Message);
+        //}
     }
 }

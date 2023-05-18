@@ -3,6 +3,8 @@ using DevExtreme.AspNet.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MotorAsinBasketProjectClient.UI.ApiServices;
+using MotorAsinBasketRobot.Entities.Concrete;
+using MotorAsinBasketRobot.Entities.Dtos.Offer;
 
 namespace MotorAsinBasketProjectClient.UI.Areas.Admin.Controllers
 {
@@ -22,13 +24,8 @@ namespace MotorAsinBasketProjectClient.UI.Areas.Admin.Controllers
             return View();
         }
 
-        public async Task<object> GetOfferList(DataSourceLoadOptions loadOptions,string dataType)
+        public async Task<object> GetOfferList(DataSourceLoadOptions loadOptions,OfferListPramertDto offer)
         {
-            bool state = true;
-            if (dataType=="0")
-            {
-                state = false;
-            }
             var offerList = await _offerApiService.GetOfferAllAsync();
             return DataSourceLoader.Load(offerList, loadOptions);
         }

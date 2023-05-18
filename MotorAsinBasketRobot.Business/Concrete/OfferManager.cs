@@ -2,6 +2,7 @@
 using MotorAsinBasketRobot.Business.Constants;
 using MotorAsinBasketRobot.Business.Validator.Abstract;
 using MotorAsinBasketRobot.Business.Validator.Concrete;
+using MotorAsinBasketRobot.Core.DataAccess.Abstract;
 using MotorAsinBasketRobot.Core.DataAccess.Utilities.Results;
 using MotorAsinBasketRobot.DataAccess.Abstract;
 using MotorAsinBasketRobot.Entities.Concrete;
@@ -54,6 +55,12 @@ namespace MotorAsinBasketRobot.Business.Concrete
 
                 throw;
             }
+        }
+
+        public async Task<IDataResult<List<Offer>>> TestGetListAsync()
+        {
+            var result = await _offerDal.TestGetListAsync();
+            return result;
         }
 
         public Task<IDataResult<Offer>> Update(Offer entity)

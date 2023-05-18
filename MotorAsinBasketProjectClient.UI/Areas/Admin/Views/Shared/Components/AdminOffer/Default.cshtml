@@ -1,12 +1,6 @@
 ﻿@using DevExtreme.AspNet.Mvc.Builders
 @using DevExtreme.AspNet.Mvc;
-@{
-    var tabs = new[] {
-        new { id = 1, text = "Aktif Kayıtlar",content = "Aktif Kayıtlar" },
-        new { id = 0, text = "Pasif Kayıtlar", content = "Pasif Kayıtlar" },
-    };
-}
-<style>
+ <style>
     .dx-toolbar .dx-toolbar-item:last-child {
         display: inline-block;
         position: relative;
@@ -65,17 +59,10 @@
     }
 </style>
 <div>
-    @(Html.DevExtreme().Tabs()
-        .ID("tabs-container")
-        .DataSource(tabs)
-        .SelectedIndex(0)
-        .OnItemClick("tabs_itemClick")
-        )
     @(Html.DevExtreme().DataGrid<MotorAsinBasketRobot.Entities.Concrete.Offer>()
         .DataSource(d => d.Mvc()
         .Controller("Offer")
         .LoadAction("GetOfferList")
-        .LoadParams(new { dataType = new JS("function() {return dataType; }") })
         .Key("Id"))
         .ID("accountGrid")
         .ColumnMinWidth(100)
@@ -125,11 +112,7 @@
         )
 </div>
 <script>
-    var dataType = 1;
-    function tabs_itemClick(e) {
-        dataType = e.itemData.id;
-        $("#accountGrid").dxDataGrid("instance").refresh();
-    }
+ 
     function onToolbarPreparing(e) {
         // Export butonu oluşturma
         e.toolbarOptions.items.unshift({
@@ -154,28 +137,28 @@
             }
         });
     }
-            //function onToolbarPreparing(e) {
-        //    // Export butonu oluşturma
-        //    e.toolbarOptions.items.unshift({
-        //        widget: "dxButton",
-        //        location: "before",
-        //        options: {
-        //            text: "Verileri Dışa Aktar",
-        //            onClick: function () {
-        //                // Seçili verileri JSON formatında dışa aktarma
-        //                var selectedRowsData = $("#accountGrid").dxDataGrid("getSelectedRowsData");
-        //                var json = JSON.stringify(selectedRowsData);
+                //function onToolbarPreparing(e) {
+            //    // Export butonu oluşturma
+            //    e.toolbarOptions.items.unshift({
+            //        widget: "dxButton",
+            //        location: "before",
+            //        options: {
+            //            text: "Verileri Dışa Aktar",
+            //            onClick: function () {
+            //                // Seçili verileri JSON formatında dışa aktarma
+            //                var selectedRowsData = $("#accountGrid").dxDataGrid("getSelectedRowsData");
+            //                var json = JSON.stringify(selectedRowsData);
 
-        //                // Dışa aktarılan verileri indirme
-        //                var blob = new Blob([json], { type: "application/json" });
-        //                var url = URL.createObjectURL(blob);
+            //                // Dışa aktarılan verileri indirme
+            //                var blob = new Blob([json], { type: "application/json" });
+            //                var url = URL.createObjectURL(blob);
 
-        //                var a = document.createElement("a");
-        //                a.href = url;
-        //                a.download = "data.json";
-        //                a.click();
-        //            }
-        //        }
-        //    });
-        //}
+            //                var a = document.createElement("a");
+            //                a.href = url;
+            //                a.download = "data.json";
+            //                a.click();
+            //            }
+            //        }
+            //    });
+            //}
 </script>

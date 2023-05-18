@@ -13,25 +13,36 @@ namespace MotorAsinBasketProjectClient.UI.ApiServices
         {
             _httpClient = httpClient;
         }
-        public async Task<List<OfferListPramertDto>> GetOfferAllAsync()
-        {
-            var response = await _httpClient.GetAsync("https://localhost:7059/api/Offer/GetList?Statu=true&IsActive=true");
-            response.EnsureSuccessStatusCode();
-            string data = await response.Content.ReadAsStringAsync(); 
-            return JsonSerializer.Deserialize<List<OfferListPramertDto>>(data);
-        }
-        //public async  Task<List<OfferListPramertDto>> GetOfferAllAsync()
-        //{
-        //    try
-        //    {
-        //        var response = await _httpClient.GetFromJsonAsync<CustomResponseDto<List<OfferListPramertDto>>>("Offer/GetList");
-        //        return response.Data;
-        //    }
-        //    catch (Exception ex)
-        //    {
 
-        //        throw ex;
-        //    }
+
+        /// <summary>
+        /// Parametsiz Olam GetList
+        /// </summary>
+        /// <returns></returns>
+
+        //public async Task<List<Offer>> GetOfferAllAsync()
+        //{
+        //    var response = await _httpClient.GetFromJsonAsync<List<Offer>>("Offer/GetList");
+        //    return response;
         //}
+
+
+        public async Task<IList<Offer>> GetOfferAllAsync()
+        {
+            HttpClient client = new HttpClient();
+
+            HttpResponseMessage response = await client.GetAsync("https://localhost:7059/api/Offer/GetList?IsActive=true");
+
+            if (response.IsSuccessStatusCode)
+            {
+                return await response.Content.ReadFromJsonAsync<IList<Offer>>();
+            }
+            else
+            {
+                // Handle the error
+                throw new Exception($"API request failed with status code {response.StatusCode}");
+            }
+        }
+       
     }
 }

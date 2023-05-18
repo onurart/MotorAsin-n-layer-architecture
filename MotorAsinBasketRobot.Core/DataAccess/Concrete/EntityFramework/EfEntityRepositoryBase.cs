@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MotorAsinBasketRobot.Core.DataAccess.Abstract;
+using MotorAsinBasketRobot.Core.DataAccess.Utilities.Results;
 using MotorAsinBasketRobot.Core.Entities.Abstract;
 using System;
 using System.Linq.Expressions;
@@ -235,6 +236,15 @@ namespace MotorAsinBasketRobot.Core.DataAccess.Concrete.EntityFramework
             using (TContext context = new TContext())
             {
                 return prediacate == null ? await context.Set<T>().CountAsync() : await context.Set<T>().Where(prediacate).CountAsync();
+            }
+        }
+
+        public async Task<IDataResult<List<T>>> TestGetListAsync()
+        {
+            using(TContext context = new TContext())
+            {
+                IQueryable<T> query = context.Set<T>();
+                return new  SuccessDataResult<List<T>>(await query.ToListAsync());
             }
         }
     }

@@ -10,7 +10,7 @@
             .Template(@<text>
                 @(
             Html.DevExtreme().DataGrid<MotorAsinBasketRobot.Entities.Concrete.Documents>()
-            .DataSource(d => d.Mvc().Controller("Document").LoadAction("GetDocument"))
+            .DataSource(d => d.Mvc().Controller("ClientDocument").LoadAction("ClientDocumentList"))
             .ID("tabDokuman")
             .AllowColumnResizing(true)
             .ColumnMinWidth(50)
@@ -42,7 +42,7 @@
           .Template(@<text>
               @(
           Html.DevExtreme().DataGrid<MotorAsinBasketRobot.Entities.Concrete.BasketStatus>()
-          .DataSource(d => d.Mvc().Controller("BasketStatus").LoadAction("GetBasket"))
+          .DataSource(d => d.Mvc().Controller("ClientBasketStatus").LoadAction("GetBasketStatusList"))
           .SearchPanel(s => s
           .Visible(true)
           .HighlightCaseSensitive(true).Width(300))
@@ -65,7 +65,7 @@
             .Title("Müşteri")
             .Template(@<text>
                 @(Html.DevExtreme().DataGrid<MotorAsinBasketRobot.Entities.Concrete.BasketStatus>()
-            .DataSource(d => d.Mvc().Controller("Customer").LoadAction("GetCustomer"))
+            .DataSource(d => d.Mvc().Controller("ClientCustomer").LoadAction("ClientDocumentList"))
             .Columns(columns =>
             {
             columns.AddFor(m => m.Id).Caption("No").Width(190);
@@ -79,7 +79,7 @@
           .Title("Ürün Kampanyası")
           .Template(@<text>
               @(Html.DevExtreme().DataGrid<MotorAsinBasketRobot.Entities.Concrete.ProductsCampaigns>()
-          .DataSource(d => d.Mvc().Controller("ProductCampaign").LoadAction("GetProductCampaign"))
+          .DataSource(d => d.Mvc().Controller("ClientProductCampaing").LoadAction("ClientProductCampaingList"))
           .Columns(columns =>
           {
             columns.AddFor(m => m.Id).Caption("No").Width(190);

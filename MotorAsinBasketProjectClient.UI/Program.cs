@@ -10,8 +10,21 @@ using MotorAsinBasketRobot.Business.EmailService.IService;
 using MotorAsinBasketRobot.Business.Requirements;
 using MotorAsinBasketRobot.DataAccess.Concrete.EntityFramework.Context;
 using MotorAsinBasketRobotProject.Core.Permissions;
+using Newtonsoft.Json.Serialization;
+using Newtonsoft.Json;
+
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddControllersWithViews().AddJsonOptions(options => options.JsonSerializerOptions.PropertyNamingPolicy = null).AddRazorRuntimeCompilation();
+//builder.Services.AddControllersWithViews().AddJsonOptions(options => options.JsonSerializerOptions.PropertyNamingPolicy = null).AddRazorRuntimeCompilation();
+builder.Services.AddControllers().AddNewtonsoftJson(options =>
+{
+    options.SerializerSettings.ContractResolver = new DefaultContractResolver();
+});
+// Add services to the container.
+builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation()
+    .AddNewtonsoftJson(options =>
+    options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+);
+builder.Services.AddRazorPages().AddJsonOptions(options => options.JsonSerializerOptions.PropertyNamingPolicy = null);
 builder.Services.AddSession();
 builder.Services.AddCors();
 builder.Services.AddAuthorization();
@@ -104,6 +117,23 @@ builder.Services.AddAuthorization(options =>
 });
 
 builder.Services.AddHttpClient<OfferApiService>(opt =>
+{
+    opt.BaseAddress = new Uri(builder.Configuration["ApiBaseUrl"]);
+});
+
+builder.Services.AddHttpClient<ProductCampaingApiService>(opt =>
+{
+    opt.BaseAddress = new Uri(builder.Configuration["ApiBaseUrl"]);
+});
+builder.Services.AddHttpClient<ClientDocumentApiService>(opt =>
+{
+    opt.BaseAddress = new Uri(builder.Configuration["ApiBaseUrl"]);
+});
+builder.Services.AddHttpClient<ClientBasketStatusApiService>(opt =>
+{
+    opt.BaseAddress = new Uri(builder.Configuration["ApiBaseUrl"]);
+});
+builder.Services.AddHttpClient<ClientCustomersApiService>(opt =>
 {
     opt.BaseAddress = new Uri(builder.Configuration["ApiBaseUrl"]);
 });
