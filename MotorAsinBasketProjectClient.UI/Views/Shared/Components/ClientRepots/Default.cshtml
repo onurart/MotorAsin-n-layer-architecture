@@ -1,6 +1,9 @@
 ﻿@using DevExtreme.AspNet.Mvc.Builders;
-
-<button id="downloadData">Verileri İndir</button>
+<style>
+    .dx-tabpanel > .dx-tabpanel-tabs .dx-tabs .dx-tab {
+        background-color: #bbbbbb;
+    }
+</style>
 
 @(Html.DevExtreme().TabPanel()
    .Items(items =>
@@ -18,15 +21,29 @@
             .Visible(true)
             .HighlightCaseSensitive(true).Width(300))
             .Sorting(sorting => sorting.Mode(GridSortingMode.Multiple))
+            .Paging(paging => paging.PageSize(10))
+            .Pager(pager =>
+            {
+            pager.Visible(true);
+            pager.DisplayMode(GridPagerDisplayMode.Full);
+            pager.ShowPageSizeSelector(true);
+            pager.AllowedPageSizes(new JS("[5, 10,30,70,120,180, 1000, 'all']"));
+            pager.ShowInfo(true);
+            pager.ShowNavigationButtons(true);
+        })
+
             .Columns(columns =>
             {
             columns.AddFor(m => m.Id).Width(100);
-            columns.AddFor(m => m.LineType).Caption("Satir Tipi").CssClass("text-center");
-            columns.AddFor(m => m.CustomerReferance).Caption("Müşteri No");
-            columns.AddFor(m => m.ProductReferance).Caption("Ürün No").CssClass("text-center");
-            columns.AddFor(m => m.Billed).Caption("Faturalandırılan").CssClass("text-center");
             columns.AddFor(m => m.DocumetType).Caption("Belge Türü").CssClass("text-center");
+            columns.AddFor(m => m.LineType).Caption("Satir Tipi").CssClass("text-center");
+            columns.AddFor(m => m.Billed).Caption("Faturalandırılan").CssClass("text-center");
+            columns.AddFor(m => m.TlToltal).Caption("TL Toplam").CssClass("text-center");
+            columns.AddFor(m => m.ProductReferance).Caption("Ürün No").CssClass("text-center");
+            columns.AddFor(m => m.CustomerReferance).Caption("Müşteri No");
+            columns.AddFor(m => m.DocumentNo).Caption("Döküman No").CssClass("text-center");
             columns.AddFor(m => m.DocumentDate).Caption("Belge tarihi").CssClass("text-center");
+            columns.AddFor(m => m.IsActive).Caption("Aktiv Ürün Mü ?").DataType(GridColumnDataType.Boolean).Width(150);
         })
             .ColumnAutoWidth(true)
             .Selection(s => s.Mode(SelectionMode.Multiple))
@@ -35,7 +52,8 @@
             .HeaderFilter(f => f.Visible(true))
             .ShowBorders(true)
             .Grouping(g => g.AutoExpandAll(false))
-            .ShowBorders(true))
+            .ShowBorders(true)
+            )
                 </text>);
        items.Add()
           .Title("Sepet Durumu")
@@ -43,15 +61,28 @@
               @(
           Html.DevExtreme().DataGrid<MotorAsinBasketRobot.Entities.Concrete.BasketStatus>()
           .DataSource(d => d.Mvc().Controller("ClientBasketStatus").LoadAction("GetBasketStatusList"))
+          .AllowColumnResizing(true)
+          .ColumnMinWidth(50)
           .SearchPanel(s => s
           .Visible(true)
           .HighlightCaseSensitive(true).Width(300))
           .Sorting(sorting => sorting.Mode(GridSortingMode.Multiple))
+          .Paging(paging => paging.PageSize(10))
+          .Pager(pager =>
+          {
+            pager.Visible(true);
+            pager.DisplayMode(GridPagerDisplayMode.Full);
+            pager.ShowPageSizeSelector(true);
+            pager.AllowedPageSizes(new JS("[5, 10,30,70,120,180, 1000, 'all']"));
+            pager.ShowInfo(true);
+            pager.ShowNavigationButtons(true);
+        })
           .Columns(columns =>
           {
             columns.AddFor(m => m.Id).Width(190).CssClass("text-center");
             columns.AddFor(m => m.CustomerCode).Caption("Satir Tipi").CssClass("text-center");
             columns.AddFor(m => m.ProductCode).Caption("Müşteri No").CssClass("text-center");
+            columns.AddFor(m => m.IsActive).Caption("Bu Ürün Aktiv mi?").DataType(GridColumnDataType.Boolean).Width(300);
         })
 
           .FilterRow(f => f.Visible(true))
@@ -64,13 +95,20 @@
        items.Add()
             .Title("Müşteri")
             .Template(@<text>
-                @(Html.DevExtreme().DataGrid<MotorAsinBasketRobot.Entities.Concrete.BasketStatus>()
+                @(Html.DevExtreme().DataGrid<MotorAsinBasketRobot.Entities.Concrete.Customer>()
             .DataSource(d => d.Mvc().Controller("ClientCustomer").LoadAction("ClientDocumentList"))
+            .AllowColumnResizing(true)
+            .ColumnMinWidth(50)
+            .SearchPanel(s => s
+            .Visible(true)
+            .HighlightCaseSensitive(true).Width(300))
+            .Sorting(sorting => sorting.Mode(GridSortingMode.Multiple))
             .Columns(columns =>
             {
             columns.AddFor(m => m.Id).Caption("No").Width(190);
-            columns.AddFor(m => m.CustomerCode).Caption("Müşteri Kodu");
-            columns.AddFor(m => m.ProductCode).Caption("Ürün Kodu");
+            columns.AddFor(m => m.CustomerReferance).Caption("Müşteri Referans").CssClass("text-center");
+            columns.AddFor(m => m.CustomerCode).Caption("Müşteri Kodu").CssClass("text-center");
+            columns.AddFor(m => m.IsActive).Caption("Müşteri Aktiv Mi?").DataType(GridColumnDataType.Boolean).Width(260);
         })
             // Other grid options
             )
@@ -80,13 +118,20 @@
           .Template(@<text>
               @(Html.DevExtreme().DataGrid<MotorAsinBasketRobot.Entities.Concrete.ProductsCampaigns>()
           .DataSource(d => d.Mvc().Controller("ClientProductCampaing").LoadAction("ClientProductCampaingList"))
+          .AllowColumnResizing(true)
+          .ColumnMinWidth(50)
+          .SearchPanel(s => s
+          .Visible(true)
+          .HighlightCaseSensitive(true).Width(300))
+          .Sorting(sorting => sorting.Mode(GridSortingMode.Multiple))
           .Columns(columns =>
           {
             columns.AddFor(m => m.Id).Caption("No").Width(190);
-            columns.AddFor(m => m.ProductReferance).Caption("Ürün No").CssClass("text-center").Width(190);
-            columns.AddFor(m => m.ProductCode).Caption("Ürün Kodu").CssClass("text-center");
-            columns.AddFor(m => m.MinOrder).Caption("Minimum Sipariş").CssClass("text-center");
-            columns.AddFor(m => m.ProductGroup).Caption("Ürün Grup").CssClass("text-center");
+            columns.AddFor(m => m.ProductReferance).Caption("Kampanya Ürün No").CssClass("text-center").Width(190);
+            columns.AddFor(m => m.ProductCode).Caption("Kampanya Ürün Kodu").CssClass("text-center");
+            columns.AddFor(m => m.ProductGroup).Caption("Kampanya Ürün Grup").CssClass("text-center");
+            columns.AddFor(m => m.MinOrder).Caption("Kampanya Minimum Sipariş").CssClass("text-center");
+            columns.AddFor(m => m.IsActive).Caption("Kampanya Aktiv Mi?").CssClass("text-center");
         })
           // Other grid options
           )
@@ -94,8 +139,15 @@
        items.Add()
    .Title("Ürünler")
    .Template(@<text>
-       @(Html.DevExtreme().DataGrid<MotorAsinBasketRobot.Entities.Concrete.Product>()
-    .DataSource(d => d.Mvc().Controller("Product").LoadAction("GetProductAll"))
+       @(
+    Html.DevExtreme().DataGrid<MotorAsinBasketRobot.Entities.Concrete.Product>()
+    .DataSource(d => d.Mvc().Controller("ClientProduct").LoadAction("GetClientProductList"))
+    .AllowColumnResizing(true)
+    .ColumnMinWidth(50)
+    .SearchPanel(s => s
+    .Visible(true)
+    .HighlightCaseSensitive(true).Width(300))
+    .Sorting(sorting => sorting.Mode(GridSortingMode.Multiple))
     .Columns(columns =>
     {
             columns.AddFor(m => m.Id).Caption("No").Width(190);
@@ -105,6 +157,7 @@
             columns.AddFor(m => m.ProductGroup2).Caption("Ürün Grubu").CssClass("text-center");
             columns.AddFor(m => m.ProductGroup3).Caption("Ürün Grubu").CssClass("text-center");
             columns.AddFor(m => m.ProductGroup4).Caption("Ürün Grubu").CssClass("text-center");
+            columns.AddFor(m => m.IsActive).Caption("Ürün Aktif Mi?").DataType(GridColumnDataType.Boolean).Width(250);
         })
     // Other grid options
     )
@@ -113,40 +166,74 @@
 )
 <div id="tabsContainer"></div>
 <script>
-    function downloadData() {
-        // API adresi
-        var apiUrl = 'https://localhost:7202/api/Document/getall';
+    //function downloadData() {
+    //    // API adresi
+    //    var apiUrl = 'https://localhost:7059/api/Document/GetList?IsActive=true';
 
-        // HTTP isteği oluştur
-        var xhr = new XMLHttpRequest();
-        xhr.open('GET', apiUrl, true);
-        xhr.responseType = 'json';
+    //    // HTTP isteği oluştur
+    //    var xhr = new XMLHttpRequest();
+    //    xhr.open('GET', apiUrl, true);
+    //    xhr.responseType = 'json';
 
-        // İstek tamamlandığında
-        xhr.onload = function () {
-            if (xhr.status === 200) {
-                // Gelen verileri işle
-                var data = xhr.response;
-                var csvData = 'Column1,Column2,Column3\n';
-                for (var i = 0; i < data.length; i++) {
-                    csvData += data[i].column1 + ',' + data[i].column2 + ',' + data[i].column3 + '\n';
-                }
+    //    // İstek tamamlandığında
+    //    xhr.onload = function () {
+    //        if (xhr.status === 200) {
+    //            // Gelen verileri işle
+    //            var data = xhr.response;
+    //            var csvData = 'Döküman,Column2,Column3\n';
+    //            for (var i = 0; i < data.length; i++) {
+    //                csvData += data[i].column1 + ',' + data[i].column2 + ',' + data[i].column3 + '\n';
+    //            }
 
-                // Dosya oluştur
-                var blob = new Blob([csvData], { type: 'text/csv' });
-                var url = window.URL.createObjectURL(blob);
+    //            // Dosya oluştur
+    //            var blob = new Blob([csvData], { type: 'text/csv' });
+    //            var url = window.URL.createObjectURL(blob);
 
-                // Dosya indirme işlemini başlat
-                var a = document.createElement('a');
-                a.href = url;
-                a.download = 'data.json';
-                a.click();
-            }
-        };
+    //            // Dosya indirme işlemini başlat
+    //            var a = document.createElement('a');
+    //            a.href = url;
+    //            a.download = 'data.json';
+    //            a.click();
+    //        }
+    //    };
 
-        // İstek gönder
-        xhr.send();
-    }
+    //    // İstek gönder
+    //    xhr.send();
+    //}
+    //function downloadData() {
+    //    // API adresi
+    //    var apiUrl = '';
+
+    //    // HTTP isteği oluştur
+    //    var xhr = new XMLHttpRequest();
+    //    xhr.open('GET', apiUrl, true);
+    //    xhr.responseType = 'json';
+
+    //    // İstek tamamlandığında
+    //    xhr.onload = function () {
+    //        if (xhr.status === 200) {
+    //            // Gelen verileri işle
+    //            var data = xhr.response;
+    //            var csvData = 'Column1,Column2,Column3\n';
+    //            for (var i = 0; i < data.length; i++) {
+    //                csvData += data[i].column1 + ',' + data[i].column2 + ',' + data[i].column3 + '\n';
+    //            }
+
+    //            // Dosya oluştur
+    //            var blob = new Blob([csvData], { type: 'text/csv' });
+    //            var url = window.URL.createObjectURL(blob);
+
+    //            // Dosya indirme işlemini başlat
+    //            var a = document.createElement('a');
+    //            a.href = url;
+    //            a.download = 'data.json';
+    //            a.click();
+    //        }
+    //    };
+
+    //    // İstek gönder
+    //    xhr.send();
+    //}
 
 
 </script>

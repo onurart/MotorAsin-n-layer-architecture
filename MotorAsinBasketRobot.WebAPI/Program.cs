@@ -1,8 +1,9 @@
+using Autofac.Core;
 using Microsoft.EntityFrameworkCore;
 using MotorAsinBasketRobot.DataAccess.Concrete.EntityFramework.Context;
 
 var builder = WebApplication.CreateBuilder(args);
-
+builder.Services.AddCors();
 builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory()).ConfigureContainer<ContainerBuilder>(builder =>
 {
     builder.RegisterModule(new AutofacBusinessModule());
@@ -66,6 +67,11 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+app.UseCors(x => x
+              .AllowAnyMethod()
+              .AllowAnyHeader()
+              .SetIsOriginAllowed(origin => true)
+              .AllowCredentials());
 app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();
