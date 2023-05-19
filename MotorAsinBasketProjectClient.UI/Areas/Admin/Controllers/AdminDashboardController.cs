@@ -3,7 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace MotorAsinBasketProjectClient.UI.Areas.Admin.Controllers
 {
-    [Authorize]
+
+    [Authorize(Roles ="Admin")]
     [Area("Admin")]
     public class AdminDashboardController : Controller
     {

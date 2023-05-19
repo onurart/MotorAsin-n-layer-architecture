@@ -12,6 +12,7 @@ using MotorAsinBasketRobot.DataAccess.Concrete.EntityFramework.Context;
 using MotorAsinBasketRobotProject.Core.Permissions;
 using Newtonsoft.Json.Serialization;
 using Newtonsoft.Json;
+using MotorAsinBasketProjectClient.UI.MemberService;
 
 var builder = WebApplication.CreateBuilder(args);
 //builder.Services.AddControllersWithViews().AddJsonOptions(options => options.JsonSerializerOptions.PropertyNamingPolicy = null).AddRazorRuntimeCompilation();
@@ -49,6 +50,8 @@ builder.Services.ConfigureApplicationCookie(opt =>
     opt.ExpireTimeSpan = TimeSpan.FromDays(60);
     opt.SlidingExpiration = true;
 });
+builder.Services.AddScoped<IMemberService, MemberService>();
+
 builder.Services.AddScoped<IAuthorizationHandler, ExchangeExpireRequirementHandler>();
 builder.Services.AddScoped<IAuthorizationHandler, ViolenceRequirementHandler>();
 builder.Services.AddAuthorization(options =>

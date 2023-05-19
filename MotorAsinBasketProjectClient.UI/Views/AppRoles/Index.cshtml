@@ -1,0 +1,56 @@
+﻿@model IEnumerable<MotorAsinBasketRobot.Entities.Identity.AppRole>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- Content wrapper scroll start -->
+<div class="content-wrapper-scroll">
+
+    <!-- Content wrapper start -->
+    <div class="content-wrapper">
+
+        <!-- Row start -->
+        <div class="row gutters">
+            <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8 ">
+
+                <div class="card">
+                    <div class="card-body">
+<p>
+    <a class="btn btn-sm btn-outline-primary" asp-action="Create">Yeni Rol Oluştur</a>
+</p>
+                        <div class="table-responsive">
+                            <table class="table table-bordered v-middle m-0 text-center">
+                                <thead class="">
+                                    <tr>
+                                        <th>
+
+                                            @Html.DisplayNameFor(model => model.Name)
+                                        </th>
+                                        <th>Düzenle</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Name)
+                                            </td>
+                                            <td>
+
+                                                <button class="btn btn-sm btn-outline-primary"> <a asp-action="Edit" asp-route-id="@item.Id">Düzenle</a></button>  |
+                                                <button class="btn btn-sm btn-outline-primary"><a asp-action="Delete" asp-route-id="@item.Id">Sil</a></button>
+                                            </td>
+                                          
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

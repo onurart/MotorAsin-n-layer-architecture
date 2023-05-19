@@ -1,5 +1,18 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@if (User.Identity.IsAuthenticated)
+{
+    <li class="dropdown">
+        <a href="#" id="userSettings" class="user-settings" data-toggle="dropdown" aria-haspopup="true">
+            <span class="avatar">
+                <img src="~/WebDesign/img/user.svg" alt="User Avatar">
+                <span class="status busy"></span>
+            </span>
+        </a>
+        <div class="dropdown-menu dropdown-menu-end md" aria-labelledby="userSettings">
+            <div class="header-profile-actions">
+                <a href=""><i class="icon-user1"></i>@User.Identity.Name</a>
+                <a href=""><i class="icon-credit-card"></i>Hesabim</a>
+                <a asp-controller="WebLogin" asp-action="logout"><i class="icon-log-out1"></i>Çıkış yap</a>
+            </div>
+        </div>
+    </li>
 }
