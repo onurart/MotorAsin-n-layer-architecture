@@ -3,10 +3,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace MotorAsinBasketRobot.DataAccess.Migrations
+namespace MotorAsinBasketRobot.DataAccess.Migrations.AdminDb
 {
     /// <inheritdoc />
-    public partial class CreateTable : Migration
+    public partial class motorAsinAdminDb : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -28,8 +28,7 @@ namespace MotorAsinBasketRobot.DataAccess.Migrations
                     Certificate = table.Column<string>(type: "NVarChar(250)", maxLength: 250, nullable: true),
                     ApplicationIntent = table.Column<string>(type: "NVarChar(250)", maxLength: 250, nullable: true),
                     Timeout = table.Column<double>(type: "Float", maxLength: 250, nullable: true),
-                    Format = table.Column<double>(type: "Float", maxLength: 250, nullable: false),
-                    TenantId = table.Column<long>(type: "bigint", nullable: true),
+                    Format = table.Column<byte>(type: "TinyInt", maxLength: 250, nullable: false),
                     IsActive = table.Column<bool>(type: "bit", nullable: false),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     CreatorId = table.Column<long>(type: "bigint", nullable: true),

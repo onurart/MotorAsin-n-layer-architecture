@@ -63,7 +63,7 @@ namespace MotorAsinBasketProjectClient.UI.Controllers
         }
         [HttpPost]
         public async Task<IActionResult> SignUp(SignUpViewModel request)
-         {
+        {
             try
             {
                 if (!ModelState.IsValid)
@@ -107,10 +107,86 @@ namespace MotorAsinBasketProjectClient.UI.Controllers
 
         }
 
+
+
+        public IActionResult ForgetPassword()
+        {
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> ForgetPassword(ForgetPasswordViewModel request)
+        {
+            var hasUser = await _UserManager.FindByEmailAsync(request.Email);
+
+            if (hasUser == null)
+            {
+                ModelState.AddModelError(String.Empty, "Bu email adresine sahip kullanıcı bulunamamıştır.");
+                return View();
+            }
+
+            string passwordResestToken = await _UserManager.GeneratePasswordResetTokenAsync(hasUser);
+
+            var passwordResetLink = Url.Action("ResetPassword", "WebLogin", new { userId = hasUser.Id, Token = passwordResestToken }, HttpContext.Request.Scheme);
+
+            TempData["SuccessMessage"] = "Şifre yenileme linki, eposta adresinize gönderilmiştir";
+            try
+            {
+                await _emailService.SendResetPasswordEmail(passwordResetLink!, hasUser.Email!);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
+
+            return RedirectToAction(nameof(ForgetPassword));
+        }
+        public IActionResult ResetPassword(string userId, string token)
+        {
+            TempData["userId"] = userId;
+            TempData["token"] = token;
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> ResetPassword(ResetPasswordViewModel request)
+        {
+            var userId = TempData["userId"];
+            var token = TempData["token"];
+            if (userId == null || token == null)
+            {
+                throw new Exception("Bir hata meydana geldi");
+            }
+            var hasUser = await _UserManager.FindByIdAsync(userId.ToString()!);
+            if (hasUser == null)
+            {
+                ModelState.AddModelError(String.Empty, "Kullanıcı bulunamamıştır.");
+                return View();
+            }
+            IdentityResult result = await _UserManager.ResetPasswordAsync(hasUser, token.ToString()!, request.Password);
+            if (result.Succeeded)
+            {
+                TempData["SuccessMessage"] = "Şifreniz başarıyla yenilenmiştir";
+            }
+            else
+            {
+                //ModelState.AddModelErrorList(result.Errors.Select(x => x.Description).ToList());
+            }
+            return View();
+        }
+
+
+
+
+
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
         }
+
+
+
+
     }
 }

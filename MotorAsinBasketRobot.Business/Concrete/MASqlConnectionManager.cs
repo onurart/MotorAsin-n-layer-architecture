@@ -4,7 +4,6 @@ using MotorAsinBasketRobot.Business.Validator.Abstract;
 using MotorAsinBasketRobot.Business.Validator.Concrete;
 using MotorAsinBasketRobot.Core.DataAccess.Utilities.Results;
 using MotorAsinBasketRobot.DataAccess.Abstract;
-using MotorAsinBasketRobot.DataAccess.Concrete.EntityFramework;
 using MotorAsinBasketRobot.Entities.Concrete;
 using MotorAsinBasketRobot.Entities.Dtos.MASqlConnection;
 using MotorAsinBasketRobot.Shared.Enums;

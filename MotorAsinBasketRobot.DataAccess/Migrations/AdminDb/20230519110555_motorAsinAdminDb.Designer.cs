@@ -9,11 +9,11 @@ using MotorAsinBasketRobot.DataAccess.Concrete.EntityFramework.Context;
 
 #nullable disable
 
-namespace MotorAsinBasketRobot.DataAccess.Migrations
+namespace MotorAsinBasketRobot.DataAccess.Migrations.AdminDb
 {
     [DbContext(typeof(AdminDbContext))]
-    [Migration("20230511212423_UpdateTable2")]
-    partial class UpdateTable2
+    [Migration("20230519110555_motorAsinAdminDb")]
+    partial class motorAsinAdminDb
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

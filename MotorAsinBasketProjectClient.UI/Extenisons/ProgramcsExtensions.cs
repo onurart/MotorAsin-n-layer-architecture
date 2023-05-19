@@ -28,7 +28,7 @@ namespace MotorAsinBasketProjectClient.UI.Extenisons
                 .AddUserValidator<UserValidator>()
                 .AddErrorDescriber<LocalizationIdentityErrorDescriber>()
                 .AddDefaultTokenProviders()
-                .AddEntityFrameworkStores<AdminDbContext>();
+                .AddEntityFrameworkStores<AppDbContext>();
         }
     }
 }

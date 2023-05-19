@@ -28,13 +28,13 @@ builder.Services.AddRazorPages().AddJsonOptions(options => options.JsonSerialize
 builder.Services.AddSession();
 builder.Services.AddCors();
 builder.Services.AddAuthorization();
-builder.Services.AddDbContext<AdminDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("SqlConnection")));
+builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("SqlConnection")));
 builder.Services.Configure<SecurityStampValidatorOptions>(options =>
 {
     options.ValidationInterval = TimeSpan.FromMinutes(30);
 });
 builder.Services.AddSingleton<IFileProvider>(new PhysicalFileProvider(Directory.GetCurrentDirectory()));
-builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("SqlConnection"));
+builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings"));
 builder.Services.AddIdentityWithExt();
 builder.Services.AddScoped<IEmailService, EmailService>();
 builder.Services.ConfigureApplicationCookie(opt =>
@@ -115,12 +115,10 @@ builder.Services.AddAuthorization(options =>
 
 
 });
-
 builder.Services.AddHttpClient<OfferApiService>(opt =>
 {
     opt.BaseAddress = new Uri(builder.Configuration["ApiBaseUrl"]);
 });
-
 builder.Services.AddHttpClient<ProductCampaingApiService>(opt =>
 {
     opt.BaseAddress = new Uri(builder.Configuration["ApiBaseUrl"]);
@@ -137,7 +135,6 @@ builder.Services.AddHttpClient<ClientCustomersApiService>(opt =>
 {
     opt.BaseAddress = new Uri(builder.Configuration["ApiBaseUrl"]);
 });
-
 builder.Services.AddHttpClient<ClientProductApiService>(opt =>
 {
     opt.BaseAddress = new Uri(builder.Configuration["ApiBaseUrl"]);

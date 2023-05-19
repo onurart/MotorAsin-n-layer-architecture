@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MotorAsinBasketRobot.Entities.ViewModel
 {
-    internal class UserViewModel
+    public class UserViewModel
     {
     }
 }

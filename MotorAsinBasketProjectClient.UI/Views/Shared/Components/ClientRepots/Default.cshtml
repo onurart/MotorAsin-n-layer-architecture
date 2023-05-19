@@ -1,7 +1,7 @@
 ﻿@using DevExtreme.AspNet.Mvc.Builders;
-<style>
-    .dx-tabpanel > .dx-tabpanel-tabs .dx-tabs .dx-tab {
-        background-color: #bbbbbb;
+<style type="text/css">
+    .uppercase .dx-texteditor-input {
+        text-transform: uppercase;
     }
 </style>
 
@@ -9,7 +9,7 @@
    .Items(items =>
    {
        items.Add()
-            .Title("Döküman")
+            .Title("Döküman")   
             .Template(@<text>
                 @(
             Html.DevExtreme().DataGrid<MotorAsinBasketRobot.Entities.Concrete.Documents>()
@@ -67,16 +67,6 @@
           .Visible(true)
           .HighlightCaseSensitive(true).Width(300))
           .Sorting(sorting => sorting.Mode(GridSortingMode.Multiple))
-          .Paging(paging => paging.PageSize(10))
-          .Pager(pager =>
-          {
-            pager.Visible(true);
-            pager.DisplayMode(GridPagerDisplayMode.Full);
-            pager.ShowPageSizeSelector(true);
-            pager.AllowedPageSizes(new JS("[5, 10,30,70,120,180, 1000, 'all']"));
-            pager.ShowInfo(true);
-            pager.ShowNavigationButtons(true);
-        })
           .Columns(columns =>
           {
             columns.AddFor(m => m.Id).Width(190).CssClass("text-center");
@@ -146,7 +136,7 @@
     .ColumnMinWidth(50)
     .SearchPanel(s => s
     .Visible(true)
-    .HighlightCaseSensitive(true).Width(300))
+    .HighlightCaseSensitive(true).Width(300)).ElementAttr("class", "uppercase")
     .Sorting(sorting => sorting.Mode(GridSortingMode.Multiple))
     .Columns(columns =>
     {

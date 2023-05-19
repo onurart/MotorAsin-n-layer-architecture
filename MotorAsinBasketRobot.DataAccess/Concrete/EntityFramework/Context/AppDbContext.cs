@@ -1,8 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using MotorAsinBasketRobot.Entities.Concrete;
+using MotorAsinBasketRobot.Entities.Identity;
+
 namespace MotorAsinBasketRobot.DataAccess.Concrete.EntityFramework.Context
 {
-    public class AppDbContext : DbContext
+    public class AppDbContext: IdentityDbContext<AppUser, AppRole, string>
     {
         public static string ConnString = "Data Source=192.168.181.150;Initial Catalog=MotorAsinBasketRobotProject;User ID=onursa;Password=4473634;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False";
         //public static string ConnString = "Data Source=192.168.181.150;Initial Catalog=MotorAsinBasketRobotProject;User ID=onursa;Password=4473634;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False";
@@ -22,5 +25,7 @@ namespace MotorAsinBasketRobot.DataAccess.Concrete.EntityFramework.Context
         public virtual DbSet<Offer> Offers { get; set; }
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<ProductsCampaigns> ProductCampaigns { get; set; }
+        public virtual DbSet<AppRole> AppRoles { get; set; }
+        public virtual DbSet<AppUser> AppUsers { get; set; }
     }
 }

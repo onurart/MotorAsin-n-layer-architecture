@@ -11,9 +11,9 @@ using MotorAsinBasketRobot.DataAccess.Concrete.EntityFramework.Context;
 
 namespace MotorAsinBasketRobot.DataAccess.Migrations
 {
-    [DbContext(typeof(AdminDbContext))]
-    [Migration("20230516140814_IdenyityDb")]
-    partial class IdenyityDb
+    [DbContext(typeof(AppDbContext))]
+    [Migration("20230519110406_motorAsinCustomer")]
+    partial class motorAsinCustomer
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -131,21 +131,13 @@ namespace MotorAsinBasketRobot.DataAccess.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("MotorAsinBasketRobot.Entities.Concrete.MASqlConnection", b =>
+            modelBuilder.Entity("MotorAsinBasketRobot.Entities.Concrete.BasketStatus", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("Int");
+                        .HasColumnType("bigint");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("ApplicationIntent")
-                        .HasMaxLength(250)
-                        .HasColumnType("NVarChar");
-
-                    b.Property<string>("Certificate")
-                        .HasMaxLength(250)
-                        .HasColumnType("NVarChar");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
 
                     b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("datetime2");
@@ -154,33 +146,13 @@ namespace MotorAsinBasketRobot.DataAccess.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<string>("CustomerCode")
-                        .HasMaxLength(250)
-                        .HasColumnType("NVarChar");
-
-                    b.Property<string>("DbName")
-                        .HasMaxLength(250)
-                        .HasColumnType("NVarChar");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<long?>("DeletedId")
                         .HasColumnType("bigint");
 
                     b.Property<DateTime?>("DeletedTime")
                         .HasColumnType("datetime2");
-
-                    b.Property<string>("Encrypt")
-                        .HasMaxLength(250)
-                        .HasColumnType("NVarChar");
-
-                    b.Property<byte?>("EnmConnetion")
-                        .HasColumnType("TinyInt");
-
-                    b.Property<string>("Failover")
-                        .HasMaxLength(250)
-                        .HasColumnType("NVarChar");
-
-                    b.Property<byte>("Format")
-                        .HasMaxLength(250)
-                        .HasColumnType("TinyInt");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
@@ -194,25 +166,314 @@ namespace MotorAsinBasketRobot.DataAccess.Migrations
                     b.Property<long?>("LastModifiedId")
                         .HasColumnType("bigint");
 
-                    b.Property<string>("Password")
-                        .HasMaxLength(250)
-                        .HasColumnType("NVarChar");
-
-                    b.Property<string>("ServerName")
-                        .HasMaxLength(250)
-                        .HasColumnType("NVarChar");
-
-                    b.Property<double?>("Timeout")
-                        .HasMaxLength(250)
-                        .HasColumnType("Float");
-
-                    b.Property<string>("UserName")
-                        .HasMaxLength(250)
-                        .HasColumnType("NVarChar");
+                    b.Property<string>("ProductCode")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("MASqlConnection", (string)null);
+                    b.ToTable("BasketStatuses");
+                });
+
+            modelBuilder.Entity("MotorAsinBasketRobot.Entities.Concrete.Customer", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<DateTime?>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("CreatorId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("CustomerCode")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("CustomerReferance")
+                        .HasColumnType("int");
+
+                    b.Property<long?>("DeletedId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("DeletedTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("LastModifiedId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Customers");
+                });
+
+            modelBuilder.Entity("MotorAsinBasketRobot.Entities.Concrete.Documents", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<short?>("Billed")
+                        .HasColumnType("smallint");
+
+                    b.Property<DateTime?>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("CreatorId")
+                        .HasColumnType("bigint");
+
+                    b.Property<int?>("CustomerReferance")
+                        .HasColumnType("int");
+
+                    b.Property<long?>("DeletedId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("DeletedTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DocumentDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("DocumentNo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<short?>("DocumetType")
+                        .HasColumnType("smallint");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("LastModifiedId")
+                        .HasColumnType("bigint");
+
+                    b.Property<short?>("LineType")
+                        .HasColumnType("smallint");
+
+                    b.Property<int?>("ProductReferance")
+                        .HasColumnType("int");
+
+                    b.Property<double?>("TlToltal")
+                        .HasColumnType("float");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Documents");
+                });
+
+            modelBuilder.Entity("MotorAsinBasketRobot.Entities.Concrete.IncomingOrderRequests", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<DateTime?>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("CreatorId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("DeletedId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("DeletedTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Desction")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("LastModifiedId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("RequestsTimes")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("IncomingOrderRequests");
+                });
+
+            modelBuilder.Entity("MotorAsinBasketRobot.Entities.Concrete.Offer", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<DateTime?>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("CreatorId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("CustomerCode")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long?>("DeletedId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("DeletedTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("LastModifiedId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("ProductCode")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("Quantity")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Offers");
+                });
+
+            modelBuilder.Entity("MotorAsinBasketRobot.Entities.Concrete.Product", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<DateTime?>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("CreatorId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("DeletedId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("DeletedTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("LastModifiedId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("ProductCode")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ProductGroup1")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ProductGroup2")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ProductGroup3")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ProductGroup4")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("ProductReferance")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Products");
+                });
+
+            modelBuilder.Entity("MotorAsinBasketRobot.Entities.Concrete.ProductsCampaigns", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<DateTime?>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("CreatorId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("DeletedId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("DeletedTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("LastModifiedId")
+                        .HasColumnType("bigint");
+
+                    b.Property<double?>("MinOrder")
+                        .HasColumnType("float");
+
+                    b.Property<string>("ProductCode")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ProductGroup")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("ProductReferance")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ProductCampaigns");
                 });
 
             modelBuilder.Entity("MotorAsinBasketRobot.Entities.Identity.AppRole", b =>
