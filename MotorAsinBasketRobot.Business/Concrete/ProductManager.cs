@@ -57,10 +57,6 @@ namespace MotorAsinBasketRobot.Business.Concrete
                 return new ErrorDataResult<Product>(ex.Message);
             }
         }
-
-
-
-
         public async Task<IDataResult<string>> GetCode(ProductCodeParameterDto parameter)
         {
             try

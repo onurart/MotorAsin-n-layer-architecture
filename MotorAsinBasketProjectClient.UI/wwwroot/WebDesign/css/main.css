@@ -6765,7 +6765,7 @@ figure.user-card {
 .labels-container {
     position: relative;
     border-right: 1px solid #ecf0f7;
-    width: 160px;
+    width: 260px;
     padding: 20px 0;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -7551,10 +7551,11 @@ img.hover-tabs-img {
     img.hover-tabs-img {
         display: block;
         position: fixed;
-        top: 150px;
-        left: 50px;
-        max-width: 480px;
-        z-index: 1000
+        top: -15px;
+        left: 87px;
+        max-width: 347px;
+        z-index: 1000;
+        transform: rotate(207deg)
     }
 }
 

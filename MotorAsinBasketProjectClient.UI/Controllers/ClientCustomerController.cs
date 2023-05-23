@@ -22,7 +22,7 @@ namespace MotorAsinBasketProjectClient.UI.Controllers
         }
 
 
-        public async Task<object> ClientDocumentList(DataSourceLoadOptions loadOptions, CustomerListPramertDto dto)
+        public async Task<object> ClientCustomertList(DataSourceLoadOptions loadOptions, CustomerListPramertDto dto)
         {
             var productCampaingApiService = await _clientDocumentApiService.GetClientustomerllAsync();
             return DataSourceLoader.Load(productCampaingApiService, loadOptions);

@@ -2,7 +2,82 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<style>
+
+    .box3 {
+        padding: 40px;
+        background: #fff;
+        -webkit-box-shadow: -30px 30px 0px 0 rgba(0, 0, 0, 0.08);
+        /*box-shadow: -30px 30px 0px 0 rgba(0, 0, 0, 0.08);*/
+        box-shadow: -3px 1px 4px 0 rgba(50, -14, 3, 4.08);
+        border-radius: 18px 18px 18px 18px;
+        height: 95%;
+    }
+
+        .box3 h3 {
+            font-size: 14px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+    label.error {
+        font-size: 12px;
+        color: red;
+    }
+
+    #message {
+        /* resize: vertical;*/
+        height: 100px;
+    }
+
+    #form-message-warning, #form-message-success {
+        display: none;
+    }
+
+    #form-message-warning {
+        color: #B90B0B;
+    }
+
+    #form-message-success {
+        color: #55A44E;
+        font-size: 18px;
+        font-weight: bold;
+        text-align: center;
+    }
+
+    .submitting {
+        text-align: center;
+        float: left;
+        width: 100%;
+        padding: 10px 0;
+        display: none;
+        font-weight: bold;
+        font-size: 12px;
+        color: #000;
+    }
+
+</style>
+<div class="content-wrapper-scroll">
+    <div class="content-wrapper">
+        <div class="row gutters">
+            <div class="col-xl-12">
+                <div class="dashboard-header">
+
+                    <div class="dashboard-header-content">
+                        <div class="row">
+                            @await Component.InvokeAsync("ClientSaleDetail")
+                            @await Component.InvokeAsync("ClientSaleDetailTitle")
+                            @await Component.InvokeAsync("ClientIncomingOrderRequests")
+                            @await Component.InvokeAsync("ClientConsultants")
+                        </div>
+                            @await Component.InvokeAsync("ClientSalesTileContainer")
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row gutters">
+            @await Component.InvokeAsync("ClientYearIndicator")
+        </div>
+    </div>
+    <div class="app-footer">© Aşin Teknoloji Admin 2023</div>
 </div>

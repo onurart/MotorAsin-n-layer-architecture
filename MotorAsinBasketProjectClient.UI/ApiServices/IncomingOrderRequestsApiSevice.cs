@@ -2,23 +2,23 @@
 
 namespace MotorAsinBasketProjectClient.UI.ApiServices
 {
-    public class ClientProductApiService
+    public class IncomingOrderRequestsApiSevice
     {
         private readonly HttpClient _httpClient;
 
-        public ClientProductApiService(HttpClient httpClient)
+        public IncomingOrderRequestsApiSevice(HttpClient httpClient)
         {
             _httpClient = httpClient;
         }
-        public async Task<IList<Product>> GetProductAllAsync()
+        public async Task<IList<IncomingOrderRequests>> GetIncomingOrderRequestsAllAsync()
         {
             HttpClient client = new HttpClient();
 
-            HttpResponseMessage response = await client.GetAsync("https://localhost:7059/api/Product/GetList?IsActive=true");
+            HttpResponseMessage response = await client.GetAsync("https://localhost:7059/api/IncomingOrderRequest/GetList?Statu=true&IsActive=true");
 
             if (response.IsSuccessStatusCode)
             {
-                return await response.Content.ReadFromJsonAsync<IList<Product>>();
+                return await response.Content.ReadFromJsonAsync<IList<IncomingOrderRequests>>();
             }
             else
             {

@@ -34,6 +34,9 @@ namespace MotorAsinBasketRobot.Business.DependecyResolvers.Autofac
             builder.RegisterType<OfferManager>().As<IOfferService>();
             builder.RegisterType<EfOfferDal>().As<IOfferDal>();
 
+            //builder.RegisterType<IncomingOrderRequestsManager>().As<IIncomingOrderRequestsService>();
+            //builder.RegisterType<EfIncomingOrderRequestsDal>().As<IIncomingOrderRequestsDal>();
+
             base.Load(builder);
         }
     }

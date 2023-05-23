@@ -142,6 +142,11 @@ builder.Services.AddHttpClient<ClientProductApiService>(opt =>
 {
     opt.BaseAddress = new Uri(builder.Configuration["ApiBaseUrl"]);
 });
+
+builder.Services.AddHttpClient<IncomingOrderRequestsApiSevice>(opt =>
+{
+    opt.BaseAddress = new Uri(builder.Configuration["ApiBaseUrl"]);
+});
 var app = builder.Build();
 if (!app.Environment.IsDevelopment())
 {

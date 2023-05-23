@@ -86,7 +86,7 @@
             .Title("Müşteri")
             .Template(@<text>
                 @(Html.DevExtreme().DataGrid<MotorAsinBasketRobot.Entities.Concrete.Customer>()
-            .DataSource(d => d.Mvc().Controller("ClientCustomer").LoadAction("ClientDocumentList"))
+            .DataSource(d => d.Mvc().Controller("ClientCustomer").LoadAction("ClientCustomertList"))
             .AllowColumnResizing(true)
             .ColumnMinWidth(50)
             .SearchPanel(s => s

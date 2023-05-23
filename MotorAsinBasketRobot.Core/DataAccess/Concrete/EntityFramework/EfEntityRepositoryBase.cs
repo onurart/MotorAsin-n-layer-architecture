@@ -108,7 +108,7 @@ namespace MotorAsinBasketRobot.Core.DataAccess.Concrete.EntityFramework
             }
         }
         public async Task<List<T>> GetListAsync<TKey>(Expression<Func<T, bool>> predicate = null, Expression<Func<T, TKey>> orderBy = null, params Expression<Func<T, object>>[] property)
-        {
+        {   
             using (TContext context = new TContext())
             {
                 IQueryable<T> query = context.Set<T>();
