@@ -4,11 +4,14 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - MotorAsinBasketRobotProject.UI</title>
+
     <link href="~/css/devextreme/dx.light.compact.css" rel="stylesheet" />
     <link href="~/css/mycss/dx.material.custom-scheme.css" rel="stylesheet" />
     <link href="~/css/mycss/gridstyle.css" rel="stylesheet" />
     <link href="~/css/devextreme/dx-gantt.css" rel="stylesheet" />
     <link href="~/css/devextreme/dx-diagram.css" rel="stylesheet" />
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="~/js/devextreme/jquery.min.js"></script>
     <script src="~/js/devextreme/bootstrap.js"></script>
     <script src="~/js/devextreme/cldr.js"></script>
@@ -168,10 +171,11 @@
         }
     </script>
     <!-- Required jQuery first, then Bootstrap Bundle JS -->
-    @*<script src="~/WebDesign/js/jquery.min.js"></script>*@
+    <script src="~/WebDesign/js/jquery.min.js"></script>
     <script src="~/WebDesign/js/bootstrap.bundle.min.js"></script>
     <script src="~/WebDesign/js/modernizr.js"></script>
     <script src="~/WebDesign/js/moment.js"></script>
+
 
 
     <!-- *************
@@ -186,25 +190,20 @@
     <script src="~/WebDesign/vendor/slimscroll/custom-scrollbar.js"></script>
 
     <!-- Search Filter JS -->
-    <script src="~/WebDesign/vendor/search-filter/search-filter.js"></script>
+@*    <script src="~/WebDesign/vendor/search-filter/search-filter.js"></script>
     <script src="~/WebDesign/vendor/search-filter/custom-search-filter.js"></script>
-
+*@
     <!-- Apex Charts -->
-    @*<script src="~/WebDesign/vendor/apex/apexcharts.min.js"></script>*@
-    @*    <script src="~/WebDesign/vendor/apex/custom/home/salesGraph.js"></script>
+   @* <script src="~/WebDesign/vendor/apex/apexcharts.min.js"></script>
+    <script src="~/WebDesign/vendor/apex/custom/home/salesGraph.js"></script>
     <script src="~/WebDesign/vendor/apex/custom/home/ordersGraph.js"></script>
     <script src="~/WebDesign/vendor/apex/custom/home/earningsGraph.js"></script>
     <script src="~/WebDesign/vendor/apex/custom/home/visitorsGraph.js"></script>
     <script src="~/WebDesign/vendor/apex/custom/home/customersGraph.js"></script>
-    <script src="~/WebDesign/vendor/apex/custom/home/sparkline.js"></script>
-    *@
-    <!-- Circleful Charts -->
-    <script src="~/WebDesign/vendor/circliful/circliful.min.js"></script>
-    <script src="~/WebDesign/vendor/circliful/circliful.custom.js"></script>
-
-    <!-- Main Js Required -->
+    <script src="~/WebDesign/vendor/apex/custom/home/sparkline.js"></script>*@
+    @*<script src="~/WebDesign/vendor/circliful/circliful.min.js"></script>*@
+    @*<script src="~/WebDesign/vendor/circliful/circliful.custom.js"></script>*@
     <script src="~/WebDesign/js/main.js"></script>
-
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

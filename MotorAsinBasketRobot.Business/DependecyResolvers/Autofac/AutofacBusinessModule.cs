@@ -10,6 +10,9 @@ namespace MotorAsinBasketRobot.Business.DependecyResolvers.Autofac
     {
         protected override void Load(ContainerBuilder builder)
         {
+            builder.RegisterType<IncomingOrderRequestsManager>().As<IIncomingOrderRequestsService>();
+            builder.RegisterType<EfIncomingOrderRequestsDal>().As<IIncomingOrderRequestsDal>();
+
             builder.RegisterType<ProductsCampaignsManager>().As<IProductsCampaignsService>();
             builder.RegisterType<EfProductsCampaignsDal>().As<IProductsCampaignsDal>();
 
@@ -33,10 +36,6 @@ namespace MotorAsinBasketRobot.Business.DependecyResolvers.Autofac
 
             builder.RegisterType<OfferManager>().As<IOfferService>();
             builder.RegisterType<EfOfferDal>().As<IOfferDal>();
-
-            //builder.RegisterType<IncomingOrderRequestsManager>().As<IIncomingOrderRequestsService>();
-            //builder.RegisterType<EfIncomingOrderRequestsDal>().As<IIncomingOrderRequestsDal>();
-
             base.Load(builder);
         }
     }

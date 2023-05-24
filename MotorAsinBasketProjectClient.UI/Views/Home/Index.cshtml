@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Line Chart Example";
 }
 
 <style>
@@ -70,14 +70,348 @@
                             @await Component.InvokeAsync("ClientIncomingOrderRequests")
                             @await Component.InvokeAsync("ClientConsultants")
                         </div>
-                            @await Component.InvokeAsync("ClientSalesTileContainer")
+                        @await Component.InvokeAsync("ClientSalesTileContainer")
                     </div>
                 </div>
+                @await Component.InvokeAsync("ClientYearIndicator")
             </div>
         </div>
+
         <div class="row gutters">
-            @await Component.InvokeAsync("ClientYearIndicator")
+            <div class="col-xl-5 col-lg-5 col-md-6 col-sm-12 col-12">
+                <!-- Row start -->
+                <div class="row gutters">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="card h-475">
+                            <div class="p-0">
+                                @* <canvas id="productChart" width="400" height="400"></canvas>
+                                <script>
+                                $(function () {
+                                $.ajax({
+                                url: '@Url.Action("GetProductChartData", "Home")',
+                                type: 'GET',
+                                success: function (data) {
+                                var months = data.map(d => d.Month);
+                                var productGroup1 = data.map(d => d.ProductGroup1);
+                                var productGroup2 = data.map(d => d.ProductGroup2);
+                                var productGroup3 = data.map(d => d.ProductGroup3);
+                                var productGroup4 = data.map(d => d.ProductGroup4);
+
+                                var ctx = document.getElementById('productChart').getContext('2d');
+                                var productChart = new Chart(ctx, {
+                                type: 'bar',
+                                data: {
+                                labels: months,
+                                datasets: [
+                                {
+                                label: 'Product Group 1',
+                                data: productGroup1,
+                                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                                borderColor: 'rgba(75, 192, 192, 1)',
+                                borderWidth: 1
+                                },
+                                {
+                                label: 'Product Group 2',
+                                data: productGroup2,
+                                backgroundColor: 'rgba(192, 75, 192, 0.2)',
+                                borderColor: 'rgba(192, 75, 192, 1)',
+                                borderWidth: 1
+                                },
+                                {
+                                label: 'Product Group 3',
+                                data: productGroup3,
+                                backgroundColor: 'rgba(192, 192, 75, 0.2)',
+                                borderColor: 'rgba(192, 192, 75, 1)',
+                                borderWidth: 1
+                                },
+                                {
+                                label: 'Product Group 4',
+                                data: productGroup4,
+                                backgroundColor: 'rgba(75, 75, 192, 0.2)',
+                                borderColor: 'rgba(75, 75, 192, 1)',
+                                borderWidth: 1
+                                }
+                                ]
+                                },
+                                options: {
+                                scales: {
+                                y: {
+                                beginAtZero: true
+                                }
+                                }
+                                }
+                                });
+                                }
+                                });
+                                });
+                                </script>*@
+                            </div>
+                            <div class="card-body pt-0">
+
+                                
+
+                                <!-- Row start -->
+                                <div class="row gutters">
+                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                        <div class="image-stats-tile">
+                                            <canvas id="chartDocumentt" width="150" height="100"></canvas>
+                                            <script>
+                                                $(document).ready(function () {
+                                                    $('.earnings-icon.red').click(function () {
+                                                        // AJAX isteği yap
+                                                        $.ajax({
+                                                            url: '/Home/GetDocumentChartData',
+                                                            type: 'GET',
+                                                            success: function (data) {
+                                                                // Veriyi JSON formatına dönüştür
+                                                                var jsonData = JSON.stringify(data);
+
+                                                                // JSON dosyasını indir
+                                                                var a = document.createElement('a');
+                                                                var file = new Blob([jsonData], { type: 'application/json' });
+                                                                a.href = URL.createObjectURL(file);
+                                                                a.download = 'chartData.json';
+                                                                a.click();
+                                                            },
+                                                            error: function () {
+                                                                console.log('Veri alınamadı.');
+                                                            }
+                                                        });
+                                                    });
+                                                });
+                                                $(function () {
+                                                    $.ajax({
+                                                        url: '@Url.Action("GetDocumentChartData", "Home")',
+                                                        type: 'GET',
+                                                        success: function (data) {
+                                                            var dates = data.map(d => d.Date);
+                                                            var counts = data.map(d => d.Count);
+                                                            // Canvas
+                                                            var canvas = document.getElementById('chartDocumentt');
+
+                                                            // Destroy previous chart if exists
+                                                            Chart.getChart(canvas)?.destroy();
+
+                                                            // Line Chart
+                                                            var ctx = canvas.getContext('2d');
+                                                            var chartDocumentt = new Chart(ctx, {
+                                                                type: 'bar',
+                                                                data: {
+                                                                    labels: dates,
+                                                                    datasets: [
+                                                                        {
+                                                                            label: 'Count',
+                                                                            data: counts,
+                                                                            borderColor: 'rgba(75, 192, 192, 1)',
+                                                                            backgroundColor: 'rgba(207, 21, 45, 0.2)',
+                                                                            fill: true
+                                                                        }
+                                                                    ]
+                                                                },
+
+                                                                options: {
+                                                                    plugins: {
+                                                                        customCanvasBackgroundColor: {
+                                                                            color: 'lightGreen',
+                                                                        }
+                                                                    },
+                                                                    scales: {
+                                                                        y: {
+                                                                            beginAtZero: true
+                                                                        }
+                                                                    }
+
+                                                                }
+                                                            });
+
+
+                                                        }
+                                                    });
+                                                });
+
+                                            </script>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <!-- Row end -->
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Row end -->
+            </div>
+            <div class="col-xl-7 col-lg-7 col-md-6 col-sm-12 col-12">
+
+                <!-- Row start -->
+                <div class="row gutters">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="card h-475">
+                            <div class="p-0">
+                                @*<div id="ordersGraph"></div>*@
+                            </div>
+                            <div class="card-body pt-0">
+                                <div class="table-responsive">
+                                    <canvas id="chartDocument" width="150" height="100"></canvas>
+                                    <script>
+                                        $(document).ready(function () {
+                                            $('.earnings-icon.red').click(function () {
+                                                // AJAX isteği yap
+                                                $.ajax({
+                                                    url: '/Home/GetDocumentChartData',
+                                                    type: 'GET',
+                                                    success: function (data) {
+                                                        // Veriyi JSON formatına dönüştür
+                                                        var jsonData = JSON.stringify(data);
+
+                                                        // JSON dosyasını indir
+                                                        var a = document.createElement('a');
+                                                        var file = new Blob([jsonData], { type: 'application/json' });
+                                                        a.href = URL.createObjectURL(file);
+                                                        a.download = 'chartData.json';
+                                                        a.click();
+                                                    },
+                                                    error: function () {
+                                                        console.log('Veri alınamadı.');
+                                                    }
+                                                });
+                                            });
+                                        });
+                                        $(function () {
+                                            $.ajax({
+                                                url: '@Url.Action("GetDocumentChartData", "Home")',
+                                                type: 'GET',
+                                                success: function (data) {
+                                                    var dates = data.map(d => d.Date);
+                                                    var counts = data.map(d => d.Count);
+                                                    // Canvas
+                                                    var canvas = document.getElementById('chartDocument');
+
+                                                    // Destroy previous chart if exists
+                                                    Chart.getChart(canvas)?.destroy();
+
+                                                    // Line Chart
+                                                    var ctx = canvas.getContext('2d');
+                                                    var chartDocument = new Chart(ctx, {
+                                                        type: 'radar',
+                                                        data: {
+                                                            labels: dates,
+                                                            datasets: [
+                                                                {
+                                                                    label: 'Count',
+                                                                    data: counts,
+                                                                    borderColor: 'rgba(75, 192, 192, 1)',
+                                                                    backgroundColor: 'rgba(207, 21, 45, 0.2)',
+                                                                    fill: true
+                                                                }
+                                                            ]
+                                                        },
+
+                                                        options: {
+                                                            plugins: {
+                                                                customCanvasBackgroundColor: {
+                                                                    color: 'lightGreen',
+                                                                }
+                                                            },
+                                                            scales: {
+                                                                y: {
+                                                                    beginAtZero: true
+                                                                }
+                                                            }
+                                                     
+                                                        }
+                                                    });
+
+
+                                                }
+                                            });
+                                        });
+
+                                    </script>
+
+
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Row end -->
+
+                </div>
+            </div>
+            <div class="row gutters">
+                @*<div class="col-xl-2 col-lg-3 col-md-6 col-sm-6 col-12">
+                <div class="stats-tile2">
+                <div class="sale-icon">
+                <i class="icon-user1"></i>
+                </div>
+                <div class="sale-details">
+                <h2>21</h2>
+                <p>Customers</p>
+                </div>
+                </div>
+                <div class="stats-tile2">
+                <div class="sale-icon">
+                <i class="icon-shopping-bag1"></i>
+                </div>
+                <div class="sale-details">
+                <h2>67</h2>
+                <p>Orders</p>
+                </div>
+                </div>
+                </div>*@
+                @*<div class="col-xl-2 col-lg-3 col-md-6 col-sm-6 col-12">
+                <div class="stats-tile2">
+                <div class="sale-icon">
+                <i class="icon-tonality"></i>
+                </div>
+                <div class="sale-details">
+                <h2>95</h2>
+                <p>Revenue</p>
+                </div>
+                </div>
+                <div class="stats-tile2">
+                <div class="sale-icon">
+                <i class="icon-box"></i>
+                </div>
+                <div class="sale-details">
+                <h2>18</h2>
+                <p>Products</p>
+                </div>
+                </div>
+                </div>*@
+
+
+                @*<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6 col-12">
+
+                <div class="card h-350">
+                <div class="card-header">
+                <div class="card-title">Sale by Counrty</div>
+                </div>
+                <div class="card-body">
+                <div id="byCountry"></div>
+                </div>
+                </div>
+
+                </div>
+                <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6 col-12">
+
+                <div class="card h-350">
+                <div class="card-header">
+                <div class="card-title">By Device</div>
+                </div>
+                <div class="card-body">
+                <div id="byDevice"></div>
+                </div>
+                </div>
+
+                </div>
+
+                </div>*@
+            </div>
+            <div class="app-footer">© Aşin Teknoloji Admin 2023</div>
         </div>
     </div>
-    <div class="app-footer">© Aşin Teknoloji Admin 2023</div>
 </div>

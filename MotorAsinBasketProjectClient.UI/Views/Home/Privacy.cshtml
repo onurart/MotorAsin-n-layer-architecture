@@ -1,6 +1,160 @@
-﻿@{
-    ViewData["Title"] = "Privacy Policy";
-}
-<h1>@ViewData["Title"]</h1>
+﻿<style>
+    .accordion {
+        background-color: #eee;
+        color: #444;
+        cursor: pointer;
+        padding: 18px;
+        width: 100%;
+        border: none;
+        text-align: left;
+        outline: none;
+        font-size: 15px;
+        transition: 0.4s;
+    }
 
-<p>Use this page to detail your site's privacy policy.</p>
+        .active, .accordion:hover {
+            background-color: #ccc;
+        }
+
+    .panel {
+        padding: 0;
+        background-color: white;
+        display: none;
+        overflow: hidden;
+    }
+
+    .kanban-board {
+        display: flex;
+    }
+
+    .column {
+        flex: 1;
+        background-color: #f5f5f5;
+        padding: 10px;
+        border-radius: 4px;
+        margin-right: 10px;
+    }
+
+    .column-header {
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .card {
+        background-color: white;
+        padding: 10px;
+        margin-bottom: 10px;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+        .card:hover {
+            background-color: #f9f9f9;
+        }
+
+        .card.dragging {
+            opacity: 0.5;
+        }
+
+    .comment-input {
+        width: 100%;
+        padding: 8px 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        margin-bottom: 10px;
+    }
+
+    .comment {
+        background-color: #f9f9f9;
+        padding: 8px;
+        margin-bottom: 5px;
+        border-radius: 4px;
+    }
+
+    .add-comment {
+        background-color: #ccc;
+        color: white;
+        padding: 8px 10px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+        .add-comment:hover {
+            background-color: #999;
+        }
+</style>
+<h2>Task Kanban Board</h2>
+
+<button class="accordion">Ticket 1: Task 1</button>
+<div class="panel">
+    <div class="kanban-board">
+        <div class="column">
+            <div class="column-header">To Do</div>
+            <div class="card" draggable="true">Task 1</div>
+            <div class="card" draggable="true">Task 2</div>
+            <div class="ticket">
+                <h3>Task 1</h3>
+                <div class="comments">
+                    <input class="comment-input" type="text" placeholder="Add a comment...">
+                    <button class="add-comment">Add Comment</button>
+                </div>
+            </div>
+        </div>
+        <div class="column">
+            <div class="column-header">In Progress</div>
+            <div class="card" draggable="true">Task 3</div>
+            <div class="card" draggable="true">Task 4</div>
+            <div class="ticket">
+                <h3>Task 1</h3>
+                <div class="comments">
+                    <input class="comment-input" type="text" placeholder="Add a comment...">
+                </div>
+            </div>
+        </div>
+        <div class="column">
+            <div class="column-header">Done</div>
+            <div class="card" draggable="true">Task 5</div>
+            <div class="card" draggable="true">Task 6</div>
+            <div class="ticket">
+                <h3>Task 1</h3>
+                <div class="comments">
+                    <input class="comment-input" type="text" placeholder="Add a comment...">
+                    <button class="add-comment">Add Comment</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    var accordions = document.getElementsByClassName("accordion");
+
+    for (var i = 0; i < accordions.length; i++) {
+        accordions[i].addEventListener("click", function () {
+            this.classList.toggle("active");
+            var panel = this.nextElementSibling;
+            if (panel.style.display === "block") {
+                panel.style.display = "none";
+            } else {
+                panel.style.display = "block";
+            }
+        });
+    }
+
+    var commentInput = document.querySelector('.comment-input');
+    var addCommentButton = document.querySelector('.add-comment');
+    var commentsContainer = document.querySelector('.comments');
+
+    addCommentButton.addEventListener('click', function () {
+        if (commentInput.value.trim() !== '') {
+            var comment = document.createElement('div');
+            comment.className = 'comment';
+            comment.textContent = commentInput.value;
+            commentsContainer.appendChild(comment);
+            commentInput.value = '';
+        }
+    });
+</script>

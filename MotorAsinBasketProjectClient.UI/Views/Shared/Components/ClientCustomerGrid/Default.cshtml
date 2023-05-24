@@ -57,7 +57,42 @@
         -moz-box-shadow: inset 0px 0px 3px rgba(0,0,0, .8);
         box-shadow: inset 0px 0px 3px rgba(0,0,0, .8);
     }
+
+    .hover-tabs-img-close {
+        top: 175px;
+        margin: 0px;
+        position: absolute;
+        font-weight: 600;
+        z-index: 999;
+        left: 18%;
+    }
+
+    @@media screen and (min-width:1140px) {
+        img.hover-tabs-img {
+            left: 9%;
+        }
+    }
+
 </style>
+
+<script>
+    window.addEventListener("load", function () {
+        setTimeout(function () {
+            var secilenID = document.getElementById("sonuc");
+            secilenID.style.display = "none";
+        }, 4000);
+    });
+    window.addEventListener("load", function () {
+        setTimeout(function () {
+            var secilenID = document.getElementById("sonuc2");
+            secilenID.style.display = "none";
+        }, 4000);
+    });
+</script>
+<div>
+    <div><p class="hover-tabs-img-close" id="sonuc">Filterle</p></div>
+    <img src="~/WebDesign/img/hover-on-tabs.svg" id="sonuc2" class="hover-tabs-img" alt="Filterle" />
+</div>
 <div>
     @(Html.DevExtreme().DataGrid<MotorAsinBasketRobot.Entities.Concrete.Customer>()
         .DataSource(d => d.Mvc()

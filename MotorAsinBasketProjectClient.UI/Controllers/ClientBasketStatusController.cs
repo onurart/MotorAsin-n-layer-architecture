@@ -23,6 +23,8 @@ namespace MotorAsinBasketProjectClient.UI.Controllers
         public async Task<object> GetBasketStatusList(DataSourceLoadOptions loadOptions, BasketStatusListParameterDto dto)
         {
             var productCampaingApiService = await _apiService.GetProductBasketStatusAsync();
+            //return Json(productCampaingApiService,loadOptions);
+
             return DataSourceLoader.Load(productCampaingApiService, loadOptions);
         }
     }

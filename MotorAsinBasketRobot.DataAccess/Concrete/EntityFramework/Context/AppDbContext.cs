@@ -27,5 +27,14 @@ namespace MotorAsinBasketRobot.DataAccess.Concrete.EntityFramework.Context
         public virtual DbSet<ProductsCampaigns> ProductCampaigns { get; set; }
         public virtual DbSet<AppRole> AppRoles { get; set; }
         public virtual DbSet<AppUser> AppUsers { get; set; }
+
+        //protected override void OnModelCreating(ModelBuilder modelBuilder)
+        //{
+        //    modelBuilder.Entity<ProductCampaignView>(entity =>
+        //    {
+        //        entity.HasNoKey(); // Görünümde birincil anahtar olmadığını belirtin
+        //        entity.ToView("ProductCampaignView"); // Görünümün adını belirtin
+        //    });
+        //}
     }
 }

@@ -15,6 +15,7 @@ using Newtonsoft.Json;
 using MotorAsinBasketProjectClient.UI.MemberService;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddLocalization(opt => opt.ResourcesPath = "Resources");
 //builder.Services.AddControllersWithViews().AddJsonOptions(options => options.JsonSerializerOptions.PropertyNamingPolicy = null).AddRazorRuntimeCompilation();
 builder.Services.AddControllers().AddNewtonsoftJson(options =>
 {

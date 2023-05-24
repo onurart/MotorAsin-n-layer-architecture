@@ -1,59 +1,70 @@
-﻿@using DevExtreme.AspNet.Mvc;
-<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-@*
-    <div class="card">
-        <div class="card-header">
-            <div class="card-title">Yillik Bazlı</div>
-            <div class="graph-day-selection" role="group">
-                <button type="button" class="btn active"></button>
-                <button type="button" class="btn"></button>
-                <button type="button" class="btn"></button>
-            </div>
+﻿<br />
+<br />
+<br />
+<div class="card">
+    <h3>Yilla Göre Sepete Eklenen Markalar</h3>
+    <canvas id="chart" width="650" height="200"></canvas>
+    <div class="earnings-detail">
+        <div class="earnings-info">
         </div>
-        <div class="card-body">
-            @(Html.DevExtreme().Chart()
-                .ID("chart")
-                .Palette(VizPalette.Violet)
-                .Title("")
-                .Tooltip(t => t.Enabled(true))
-                .CommonSeriesSettings(s => s
-                .ArgumentField("Date")
-                .Type(SeriesType.RangeBar)
-                .MinBarSize(2)
-                )
-                .Series(s =>
-                {
-                    s.Add().RangeValue1Field("AVal1").RangeValue2Field("AVal2").Name("ANS West Coast");
-                    s.Add().RangeValue1Field("TVal1").RangeValue2Field("TVal2").Name("West Texas Intermediate");
-                })
-                .ValueAxis(a => a
-                .Add()
-                .Title(t => t.Text("$ per barrel"))
-                )
-                .ArgumentAxis(a => a.Label(l => l.Format(Format.Month)))
-                .Export(e => e.Enabled(true))
-                .Legend(l => l
-                .VerticalAlignment(VerticalEdge.Bottom)
-                .HorizontalAlignment(HorizontalAlignment.Center)
-                )
-                .DataSource(new[] {
-            new { Date = new DateTime(2005, 1, 1), AVal1 = 34.33, AVal2 = 43.29, TVal1 = 40.18, TVal2 = 49.91 },
-            new { Date = new DateTime(2005, 2, 1), AVal1 = 42.24, AVal2 = 47.07, TVal1 = 29.65, TVal2 = 51.75 },
-            new { Date = new DateTime(2005, 3, 1), AVal1 = 42.93, AVal2 = 52.77, TVal1 = 51.01, TVal2 = 56.72 },
-            new { Date = new DateTime(2005, 4, 1), AVal1 = 44.24, AVal2 = 54.14, TVal1 = 48.06, TVal2 = 57.27 },
-            new { Date = new DateTime(2005, 5, 1), AVal1 = 44.47, AVal2 = 49.03, TVal1 = 47.28, TVal2 = 52.07 },
-            new { Date = new DateTime(2005, 6, 1), AVal1 = 50.55, AVal2 = 57.94, TVal1 = 55.01, TVal2 = 60.54 },
-            new { Date = new DateTime(2005, 7, 1), AVal1 = 52.79, AVal2 = 58.98, TVal1 = 55.52, TVal2 = 61.28 },
-            new { Date = new DateTime(2005, 8, 1), AVal1 = 56.49, AVal2 = 67.06, TVal1 = 62.23, TVal2 = 68.94 },
-            new { Date = new DateTime(2005, 9, 1), AVal1 = 62.77, AVal2 = 66.72, TVal1 = 65.19, TVal2 = 69.47 },
-            new { Date = new DateTime(2005, 10, 1), AVal1 = 57.52, AVal2 = 63.47, TVal1 = 59.35, TVal2 = 65.47 },
-            new { Date = new DateTime(2005, 11, 1), AVal1 = 52.92, AVal2 = 59.98, TVal1 = 56.15, TVal2 = 61.78 },
-            new { Date = new DateTime(2005, 12, 1), AVal1 = 55.22, AVal2 = 55.22, TVal1 = 57.34, TVal2 = 57.37 }
-                })
-                )
-
-
-        </div>
-    </div>*@
-
+    </div>
 </div>
+<script>
+
+    $(function () {
+        var chart; // chart değişkenini tanımla
+        $.ajax({
+            url: '@Url.Action("GetProductCampaignChartData", "Home")',
+            type: 'GET',
+            success: function (data) {
+                var productCodes = data.map(d => d.ProductCode);
+                var counts = data.map(d => d.Count);
+                var yearlyCounts = data.map(d => d.MinOrder);
+
+                // Line Chart
+                var ctx = document.getElementById('chart').getContext('2d');
+                chart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: productCodes,
+                        datasets: [
+                            {
+                                label: 'Tümü',
+                                data: counts,
+                                borderColor: 'rgba(34, 33, 33, 1)',
+                                backgroundColor: 'rgba(207, 21, 45, 0.50)',
+                                fill: true
+                            },
+                            {
+                                label: 'Yıllık',
+                                data: yearlyCounts,
+                                borderColor: 'rgba(75, 75, 192, 1)',
+                                backgroundColor: 'rgba(75, 75, 192, 0.2)',
+                                fill: true
+                            }
+                        ]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+
+                // Yıllık sayıyı güncelle
+                //var yearlyCountCard = document.getElementById('yearlyCount');
+                //yearlyCountCard.innerHTML = 'Yearly Count: ' + (yearlyCounts.length > 0 ? yearlyCounts[yearlyCounts.length - 1] : 0);
+
+                //// Haftalık sayıyı güncelle
+                //var weeklyCountCard = document.getElementById('weeklyCount');
+                //weeklyCountCard.innerHTML = 'Weekly Count: ' + (counts.length > 0 ? counts[counts.length - 1] : 0);
+
+                //// Aylık sayıyı güncelle
+                //var monthlyCountCard = document.getElementById('monthlyCount');
+                //monthlyCountCard.innerHTML = 'Monthly Count: ' + (counts.length > 0 ? counts[counts.length - 1] : 0);
+            }
+        });
+    });
+</script>
