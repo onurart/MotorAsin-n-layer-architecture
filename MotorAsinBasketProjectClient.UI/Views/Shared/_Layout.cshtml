@@ -156,22 +156,10 @@
     <script>
         DevExpress.localization.locale(navigator.language);
     </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"></script>
 
-    <script>
-        function exportToPDF(e) {
-            var doc = new jsPDF();
-            DevExpress.pdfExporter.exportDataGrid({
-                jsPDFDocument: doc,
-                component: e.component,
-                indent: 5,
-            }).then(function () {
-                doc.save("Companies.pdf");
-            });
-        }
-    </script>
+
     <!-- Required jQuery first, then Bootstrap Bundle JS -->
-    <script src="~/WebDesign/js/jquery.min.js"></script>
+    @*<script src="~/WebDesign/js/jquery.min.js"></script>*@
     <script src="~/WebDesign/js/bootstrap.bundle.min.js"></script>
     <script src="~/WebDesign/js/modernizr.js"></script>
     <script src="~/WebDesign/js/moment.js"></script>

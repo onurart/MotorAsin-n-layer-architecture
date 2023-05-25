@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "Line Chart Example";
+    ViewData["Title"] = "MOTORAŞİNAKILLISEPET ";
 }
 
 <style>
@@ -148,13 +148,14 @@
                             </div>
                             <div class="card-body pt-0">
 
-                                
+
 
                                 <!-- Row start -->
                                 <div class="row gutters">
                                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                         <div class="image-stats-tile">
-                                            <canvas id="chartDocumentt" width="150" height="100"></canvas>
+                                            <!--Menu Tarafı-->
+                                            <canvas id="chartDocumentt" width="550" height="750"></canvas>
                                             <script>
                                                 $(document).ready(function () {
                                                     $('.earnings-icon.red').click(function () {
@@ -253,7 +254,7 @@
                             </div>
                             <div class="card-body pt-0">
                                 <div class="table-responsive">
-                                    <canvas id="chartDocument" width="150" height="100"></canvas>
+                                    <canvas id="chartDocument" style="display: block; box-sizing: border-box; height: 600px; width: 200px !important;"></canvas>
                                     <script>
                                         $(document).ready(function () {
                                             $('.earnings-icon.red').click(function () {
@@ -287,6 +288,7 @@
                                                     var counts = data.map(d => d.Count);
                                                     // Canvas
                                                     var canvas = document.getElementById('chartDocument');
+                                                
 
                                                     // Destroy previous chart if exists
                                                     Chart.getChart(canvas)?.destroy();
@@ -299,11 +301,12 @@
                                                             labels: dates,
                                                             datasets: [
                                                                 {
-                                                                    label: 'Count',
+                                                                    label: '',
                                                                     data: counts,
                                                                     borderColor: 'rgba(75, 192, 192, 1)',
                                                                     backgroundColor: 'rgba(207, 21, 45, 0.2)',
-                                                                    fill: true
+                                                                    fill: true,
+
                                                                 }
                                                             ]
                                                         },
@@ -319,7 +322,7 @@
                                                                     beginAtZero: true
                                                                 }
                                                             }
-                                                     
+
                                                         }
                                                     });
 
