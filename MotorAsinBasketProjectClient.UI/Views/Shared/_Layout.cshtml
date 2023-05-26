@@ -30,8 +30,11 @@
     <script src="~/js/devextreme/globalize/tr.js"></script>
     <script src="~/js/devextreme/aspnet/dx.aspnet.mvc.js"></script>
     <script src="~/js/devextreme/aspnet/dx.aspnet.data.js"></script>
-    <script src="~/js/devextreme/exceljs.js"></script>
-    <script src="~/js/devextreme/jspdf.umd.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script src="~/js/devextreme/jspdf.plugin.autotable.min.js"></script>
+    @*<script src="~/js/devextreme/jspdf.plugin.autotable.js"></script>*@
+    <script src="~/js/devextreme/excel/exceljs.js"></script>
     <link rel="stylesheet" href="~/WebDesign/css/bootstrap.min.css">
     <link rel="stylesheet" href="~/WebDesign/fonts/style.css">
     <link rel="stylesheet" href="~/WebDesign/css/main.css">
@@ -151,46 +154,16 @@
             @RenderBody()
         </div>
     </div>
-
-
     <script>
         DevExpress.localization.locale(navigator.language);
     </script>
-
-
-    <!-- Required jQuery first, then Bootstrap Bundle JS -->
-    @*<script src="~/WebDesign/js/jquery.min.js"></script>*@
     <script src="~/WebDesign/js/bootstrap.bundle.min.js"></script>
     <script src="~/WebDesign/js/modernizr.js"></script>
     <script src="~/WebDesign/js/moment.js"></script>
-
-
-
-    <!-- *************
-        ************ Vendor Js Files *************
-    ************* -->
-    <!-- Megamenu JS -->
     <script src="~/WebDesign/vendor/megamenu/js/megamenu.js"></script>
     <script src="~/WebDesign/vendor/megamenu/js/custom.js"></script>
-
-    <!-- Slimscroll JS -->
     <script src="~/WebDesign/vendor/slimscroll/slimscroll.min.js"></script>
     <script src="~/WebDesign/vendor/slimscroll/custom-scrollbar.js"></script>
-
-    <!-- Search Filter JS -->
-@*    <script src="~/WebDesign/vendor/search-filter/search-filter.js"></script>
-    <script src="~/WebDesign/vendor/search-filter/custom-search-filter.js"></script>
-*@
-    <!-- Apex Charts -->
-   @* <script src="~/WebDesign/vendor/apex/apexcharts.min.js"></script>
-    <script src="~/WebDesign/vendor/apex/custom/home/salesGraph.js"></script>
-    <script src="~/WebDesign/vendor/apex/custom/home/ordersGraph.js"></script>
-    <script src="~/WebDesign/vendor/apex/custom/home/earningsGraph.js"></script>
-    <script src="~/WebDesign/vendor/apex/custom/home/visitorsGraph.js"></script>
-    <script src="~/WebDesign/vendor/apex/custom/home/customersGraph.js"></script>
-    <script src="~/WebDesign/vendor/apex/custom/home/sparkline.js"></script>*@
-    @*<script src="~/WebDesign/vendor/circliful/circliful.min.js"></script>*@
-    @*<script src="~/WebDesign/vendor/circliful/circliful.custom.js"></script>*@
     <script src="~/WebDesign/js/main.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
