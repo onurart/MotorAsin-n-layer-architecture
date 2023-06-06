@@ -10,6 +10,23 @@ namespace MotorAsinBasketProjectClient.UI.ApiServices
         {
             _httpClient = httpClient;
         }
+        //public async Task<IList<Documents>> GetClientDocumentllAsync()
+        //{
+        //    HttpClient client = new HttpClient();
+
+        //    HttpResponseMessage response = await client.GetAsync("https://localhost:7059/api/Document/GetList?IsActive=true");
+
+        //    if (response.IsSuccessStatusCode)
+        //    {
+        //        return await response.Content.ReadFromJsonAsync<IList<Documents>>();
+        //    }
+        //    else
+        //    {
+        //        // Handle the error
+        //        throw new Exception($"API request failed with status code {response.StatusCode}");
+        //    }
+        //}
+
         public async Task<IList<Documents>> GetClientDocumentllAsync()
         {
             HttpClient client = new HttpClient();
@@ -18,7 +35,8 @@ namespace MotorAsinBasketProjectClient.UI.ApiServices
 
             if (response.IsSuccessStatusCode)
             {
-                return await response.Content.ReadFromJsonAsync<IList<Documents>>();
+                var documents = await response.Content.ReadFromJsonAsync<IList<Documents>>();
+                return documents;
             }
             else
             {

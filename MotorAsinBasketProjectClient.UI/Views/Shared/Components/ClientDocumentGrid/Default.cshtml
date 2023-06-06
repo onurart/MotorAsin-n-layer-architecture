@@ -1,40 +1,51 @@
-﻿@using DevExtreme.AspNet.Mvc.Builders
+﻿@*@using DevExtreme.AspNet.Mvc.Builders
 @using DevExtreme.AspNet.Mvc;
 <style>
+    .dddd {
+        background-color: #ff794e;
+        left: 217px;
+        top: 78px;
+        z-index: 11;
+        color: aliceblue;
+        padding: 0 6px;
+    }
 
+    dddd:hover
+    {
+        background-color:
+    }
     .hover-tabs-img-close {
-        top: 175px;
+        top: 200px;
         margin: 0px;
         position: absolute;
         font-weight: 600;
         z-index: 999;
         left: 17%;
     }
+
     .export-button {
         background-color: #ff794e;
         color: #000;
-        border: none; /* Kenarlık yok */
-        border-radius: 4px; /* Köşeleri yuvarla */
-        cursor: pointer; /* İmleç şekli */
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
     }
 
         .export-button span {
-            color: white; /* Metin rengi */
+            color: white;
         }
 
         .export-button:hover {
-            background-color: #ff794e; /* Üzerine gelindiğindeki arka plan rengi */
+            background-color: #ff794e;
         }
 
-    .dx-dropdownbutton-popup-wrapper.dx-popup-wrapper .dx-overlay-content
-     {
+    .dx-dropdownbutton-popup-wrapper.dx-popup-wrapper .dx-overlay-content {
         background: #ff794e;
-        justify-content:center;
+        justify-content: center;
         border-radius: 0px 0px 35px 35px;
-     }
+    }
 
-    .dx-dropdownbutton-popup-wrapper .dx-list:not(.dx-list-select-decorator-enabled) .dx-list-item-content
-    {
+    .dx-dropdownbutton-popup-wrapper .dx-list:not(.dx-list-select-decorator-enabled) .dx-list-item-content {
         color: white;
         margin: 0;
         padding: 10px;
@@ -43,7 +54,7 @@
     }
 
     .export-options {
-        display: flex;
+       
         justify-content: center;
         align-items: center;
         gap: 10px;
@@ -61,15 +72,147 @@
         .export-option:hover {
             background-color: #45a049;
         }
+
+    .dropbtn {
+        background-color: #04AA6D;
+        color: white;
+        padding: 16px;
+        font-size: 16px;
+        border: none;
+    }
+
+    .dropdown {
+        position: relative;
+        display: inline-block;
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #ff794e;
+        min-width: 100%;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+        border-bottom: 10px solid black;
+        left: 339px;
+        top: 48.2px;
+    }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            background-color: #ff794e;
+        }
+
+            .dropdown-content a:hover {
+                background-color: #ff794e;
+            }
+
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+
+    .dropdown:hover .dropbtn {
+        background-color: #ff794e;
+    }
+
+    .dropdown-toggle {
+        font-size: 14px;
+        font-weight: 600;
+        color: aliceblue;
+        padding: 6px 12px;
+        margin-bottom: 0;
+        display: inline-block;
+        text-decoration: none;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: middle;
+        -ms-touch-action: manipulation;
+        touch-action: manipulation;
+        cursor: pointer;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        background-image: none;
+        background-color: #ff794e;
+        border: 1px solid transparent;
+        top: 43px;
+        z-index: 544;
+        position: relative;
+        left: 172%;
+    }
+
+    #loadingIndicator {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 5000;
+        background: rgba(0,0,0,.95);
+        color: #ffffff;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        font-size: 1rem;
+    }
+
+    .loadingText {
+        top: 500px;
+        left: 50px;
+        margin: auto;
+        width: 50%;
+        border: 3px solid green;
+        padding: 10px;
+    }
 </style>
 
 <div>
-    <div><p class="hover-tabs-img-close" id="sonuc2">Filterle</p></div>
-    <img src="~/WebDesign/img/hover-on-tabs.svg" id="sonuc" class="hover-tabs-img" alt="Filterle" />
+    <div>
+        <p class="hover-tabs-img-close" id="sonuc">Filterle</p>
+    </div>
+    <img src="~/WebDesign/img/hover-on-tabs.svg" id="sonuc2" class="hover-tabs-img" alt="Filterle" />
 </div>
 
+<div id="popupContainer">
+    <!-- <canvas id="chart"></canvas> -->
+</div>
 
-<div>
+<div id="gridId">
+    <div id="buttonGroup">
+        @(Html.DevExtreme().Button()
+            .Icon("print")
+            .Text("Print")
+            .OnClick("printPage")
+            .ElementAttr("class", "dddd"))
+    </div>
+
+
+
+    <div class="dropdown">
+        <button class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Tüm Verileri Dişa Aktar
+        </button>
+        <div class="dropdown-content" aria-labelledby="dropdownMenuButton">
+            <button class="dropdown-item" id="downloadExcelButton" onclick="downloadExcel()">Excel</button>
+            <button class="dropdown-item" id="downloadJsonButton" onclick="downloadJson()">JSON</button>
+        </div>
+    </div>
+
+
     @(Html.DevExtreme().DataGrid<MotorAsinBasketProjectClient.UI.Models.ClientModels.ClientDocuments>()
         .DataSource(d => d.Mvc()
         .Controller("ClientDocument")
@@ -79,11 +222,8 @@
         .ColumnMinWidth(100)
         .ColumnAutoWidth(true)
         .ShowRowLines(true)
-        .ColumnChooser(cc => cc
-        .Enabled(true)
-        .Mode(GridColumnChooserMode.Select))
-@*        .Export(e => e.Enabled(true).AllowExportSelectedData(true))
-*@        .ShowBorders(false)
+        .ColumnChooser(cc => cc.Enabled(true).Mode(GridColumnChooserMode.Select))
+        .ShowBorders(false)
         .Paging(paging => paging.PageSize(10))
         .Pager(pager =>
         {
@@ -94,9 +234,7 @@
             pager.ShowInfo(true);
             pager.ShowNavigationButtons(true);
         })
-        .SearchPanel(s => s
-        .Visible(true)
-        .HighlightCaseSensitive(true).Width(600))
+        .SearchPanel(s => s.Visible(true).HighlightCaseSensitive(true).Width(600))
         .Sorting(sorting => sorting.Mode(GridSortingMode.Multiple))
         .Columns(columns =>
         {
@@ -109,21 +247,31 @@
             columns.AddFor(m => m.DocumentNo).Caption("Döküman No").CssClass("text-center");
             columns.AddFor(m => m.DocumentDate).Caption("Belge tarihi").CssClass("text-center");
         })
-        @*.Selection(s => s.Mode(SelectionMode.Multiple))*@
         .OnToolbarPreparing("onToolbarPreparing")
         .FilterRow(f => f.Visible(true))
         .HeaderFilter(f => f.Visible(true))
         .Height(800)
         .FocusedRowEnabled(true)
-        .FocusedRowKey(1).ElementAttr("class", "")
+        .FocusedRowKey(1)
+        .ElementAttr("class", "")
         .ShowBorders(true)
-       @* .Export(e => e.Enabled(true)
-        .AllowExportSelectedData(true)
-        )*@
         .Grouping(g => g.AutoExpandAll(false)))
 </div>
 
 <script>
+    function printPage() {
+        var grid = $("#accountGrid").dxDataGrid("instance");
+        var gridId = document.getElementById("gridId");
+        var gridContent = grid.element().clone();
+        // Yazdırma alanını temizle
+        gridId.innerHTML = "";
+
+        // Grid içeriğini yazdırma alanına ekle
+        gridId.appendChild(gridContent);
+
+        // Yazdırma işlemini başlat
+        window.print();
+    }
     function onToolbarPreparing(e) {
         var toolbarItems = e.toolbarOptions.items;
         if (!toolbarItems) {
@@ -134,7 +282,8 @@
         var exportOptions = [
             { id: 'json', text: 'JSON RAPOR AL' },
             { id: 'excel', text: 'Excel RAPOR AL' },
-            { id: 'pdf', text: 'PDF RAPOR AL' }
+            { id: 'pdf', text: 'PDF RAPOR AL' },
+            { id: 'allData', text: 'Tüm Datalar Çek' }
         ];
 
         // Export button creation
@@ -156,44 +305,65 @@
                         exportAsExcel();
                     } else if (selectedOption === 'pdf') {
                         exportAsPdf();
+                    } else if (selectedOption === 'allData') {
+                        // Tüm Datalar Çek seçeneği için işlemleri burada gerçekleştirin
                     }
                 }
             }
         };
 
         toolbarItems.unshift(exportButton);
+
+        // Sağ tarafta açılır menü oluşturma
+        var menuOptions = [
+            { id: 'excel', text: 'Excel' },
+            { id: 'json', text: 'JSON' }
+        ];
+
+        var menu = {
+            widget: 'dxMenu',
+            location: 'after',
+            locateInMenu: 'auto',
+            visible: false,
+            options: {
+                items: menuOptions,
+                onItemClick: function (data) {
+                    var selectedOption = data.itemData.id;
+                    // Seçilen seçeneğe göre yapılacak işlemleri burada gerçekleştirin
+                    if (selectedOption === 'excel') {
+                        // Excel işlemleri
+                    } else if (selectedOption === 'json') {
+                        // JSON işlemleri
+                    }
+                }
+            }
+        };
+
+        // Tüm Datalar Çek seçeneği tıklandığında açılır menüyü görünür hale getirme
+        exportButton.options.onItemClick = function (data) {
+            var selectedOption = data.itemData.id;
+
+            if (selectedOption === 'allData') {
+                menu.options.visible = true;
+            } else {
+                menu.options.visible = false;
+            }
+
+            if (selectedOption === 'json') {
+                exportAsJson();
+            } else if (selectedOption === 'excel') {
+                exportAsExcel();
+            } else if (selectedOption === 'pdf') {
+                exportAsPdf();
+            }
+        };
+
+        toolbarItems.push(menu);
+
         e.toolbarOptions.items = toolbarItems;
     }
 
-    function exportAsJson() {
-        var grid = $("#accountGrid").dxDataGrid("instance");
-        var visibleColumns = grid.getVisibleColumns();
-
-        grid.option("paging.enabled", false);
-
-        grid.getDataSource().load().done(function (result) {
-            var gridDataSource = result;
-            var filteredData = gridDataSource.map(function (item) {
-                var filteredItem = {};
-                visibleColumns.forEach(function (column) {
-                    filteredItem[column.dataField] = item[column.dataField];
-                });
-                return filteredItem;
-            });
-            var json = JSON.stringify(filteredData);
-
-            var blob = new Blob([json], { type: "application/json" });
-            var url = URL.createObjectURL(blob);
-
-            var a = document.createElement("a");
-            a.href = url;
-            a.download = "data.json";
-            a.click();
-
-            grid.option("paging.enabled", true);
-        });
-    }
-
+    
     function exportAsExcel() {
         var grid = $("#accountGrid").dxDataGrid("instance");
         var visibleColumns = grid.getVisibleColumns();
@@ -243,7 +413,7 @@
                 return filteredItem;
             });
 
-            var doc = new jspdf.jsPDF(); // jsPDF nesnesini oluşturun
+            var doc = new jspdf.jsPDF();
 
             var header = Object.keys(filteredData[0]);
             var tableData = [];
@@ -282,18 +452,314 @@
             grid.option("paging.enabled", true);
         });
     }
-</script>
-<script>
+    function printPage() {
+        window.print();
+    }
     window.addEventListener("load", function () {
         setTimeout(function () {
             var secilenID = document.getElementById("sonuc");
             secilenID.style.display = "none";
-        }, 4000);
+        }, 1000);
     });
     window.addEventListener("load", function () {
         setTimeout(function () {
             var secilenID = document.getElementById("sonuc2");
             secilenID.style.display = "none";
-        }, 4000);
+        }, 1000);
     });
+</script>
+*@
+@using DevExtreme.AspNet.Mvc.Builders
+@using DevExtreme.AspNet.Mvc;
+<style>
+    .dddd {
+        background-color: #ff794e;
+        left: 220px;
+        top: 43px;
+        z-index: 11;
+    }
+
+    .hover-tabs-img-close {
+        top: 200px;
+        margin: 0px;
+        position: absolute;
+        font-weight: 600;
+        z-index: 999;
+        left: 17%;
+    }
+
+    .export-button {
+        background-color: #ff794e;
+        color: #000;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+        .export-button span {
+            color: white;
+        }
+
+        .export-button:hover {
+            background-color: #ff794e;
+        }
+
+    .dx-dropdownbutton-popup-wrapper.dx-popup-wrapper .dx-overlay-content {
+        background: #ff794e;
+        justify-content: center;
+        border-radius: 0px 0px 35px 35px;
+    }
+
+    .dx-dropdownbutton-popup-wrapper .dx-list:not(.dx-list-select-decorator-enabled) .dx-list-item-content {
+        color: white;
+        margin: 0;
+        padding: 10px;
+        border-top: 1px double white;
+        text-align-last: center;
+    }
+
+    .export-options {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .export-option {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+        .export-option:hover {
+            background-color: #45a049;
+        }
+</style>
+<div id="gridId">
+    <div id="buttonGroup">
+        @(Html.DevExtreme().Button()
+            .Icon("print")
+            .Text("Print")
+            .OnClick("printPage")
+            .ElementAttr("class", "dddd"))
+    </div>
+
+    @(Html.DevExtreme().DataGrid<MotorAsinBasketProjectClient.UI.Models.ClientModels.ClientDocuments>()
+        .DataSource(d => d.Mvc()
+        .Controller("ClientDocument")
+        .LoadAction("ClientDocumentList")
+        .Key("Id"))
+        .ID("accountGrid")
+        .ColumnMinWidth(100)
+        .ColumnAutoWidth(true)
+        .ShowRowLines(true)
+        .ColumnChooser(cc => cc.Enabled(true).Mode(GridColumnChooserMode.Select))
+        .ShowBorders(false)
+        .Paging(paging => paging.PageSize(10))
+        .Pager(pager =>
+        {
+            pager.Visible(true);
+            pager.DisplayMode(GridPagerDisplayMode.Full);
+            pager.ShowPageSizeSelector(true);
+            pager.AllowedPageSizes(new JS("[5, 10, 30, 70, 120, 180, 1000, 'all']"));
+            pager.ShowInfo(true);
+            pager.ShowNavigationButtons(true);
+        })
+        .SearchPanel(s => s.Visible(true).HighlightCaseSensitive(true).Width(300))
+        .Sorting(sorting => sorting.Mode(GridSortingMode.Multiple))
+        .Columns(columns =>
+        {
+            columns.AddFor(m => m.DocumetType).Caption("Belge Türü").CssClass("text-center");
+            columns.AddFor(m => m.LineType).Caption("Satir Tipi").CssClass("text-center");
+            columns.AddFor(m => m.Billed).Caption("Faturalandırılan").CssClass("text-center");
+            columns.AddFor(m => m.TlToltal).Caption("TL Toplam").CssClass("text-center");
+            columns.AddFor(m => m.ProductReferance).Caption("Ürün No").CssClass("text-center");
+            columns.AddFor(m => m.CustomerReferance).Caption("Müşteri No");
+            columns.AddFor(m => m.DocumentNo).Caption("Döküman No").CssClass("text-center");
+            columns.AddFor(m => m.DocumentDate).Caption("Belge tarihi").CssClass("text-center");
+        })
+        .OnToolbarPreparing("onToolbarPreparing")
+        .FilterRow(f => f.Visible(true))
+        .HeaderFilter(f => f.Visible(true))
+        .Height(800)
+        .FocusedRowEnabled(true)
+        .FocusedRowKey(1)
+        .ElementAttr("class", "")
+        .ShowBorders(true)
+        .Grouping(g => g.AutoExpandAll(false)))
+</div>
+
+<script>
+        function printPage() {
+            var grid = $("#accountGrid").dxDataGrid("instance");
+            var gridId = document.getElementById("gridId");
+            var gridContent = grid.element().clone();
+
+            // Yazdırma alanını temizle
+            gridId.innerHTML = "";
+
+            // Grid içeriğini yazdırma alanına ekle
+            gridId.appendChild(gridContent);
+
+            // Yazdırma işlemini başlat
+            window.print();
+        }
+
+
+    function onToolbarPreparing(e) {
+        var toolbarItems = e.toolbarOptions.items;
+        if (!toolbarItems) {
+            toolbarItems = [];
+        }
+
+        // Export options
+        var exportOptions = [{ id: 'json', text: 'JSON RAPOR AL' }, { id: 'excel', text: 'Excel RAPOR AL' }, { id: 'pdf', text: 'PDF RAPOR AL' }];
+
+        // Export button creation
+        var exportButton = {
+            widget: "dxDropDownButton",
+            location: "before",
+            options: {
+                text: "Verileri Dışa Aktar",
+                elementAttr: {
+                    class: "export-button export-options" // CSS sınıfını belirtin
+                },
+                items: exportOptions,
+                onItemClick: function (data) {
+                    var selectedOption = data.itemData.id;
+
+                    if (selectedOption === 'json') {
+                        exportAsJson();
+                    } else if (selectedOption === 'excel') {
+                        exportAsExcel();
+                    } else if (selectedOption === 'pdf') {
+                        exportAsPdf();
+                    }
+                }
+            }
+        };
+
+        toolbarItems.unshift(exportButton);
+        e.toolbarOptions.items = toolbarItems;
+    }
+    function exportAsExcel() {
+        var grid = $("#accountGrid").dxDataGrid("instance");
+        var visibleColumns = grid.getVisibleColumns();
+
+        grid.option("paging.enabled", false);
+
+        grid.getDataSource().load().done(function (result) {
+            var gridDataSource = result;
+            var filteredData = gridDataSource.map(function (item) {
+                var filteredItem = {};
+                visibleColumns.forEach(function (column) {
+                    filteredItem[column.dataField] = item[column.dataField];
+                });
+                return filteredItem;
+            });
+
+            var worksheet = XLSX.utils.json_to_sheet(filteredData);
+            var workbook = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(workbook, worksheet, "Data");
+
+            var excelData = XLSX.write(workbook, { bookType: "xlsx", type: "array" });
+
+            var blob = new Blob([excelData], { type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" });
+            var url = URL.createObjectURL(blob);
+
+            var a = document.createElement("a");
+            a.href = url;
+            a.download = "data.xlsx";
+            a.click();
+
+            grid.option("paging.enabled", true);
+        });
+    }
+    function exportAsJson() {
+        var grid = $("#accountGrid").dxDataGrid("instance");
+        var visibleColumns = grid.getVisibleColumns();
+
+        grid.getDataSource().load().done(function (result) {
+            var gridDataSource = result;
+            var filteredData = gridDataSource.map(function (item) {
+                var filteredItem = {};
+                visibleColumns.forEach(function (column) {
+                    filteredItem[column.dataField] = item[column.dataField];
+                });
+                return filteredItem;
+            });
+
+            var jsonData = JSON.stringify(filteredData, null, 2);
+
+            var blob = new Blob([jsonData], { type: "application/json" });
+            var url = URL.createObjectURL(blob);
+
+            var a = document.createElement("a");
+            a.href = url;
+            a.download = "data.json";
+            a.click();
+        });
+    }
+    function exportAsPdf() {
+        var grid = $("#accountGrid").dxDataGrid("instance");
+        var visibleColumns = grid.getVisibleColumns();
+
+        grid.option("paging.enabled", false);
+
+        grid.getDataSource().load().done(function (result) {
+            var gridDataSource = result;
+            var filteredData = gridDataSource.map(function (item) {
+                var filteredItem = {};
+                visibleColumns.forEach(function (column) {
+                    filteredItem[column.dataField] = item[column.dataField];
+                });
+                return filteredItem;
+            });
+
+            var doc = new jspdf.jsPDF();
+
+            var header = Object.keys(filteredData[0]);
+            var tableData = [];
+            tableData.push(header);
+
+            filteredData.forEach(function (item) {
+                var row = [];
+                header.forEach(function (key) {
+                    row.push(item[key]);
+                });
+                tableData.push(row);
+            });
+
+            var columnWidths = header.map(function () {
+                return 40;
+            });
+
+            doc.autoTable({
+                head: [tableData[0]],
+                body: tableData.slice(1),
+                startY: 10,
+                columnStyles: {
+                    0: { cellWidth: columnWidths[0] },
+                    1: { cellWidth: columnWidths[1] },
+                    2: { cellWidth: columnWidths[2] },
+                    3: { cellWidth: columnWidths[3] },
+                    4: { cellWidth: columnWidths[4] },
+                    5: { cellWidth: columnWidths[5] },
+                    6: { cellWidth: columnWidths[6] },
+                    7: { cellWidth: columnWidths[7] }
+                }
+            });
+
+            doc.save("data.pdf");
+
+            grid.option("paging.enabled", true);
+        });
+    }
+
+    function printPage() {
+        window.print();
+    }
 </script>

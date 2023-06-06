@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MotorAsinBasketRobot.DataAccess.Concrete.EntityFramework.Context;
 
@@ -11,9 +12,11 @@ using MotorAsinBasketRobot.DataAccess.Concrete.EntityFramework.Context;
 namespace MotorAsinBasketRobot.DataAccess.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230529141858_motrasındb")]
+    partial class motrasındb
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -225,9 +228,6 @@ namespace MotorAsinBasketRobot.DataAccess.Migrations
                     b.Property<short?>("Billed")
                         .HasColumnType("smallint");
 
-                    b.Property<string>("Content")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("datetime2");
 
@@ -251,9 +251,6 @@ namespace MotorAsinBasketRobot.DataAccess.Migrations
 
                     b.Property<short?>("DocumetType")
                         .HasColumnType("smallint");
-
-                    b.Property<string>("FileName")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");

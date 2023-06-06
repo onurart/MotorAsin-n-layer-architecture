@@ -2,419 +2,401 @@
     ViewData["Title"] = "MOTORAŞİNAKILLISEPET ";
 }
 
-<style>
-
-    .box3 {
-        padding: 40px;
-        background: #fff;
-        -webkit-box-shadow: -30px 30px 0px 0 rgba(0, 0, 0, 0.08);
-        /*box-shadow: -30px 30px 0px 0 rgba(0, 0, 0, 0.08);*/
-        box-shadow: -3px 1px 4px 0 rgba(50, -14, 3, 4.08);
-        border-radius: 18px 18px 18px 18px;
-        height: 95%;
-    }
-
-        .box3 h3 {
-            font-size: 14px;
-            margin-bottom: 30px;
-            text-align: center;
-        }
-
-    label.error {
-        font-size: 12px;
-        color: red;
-    }
-
-    #message {
-        /* resize: vertical;*/
-        height: 100px;
-    }
-
-    #form-message-warning, #form-message-success {
-        display: none;
-    }
-
-    #form-message-warning {
-        color: #B90B0B;
-    }
-
-    #form-message-success {
-        color: #55A44E;
-        font-size: 18px;
-        font-weight: bold;
-        text-align: center;
-    }
-
-    .submitting {
-        text-align: center;
-        float: left;
-        width: 100%;
-        padding: 10px 0;
-        display: none;
-        font-weight: bold;
-        font-size: 12px;
-        color: #000;
-    }
-
-</style>
 <div class="content-wrapper-scroll">
-    <div class="content-wrapper">
-        <div class="row gutters">
-            <div class="col-xl-12">
-                <div class="dashboard-header">
 
-                    <div class="dashboard-header-content">
-                        <div class="row">
-                            @await Component.InvokeAsync("ClientSaleDetail")
-                            @await Component.InvokeAsync("ClientSaleDetailTitle")
-                            @await Component.InvokeAsync("ClientIncomingOrderRequests")
-                            @await Component.InvokeAsync("ClientConsultants")
-                        </div>
-                        @await Component.InvokeAsync("ClientSalesTileContainer")
+    <!-- Content wrapper start -->
+    <div class="content-wrapper">
+
+        <div class="row gutters">
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
+                <div class="stats-tile">
+                    <div class="sale-icon">
+                        <i class="icon-package"></i>
+                    </div>
+                    <div class="sale-details">
+                        <h2>70</h2>
+                        <p>Ürünler</p>
+                        <h5><span class="high"><i class="icon-trending-up"></i> 7.2%</span> Geçen haftadan bu yana</h5>
                     </div>
                 </div>
-                @await Component.InvokeAsync("ClientYearIndicator")
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
+                <div class="stats-tile">
+                    <div class="sale-icon">
+                        <i class="icon-shopping-bag1"></i>
+                    </div>
+                    <div class="sale-details">
+                        <h2>650</h2>
+                        <p>Emirler</p>
+                        <h5><span class="high"><i class="icon-trending-up"></i> 7.5%</span> Geçen haftadan bu yana</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
+                <div class="stats-tile">
+                    <div class="sale-icon">
+                        <i class="icon-briefcase"></i>
+                    </div>
+                    <div class="sale-details">
+                        <h2>995</h2>
+                        <p>Hasılat</p>
+                        <h5><span class="low"><i class="icon-trending-down"></i> 5.7%</span> Geçen haftadan bu yana</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
+                <div class="goal-container">
+                    <div class="goal-info">
+                        <h5>
+                            Bugünün Hedefi
+                        </h5>
+                        <h6>70/100</h6>
+                    </div>
+                    <div class="goal-graph">
+                        <div id="todaysTarget" class="svg-container"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 194 186" class="circliful">undefined<circle cx="100" cy="100" r="57" class="border" fill="none" stroke="#f2f4f9" stroke-width="15" stroke-dasharray="360" transform="rotate(-90,100,100)"></circle><circle class="circle" cx="100" cy="100" r="57" fill="none" stroke="#e02539" stroke-width="15" stroke-dasharray="252, 20000" transform="rotate(-90,100,100)"></circle><circle cx="100" cy="100" r="28.5" fill="none"></circle>undefined<text class="timer" text-anchor="middle" x="100" y="110" style="font-size: 22px; undefined;" fill="#111111">70%</text></svg></div>
+                        <div class="circle-one"></div>
+                        <div class="circle-two"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
+                <div class="graph-card">
+                    <h6>
+                        Yeni Müşteriler
+                    </h6>
+                    <h4>2500</h4>
+                    <div class="graph-placeholder">
+                        <div id="customersGraph" style="min-height: 135px;"><div id="apexchartsdrg0y5jri" class="apexcharts-canvas apexchartsdrg0y5jri apexcharts-theme-light apexcharts-zoomable" style="width: 499px; height: 120px;"><svg id="SvgjsSvg1262" width="499" height="120" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" class="apexcharts-svg" xmlns:data="ApexChartsNS" transform="translate(0, 0)" style="background: transparent;"><g id="SvgjsG1264" class="apexcharts-inner apexcharts-graphical" transform="translate(0, 30)"><defs id="SvgjsDefs1263"><clipPath id="gridRectMaskdrg0y5jri"><rect id="SvgjsRect1268" width="505" height="77" x="-3" y="-1" rx="7" ry="7" fill="#ffffff" opacity="1" stroke-width="0" stroke="none" stroke-dasharray="0"></rect></clipPath><clipPath id="gridRectMarkerMaskdrg0y5jri"><rect id="SvgjsRect1269" width="501" height="77" x="-1" y="-1" rx="7" ry="7" fill="#ffffff" opacity="1" stroke-width="0" stroke="none" stroke-dasharray="0"></rect></clipPath><linearGradient id="SvgjsLinearGradient1275" x1="0" y1="0" x2="0" y2="1"><stop id="SvgjsStop1276" stop-opacity="0.3" stop-color="rgba(224,37,57,0.3)" offset="0.35"></stop><stop id="SvgjsStop1277" stop-opacity="0.05" stop-color="rgba(255,255,255,0.05)" offset="1"></stop><stop id="SvgjsStop1278" stop-opacity="0.05" stop-color="rgba(255,255,255,0.05)" offset="1"></stop></linearGradient></defs><line id="SvgjsLine1267" x1="0" y1="0" x2="0" y2="75" stroke="#b6b6b6" stroke-dasharray="3" class="apexcharts-xcrosshairs" x="0" y="0" width="1" height="75" fill="#b1b9c4" filter="none" fill-opacity="0.9" stroke-width="1"></line><g id="SvgjsG1281" class="apexcharts-xaxis" transform="translate(0, 0)"><g id="SvgjsG1282" class="apexcharts-xaxis-texts-g" transform="translate(0, -4)"></g></g><g id="SvgjsG1284" class="apexcharts-grid"><g id="SvgjsG1285" class="apexcharts-gridlines-horizontal"></g><g id="SvgjsG1286" class="apexcharts-gridlines-vertical"><line id="SvgjsLine1287" x1="0" y1="0" x2="0" y2="75" stroke="#ced1e0" stroke-dasharray="5" class="apexcharts-gridline"></line><line id="SvgjsLine1288" x1="83.16666666666667" y1="0" x2="83.16666666666667" y2="75" stroke="#ced1e0" stroke-dasharray="5" class="apexcharts-gridline"></line><line id="SvgjsLine1289" x1="166.33333333333334" y1="0" x2="166.33333333333334" y2="75" stroke="#ced1e0" stroke-dasharray="5" class="apexcharts-gridline"></line><line id="SvgjsLine1290" x1="249.5" y1="0" x2="249.5" y2="75" stroke="#ced1e0" stroke-dasharray="5" class="apexcharts-gridline"></line><line id="SvgjsLine1291" x1="332.6666666666667" y1="0" x2="332.6666666666667" y2="75" stroke="#ced1e0" stroke-dasharray="5" class="apexcharts-gridline"></line><line id="SvgjsLine1292" x1="415.83333333333337" y1="0" x2="415.83333333333337" y2="75" stroke="#ced1e0" stroke-dasharray="5" class="apexcharts-gridline"></line><line id="SvgjsLine1293" x1="499.00000000000006" y1="0" x2="499.00000000000006" y2="75" stroke="#ced1e0" stroke-dasharray="5" class="apexcharts-gridline"></line></g><line id="SvgjsLine1295" x1="0" y1="75" x2="499" y2="75" stroke="transparent" stroke-dasharray="0"></line><line id="SvgjsLine1294" x1="0" y1="1" x2="0" y2="75" stroke="transparent" stroke-dasharray="0"></line></g><g id="SvgjsG1271" class="apexcharts-area-series apexcharts-plot-series"><g id="SvgjsG1272" class="apexcharts-series" seriesName="Customers" data:longestSeries="true" rel="1" data:realIndex="0"><path id="SvgjsPath1279" d="M0 75L0 62.5C29.108333333333334 62.5 54.05833333333334 50 83.16666666666667 50C112.275 50 137.22500000000002 43.75 166.33333333333334 43.75C195.44166666666666 43.75 220.39166666666668 31.25 249.5 31.25C278.60833333333335 31.25 303.55833333333334 12.5 332.6666666666667 12.5C361.775 12.5 386.725 25 415.8333333333333 25C444.94166666666666 25 469.89166666666665 18.75 499 18.75C499 18.75 499 18.75 499 75M499 18.75C499 18.75 499 18.75 499 18.75 " fill="url(#SvgjsLinearGradient1275)" fill-opacity="1" stroke-opacity="1" stroke-linecap="square" stroke-width="0" stroke-dasharray="0" class="apexcharts-area" index="0" clip-path="url(#gridRectMaskdrg0y5jri)" pathTo="M 0 75L 0 62.5C 29.108333333333334 62.5 54.05833333333334 50 83.16666666666667 50C 112.275 50 137.22500000000002 43.75 166.33333333333334 43.75C 195.44166666666666 43.75 220.39166666666668 31.25 249.5 31.25C 278.60833333333335 31.25 303.55833333333334 12.5 332.6666666666667 12.5C 361.775 12.5 386.725 25 415.8333333333333 25C 444.94166666666666 25 469.89166666666665 18.75 499 18.75C 499 18.75 499 18.75 499 75M 499 18.75z" pathFrom="M -1 75L -1 75L 83.16666666666667 75L 166.33333333333334 75L 249.5 75L 332.6666666666667 75L 415.8333333333333 75L 499 75"></path><path id="SvgjsPath1280" d="M0 62.5C29.108333333333334 62.5 54.05833333333334 50 83.16666666666667 50C112.275 50 137.22500000000002 43.75 166.33333333333334 43.75C195.44166666666666 43.75 220.39166666666668 31.25 249.5 31.25C278.60833333333335 31.25 303.55833333333334 12.5 332.6666666666667 12.5C361.775 12.5 386.725 25 415.8333333333333 25C444.94166666666666 25 469.89166666666665 18.75 499 18.75C499 18.75 499 18.75 499 18.75 " fill="none" fill-opacity="1" stroke="#e02539" stroke-opacity="1" stroke-linecap="square" stroke-width="2" stroke-dasharray="0" class="apexcharts-area" index="0" clip-path="url(#gridRectMaskdrg0y5jri)" pathTo="M 0 62.5C 29.108333333333334 62.5 54.05833333333334 50 83.16666666666667 50C 112.275 50 137.22500000000002 43.75 166.33333333333334 43.75C 195.44166666666666 43.75 220.39166666666668 31.25 249.5 31.25C 278.60833333333335 31.25 303.55833333333334 12.5 332.6666666666667 12.5C 361.775 12.5 386.725 25 415.8333333333333 25C 444.94166666666666 25 469.89166666666665 18.75 499 18.75" pathFrom="M -1 75L -1 75L 83.16666666666667 75L 166.33333333333334 75L 249.5 75L 332.6666666666667 75L 415.8333333333333 75L 499 75"></path><g id="SvgjsG1273" class="apexcharts-series-markers-wrap"><g class="apexcharts-series-markers"><circle id="SvgjsCircle1301" r="0" cx="0" cy="0" class="apexcharts-marker wress2mg no-pointer-events" stroke="#ffffff" fill="#e02539" fill-opacity="1" stroke-width="2" stroke-opacity="0.9" default-marker-size="0"></circle></g></g></g><g id="SvgjsG1274" class="apexcharts-datalabels"></g></g><line id="SvgjsLine1296" x1="0" y1="0" x2="499" y2="0" stroke="#b6b6b6" stroke-dasharray="0" stroke-width="1" class="apexcharts-ycrosshairs"></line><line id="SvgjsLine1297" x1="0" y1="0" x2="499" y2="0" stroke-dasharray="0" stroke-width="0" class="apexcharts-ycrosshairs-hidden"></line><g id="SvgjsG1298" class="apexcharts-yaxis-annotations"></g><g id="SvgjsG1299" class="apexcharts-xaxis-annotations"></g><g id="SvgjsG1300" class="apexcharts-point-annotations"></g><rect id="SvgjsRect1302" width="0" height="0" x="0" y="0" rx="7" ry="7" fill="#fefefe" opacity="1" stroke-width="0" stroke="none" stroke-dasharray="0" class="apexcharts-zoom-rect"></rect><rect id="SvgjsRect1303" width="0" height="0" x="0" y="0" rx="7" ry="7" fill="#fefefe" opacity="1" stroke-width="0" stroke="none" stroke-dasharray="0" class="apexcharts-selection-rect"></rect></g><rect id="SvgjsRect1266" width="0" height="0" x="0" y="0" rx="7" ry="7" fill="#fefefe" opacity="1" stroke-width="0" stroke="none" stroke-dasharray="0"></rect><g id="SvgjsG1283" class="apexcharts-yaxis" rel="0" transform="translate(-21, 0)"></g></svg><div class="apexcharts-legend"></div><div class="apexcharts-tooltip apexcharts-theme-light"><div class="apexcharts-tooltip-title" style="font-family: &quot;Open Sans&quot;, Arial, sans-serif; font-size: 12px;"></div><div class="apexcharts-tooltip-series-group"><span class="apexcharts-tooltip-marker" style="background-color: rgb(224, 37, 57);"></span><div class="apexcharts-tooltip-text" style="font-family: &quot;Open Sans&quot;, Arial, sans-serif; font-size: 12px;"><div class="apexcharts-tooltip-y-group"><span class="apexcharts-tooltip-text-label"></span><span class="apexcharts-tooltip-text-value"></span></div><div class="apexcharts-tooltip-z-group"><span class="apexcharts-tooltip-text-z-label"></span><span class="apexcharts-tooltip-text-z-value"></span></div></div></div></div><div class="apexcharts-xaxistooltip apexcharts-xaxistooltip-bottom apexcharts-theme-light"><div class="apexcharts-xaxistooltip-text" style="font-family: &quot;Open Sans&quot;, Arial, sans-serif; font-size: 12px;"></div></div></div></div>
+                        <div class="resize-triggers"><div class="expand-trigger"><div style="width: 500px; height: 136px;"></div></div><div class="contract-trigger"></div></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
+                <div class="payments-card">
+                    <h6>Ortalama Kazanç</h6>
+                    <h4>$5699.89</h4>
+                    <div class="custom-btn-group mt-2">
+                        <button class="btn btn-outline-primary"><i class="icon-credit-card"></i>Deposit</button>
+                        <button class="btn btn-primary"><i class="icon-credit-card"></i>Withdraw</button>
+                    </div>
+                </div>
             </div>
         </div>
 
+        <!-- Row start -->
         <div class="row gutters">
-            <div class="col-xl-5 col-lg-5 col-md-6 col-sm-12 col-12">
-                <!-- Row start -->
-                <div class="row gutters">
-                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                        <div class="card h-475">
-                            <div class="p-0">
-                                @* <canvas id="productChart" width="400" height="400"></canvas>
-                                <script>
-                                $(function () {
-                                $.ajax({
-                                url: '@Url.Action("GetProductChartData", "Home")',
-                                type: 'GET',
-                                success: function (data) {
-                                var months = data.map(d => d.Month);
-                                var productGroup1 = data.map(d => d.ProductGroup1);
-                                var productGroup2 = data.map(d => d.ProductGroup2);
-                                var productGroup3 = data.map(d => d.ProductGroup3);
-                                var productGroup4 = data.map(d => d.ProductGroup4);
-
-                                var ctx = document.getElementById('productChart').getContext('2d');
-                                var productChart = new Chart(ctx, {
-                                type: 'bar',
-                                data: {
-                                labels: months,
-                                datasets: [
-                                {
-                                label: 'Product Group 1',
-                                data: productGroup1,
-                                backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                                borderColor: 'rgba(75, 192, 192, 1)',
-                                borderWidth: 1
-                                },
-                                {
-                                label: 'Product Group 2',
-                                data: productGroup2,
-                                backgroundColor: 'rgba(192, 75, 192, 0.2)',
-                                borderColor: 'rgba(192, 75, 192, 1)',
-                                borderWidth: 1
-                                },
-                                {
-                                label: 'Product Group 3',
-                                data: productGroup3,
-                                backgroundColor: 'rgba(192, 192, 75, 0.2)',
-                                borderColor: 'rgba(192, 192, 75, 1)',
-                                borderWidth: 1
-                                },
-                                {
-                                label: 'Product Group 4',
-                                data: productGroup4,
-                                backgroundColor: 'rgba(75, 75, 192, 0.2)',
-                                borderColor: 'rgba(75, 75, 192, 1)',
-                                borderWidth: 1
-                                }
-                                ]
-                                },
-                                options: {
-                                scales: {
-                                y: {
-                                beginAtZero: true
-                                }
-                                }
-                                }
-                                });
-                                }
-                                });
-                                });
-                                </script>*@
-                            </div>
-                            <div class="card-body pt-0">
-
-
-
-                                <!-- Row start -->
-                                <div class="row gutters">
-                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                        <div class="image-stats-tile">
-                                            <!--Menu Tarafı-->
-                                            <canvas id="chartDocumentt" width="550" height="750"></canvas>
-                                            <script>
-                                                $(document).ready(function () {
-                                                    $('.earnings-icon.red').click(function () {
-                                                        // AJAX isteği yap
-                                                        $.ajax({
-                                                            url: '/Home/GetDocumentChartData',
-                                                            type: 'GET',
-                                                            success: function (data) {
-                                                                // Veriyi JSON formatına dönüştür
-                                                                var jsonData = JSON.stringify(data);
-
-                                                                // JSON dosyasını indir
-                                                                var a = document.createElement('a');
-                                                                var file = new Blob([jsonData], { type: 'application/json' });
-                                                                a.href = URL.createObjectURL(file);
-                                                                a.download = 'chartData.json';
-                                                                a.click();
-                                                            },
-                                                            error: function () {
-                                                                console.log('Veri alınamadı.');
-                                                            }
-                                                        });
-                                                    });
-                                                });
-                                                $(function () {
-                                                    $.ajax({
-                                                        url: '@Url.Action("GetDocumentChartData", "Home")',
-                                                        type: 'GET',
-                                                        success: function (data) {
-                                                            var dates = data.map(d => d.Date);
-                                                            var counts = data.map(d => d.Count);
-                                                            // Canvas
-                                                            var canvas = document.getElementById('chartDocumentt');
-
-                                                            // Destroy previous chart if exists
-                                                            Chart.getChart(canvas)?.destroy();
-
-                                                            // Line Chart
-                                                            var ctx = canvas.getContext('2d');
-                                                            var chartDocumentt = new Chart(ctx, {
-                                                                type: 'bar',
-                                                                data: {
-                                                                    labels: dates,
-                                                                    datasets: [
-                                                                        {
-                                                                            label: 'Count',
-                                                                            data: counts,
-                                                                            borderColor: 'rgba(75, 192, 192, 1)',
-                                                                            backgroundColor: 'rgba(207, 21, 45, 0.2)',
-                                                                            fill: true
-                                                                        }
-                                                                    ]
-                                                                },
-
-                                                                options: {
-                                                                    plugins: {
-                                                                        customCanvasBackgroundColor: {
-                                                                            color: 'lightGreen',
-                                                                        }
-                                                                    },
-                                                                    scales: {
-                                                                        y: {
-                                                                            beginAtZero: true
-                                                                        }
-                                                                    }
-
-                                                                }
-                                                            });
-
-
-                                                        }
-                                                    });
-                                                });
-
-                                            </script>
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <!-- Row end -->
-
-                            </div>
-                        </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Stacked Area Graph</div>
+                    </div>
+                    <div class="card-body">
+                        <div id="basic-area-stack-graph"></div>
                     </div>
                 </div>
-                <!-- Row end -->
             </div>
-            <div class="col-xl-7 col-lg-7 col-md-6 col-sm-12 col-12">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Candlestick Graph</div>
+                    </div>
+                    <div class="card-body">
+                        <div id="basic-candlestick-graph"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Column Stack Graph</div>
+                    </div>
+                    <div class="card-body">
+                        <div id="basic-column-stack-graph"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Column Stack Graph Full Height</div>
+                    </div>
+                    <div class="card-body">
+                        <div id="basic-column-stack-graph-fullheight"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Stacked Bar Graph Full Width</div>
+                    </div>
+                    <div class="card-body">
+                        <div id="basic-bar-stack-graph-full-width"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Area Graph</div>
+                    </div>
+                    <div class="card-body">
+                        <div id="basic-area-graph"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Spline Area Graph</div>
+                    </div>
+                    <div class="card-body">
+                        <div id="basic-area-spline-graph"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Row end -->
+        <!-- Row start -->
+        <div class="row gutters">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Stacked Bar Graph Negative Values</div>
+                    </div>
+                    <div class="card-body">
+                        <div id="basic-bar-negative-values"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Bar Graph</div>
+                    </div>
+                    <div class="card-body">
+                        <div id="basic-bar-graph" class="primary-graph"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Bar Graph Grouped</div>
+                    </div>
+                    <div class="card-body">
+                        <div id="basic-bar-graph-grouped"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Stacked Bar Graph</div>
+                    </div>
+                    <div class="card-body">
+                        <div id="basic-bar-stack-graph"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Row end -->
+        <!-- Row start -->
+        <div class="row gutters">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Column Graph</div>
+                    </div>
+                    <div class="card-body">
+                        <div id="basic-column-graph"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Column Graph With Datatables</div>
+                    </div>
+                    <div class="card-body">
+                        <div id="basic-column-graph-datalables"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Row end -->
+        <!-- Row start -->
+        <div class="row gutters">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Basic Line Graph</div>
+                    </div>
+                    <div class="card-body">
+                        <div id="basic-line-graph"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Line with Data Labels</div>
+                    </div>
+                    <div class="card-body">
+                        <div id="line-with-data-labels"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Dashed Line Chart</div>
+                    </div>
+                    <div class="card-body">
+                        <div id="stepLineChart"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Row end -->
+        <!-- Row start -->
+        <div class="row gutters">
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Donut Graph</div>
+                    </div>
+                    <div class="card-body">
+                        <div id="basic-donut-graph"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Donut Graph Gradient</div>
+                    </div>
+                    <div class="card-body">
+                        <div id="basic-donut-graph-gradient"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Donut Graph Monochrome</div>
+                    </div>
+                    <div class="card-body">
+                        <div id="basic-donut-graph-monochrome"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Donut Graph Monochrome Gradient</div>
+                    </div>
+                    <div class="card-body">
+                        <div id="basic-donut-graph-monochrome-gradient"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Row end -->
+        <!-- Row start -->
+        <div class="row gutters">
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Pie Graph</div>
+                    </div>
+                    <div class="card-body">
+                        <div id="basic-pie-graph"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Pie Graph Gradient</div>
+                    </div>
+                    <div class="card-body">
+                        <div id="basic-pie-graph-gradient"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Pie Graph Monochrome</div>
+                    </div>
+                    <div class="card-body">
+                        <div id="basic-pie-graph-monochrome"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Pie Graph Monochrome Gradient</div>
+                    </div>
+                    <div class="card-body">
+                        <div id="basic-pie-graph-monochrome-gradient"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Row end -->
 
-                <!-- Row start -->
-                <div class="row gutters">
-                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                        <div class="card h-475">
-                            <div class="p-0">
-                                @*<div id="ordersGraph"></div>*@
+        <div class="row gutters">
+            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12">
+                <div class="report-card">
+                    <div class="graph">
+                        <div id="sparklineLine3"></div>
+                    </div>
+                    <div class="report-card-body">
+                        <p>Create weekly reports and use them to perform tasks related to your finances.</p>
+                        <button class="btn btn-danger stripes-btn">Create</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12">
+                <div class="followers-card">
+                    <p>Followers</p>
+                    <h3>69,697</h3>
+                    <button class="btn btn-danger stripes-btn">Reports</button>
+                    <img src="~/WebDesign/img/followers.jpg" class="img-fluid" alt="Followers">
+                </div>
+            </div>
+            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                <div class="sales-card">
+                    <div class="sales-card-header">
+                        <p>Revenue</p>
+                        <h3>750M</h3>
+                    </div>
+                    <div class="sales-card-body">
+                        <div class="graph">
+                            <div id="revenue"></div>
+                        </div>
+
+                        <div class="earnings-badge-container">
+                            <div class="earnings-badge">
+                                <p>Net Profit</p>
+                                <h4>980M</h4>
                             </div>
-                            <div class="card-body pt-0">
-                                <div class="table-responsive">
-                                    <canvas id="chartDocument" style="display: block; box-sizing: border-box; height: 600px; width: 200px !important;"></canvas>
-                                    <script>
-                                        $(document).ready(function () {
-                                            $('.earnings-icon.red').click(function () {
-                                                // AJAX isteği yap
-                                                $.ajax({
-                                                    url: '/Home/GetDocumentChartData',
-                                                    type: 'GET',
-                                                    success: function (data) {
-                                                        // Veriyi JSON formatına dönüştür
-                                                        var jsonData = JSON.stringify(data);
-
-                                                        // JSON dosyasını indir
-                                                        var a = document.createElement('a');
-                                                        var file = new Blob([jsonData], { type: 'application/json' });
-                                                        a.href = URL.createObjectURL(file);
-                                                        a.download = 'chartData.json';
-                                                        a.click();
-                                                    },
-                                                    error: function () {
-                                                        console.log('Veri alınamadı.');
-                                                    }
-                                                });
-                                            });
-                                        });
-                                        $(function () {
-                                            $.ajax({
-                                                url: '@Url.Action("GetDocumentChartData", "Home")',
-                                                type: 'GET',
-                                                success: function (data) {
-                                                    var dates = data.map(d => d.Date);
-                                                    var counts = data.map(d => d.Count);
-                                                    // Canvas
-                                                    var canvas = document.getElementById('chartDocument');
-                                                
-
-                                                    // Destroy previous chart if exists
-                                                    Chart.getChart(canvas)?.destroy();
-
-                                                    // Line Chart
-                                                    var ctx = canvas.getContext('2d');
-                                                    var chartDocument = new Chart(ctx, {
-                                                        type: 'radar',
-                                                        data: {
-                                                            labels: dates,
-                                                            datasets: [
-                                                                {
-                                                                    label: '',
-                                                                    data: counts,
-                                                                    borderColor: 'rgba(75, 192, 192, 1)',
-                                                                    backgroundColor: 'rgba(207, 21, 45, 0.2)',
-                                                                    fill: true,
-
-                                                                }
-                                                            ]
-                                                        },
-
-                                                        options: {
-                                                            plugins: {
-                                                                customCanvasBackgroundColor: {
-                                                                    color: 'lightGreen',
-                                                                }
-                                                            },
-                                                            scales: {
-                                                                y: {
-                                                                    beginAtZero: true
-                                                                }
-                                                            }
-
-                                                        }
-                                                    });
-
-
-                                                }
-                                            });
-                                        });
-
-                                    </script>
-
-
-
-
-                                </div>
+                            <div class="earnings-badge">
+                                <p>Revenue</p>
+                                <h4>750M</h4>
                             </div>
                         </div>
+
                     </div>
-                    <!-- Row end -->
-
                 </div>
             </div>
-            <div class="row gutters">
-                @*<div class="col-xl-2 col-lg-3 col-md-6 col-sm-6 col-12">
-                <div class="stats-tile2">
-                <div class="sale-icon">
-                <i class="icon-user1"></i>
-                </div>
-                <div class="sale-details">
-                <h2>21</h2>
-                <p>Customers</p>
-                </div>
-                </div>
-                <div class="stats-tile2">
-                <div class="sale-icon">
-                <i class="icon-shopping-bag1"></i>
-                </div>
-                <div class="sale-details">
-                <h2>67</h2>
-                <p>Orders</p>
-                </div>
-                </div>
-                </div>*@
-                @*<div class="col-xl-2 col-lg-3 col-md-6 col-sm-6 col-12">
-                <div class="stats-tile2">
-                <div class="sale-icon">
-                <i class="icon-tonality"></i>
-                </div>
-                <div class="sale-details">
-                <h2>95</h2>
-                <p>Revenue</p>
-                </div>
-                </div>
-                <div class="stats-tile2">
-                <div class="sale-icon">
-                <i class="icon-box"></i>
-                </div>
-                <div class="sale-details">
-                <h2>18</h2>
-                <p>Products</p>
-                </div>
-                </div>
-                </div>*@
-
-
-                @*<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6 col-12">
-
-                <div class="card h-350">
-                <div class="card-header">
-                <div class="card-title">Sale by Counrty</div>
-                </div>
-                <div class="card-body">
-                <div id="byCountry"></div>
-                </div>
-                </div>
-
-                </div>
-                <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6 col-12">
-
-                <div class="card h-350">
-                <div class="card-header">
-                <div class="card-title">By Device</div>
-                </div>
-                <div class="card-body">
-                <div id="byDevice"></div>
-                </div>
-                </div>
-
-                </div>
-
-                </div>*@
-            </div>
-            <div class="app-footer">© Aşin Teknoloji Admin 2023</div>
         </div>
     </div>
+    <!-- Content wrapper end -->
+    <!-- App Footer start -->
+    <div class="app-footer">© Uni Pro Admin 2021</div>
+    <!-- App footer end -->
 </div>

@@ -52,12 +52,12 @@ namespace MotorAsinBasketProjectClient.UI.Controllers
 
         public IActionResult GetDocumentChartData()
         {
-            var documents = _dbContext.Documents.ToList();
-            var chartData = documents.GroupBy(d => d.CustomerReferance.Value)
-                                    .Select(g => new { Date = g.Key, Count = g.Count() })
-                                    .ToList();
+            //var documents = _dbContext.Documents.ToList();
+            //var chartData = documents.GroupBy(d => d.CustomerReferance.)
+            //                        .Select(g => new { Date = g.Key, Count = g.Count() })
+            //                        .ToList();
 
-            return Json(chartData);
+            return Json(true /*chartData*/);
         }
 
 

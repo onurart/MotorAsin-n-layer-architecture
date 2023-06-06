@@ -1,0 +1,58 @@
+﻿.hover-tabs-img-close {
+    top: 175px;
+    margin: 0px;
+    position: absolute;
+    font-weight: 600;
+    z-index: 999;
+    left: 17%;
+}
+
+.export-button {
+    background-color: #ff794e;
+    color: #000;
+    border: none; /* Kenarlık yok */
+    border-radius: 4px; /* Köşeleri yuvarla */
+    cursor: pointer; /* İmleç şekli */
+}
+
+    .export-button span {
+        color: white; /* Metin rengi */
+    }
+
+    .export-button:hover {
+        background-color: #ff794e; /* Üzerine gelindiğindeki arka plan rengi */
+    }
+
+.dx-dropdownbutton-popup-wrapper.dx-popup-wrapper .dx-overlay-content {
+    background: #ff794e;
+    justify-content: center;
+    border-radius: 0px 0px 35px 35px;
+}
+
+.dx-dropdownbutton-popup-wrapper .dx-list:not(.dx-list-select-decorator-enabled) .dx-list-item-content {
+    color: white;
+    margin: 0;
+    padding: 10px;
+    border-top: 1px double white;
+    text-align-last: center;
+}
+
+.export-options {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.export-option {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+    .export-option:hover {
+        background-color: #45a049;
+    }

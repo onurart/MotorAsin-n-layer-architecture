@@ -24,7 +24,11 @@ namespace MotorAsinBasketRobot.Business.Concrete
             try
             {
                 return new SuccessDataResult<IList<MASqlConnection>>
-                (await _mASqlConnectionDal.GetListAsync(b => b.IsActive == parameter.IsActive && b.EnmConnetion==parameter.Connecion, b => b.Id), Messages.MASqlConnectionGetAll);
+                (await _mASqlConnectionDal.GetListAsync
+                (b => b.IsActive == parameter.IsActive &&
+                 b.CreatedDate>parameter.DateFilter &&
+                 b.EnmConnetion==parameter.Connecion,
+                 b => b.Id), Messages.MASqlConnectionGetAll);
             }
             catch (Exception ex)
             {

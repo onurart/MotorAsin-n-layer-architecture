@@ -118,7 +118,7 @@ namespace MotorAsinBasketRobot.Core.DataAccess.Concrete.EntityFramework
                     query = query.Where(predicate);
                 if (orderBy != null)
                     query = query.OrderBy(orderBy);
-                return await query.ToListAsync();
+                return await query.AsNoTracking().ToListAsync();
             }
         }
         public async Task<List<T>> GetListAsync<TKey>(Expression<Func<T, bool>> predicate = null, Expression<Func<T, TKey>> orderBy = null)
@@ -130,7 +130,7 @@ namespace MotorAsinBasketRobot.Core.DataAccess.Concrete.EntityFramework
                     query = query.Where(predicate);
                 if (orderBy != null)
                     query = query.OrderBy(orderBy);
-                return await query.ToListAsync();
+                return await query.AsNoTracking().ToListAsync();
             }
         }
         public async Task<List<T>> GetLastListAsync<TKey>(Expression<Func<T, bool>> predicate = null, Expression<Func<T, TKey>> orderBy = null, params Expression<Func<T, object>>[] property)

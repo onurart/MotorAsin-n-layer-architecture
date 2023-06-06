@@ -2,12 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
-namespace MotorAsinBasketRobot.Entities.Concrete
+namespace MotorAsinBasketRobot.Entities.ViewModel
 {
-    public class Documents : BaseEntity
+    public class ExportDocument
     {
         public short? DocumetType { get; set; }
         public short? LineType { get; set; }
@@ -15,11 +14,7 @@ namespace MotorAsinBasketRobot.Entities.Concrete
         public double? TlToltal { get; set; }
         public int? ProductReferance { get; set; }
         public int? CustomerReferance { get; set; }
-        public string? DocumentNo { get; set; }
         public DateTime? DocumentDate { get; set; }
-        [JsonIgnore]
-        public string? Content { get; set; }
-        [JsonIgnore]
-        public string? FileName { get; set; }
+        public float Content { get; set; }
     }
 }

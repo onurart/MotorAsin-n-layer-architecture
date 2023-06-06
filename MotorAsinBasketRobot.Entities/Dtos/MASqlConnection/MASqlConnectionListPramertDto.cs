@@ -14,5 +14,6 @@ namespace MotorAsinBasketRobot.Entities.Dtos.MASqlConnection
         //public string? Code { get; set; }
         public bool? IsActive { get; set; }
         public EnmConnetion Connecion { get; set; }
+        public DateTime? DateFilter { get; set; }
     }
 }

@@ -14,5 +14,8 @@ namespace MotorAsinBasketRobot.Business.Abstract
     {
         Task<IDataResult<IList<Documents>>> GetList(DocumentListPramertDto parameter);
         Task<IDataResult<string>> GetCode(DocumentCodeParameterDto parameter);
+        Task<IList<Documents>> GetBatchedList(DocumentListPramertDto dto, int startIndex, int batchSize);
+        Task<int> GetTotalCount(DocumentListPramertDto dto);
+
     }
 }

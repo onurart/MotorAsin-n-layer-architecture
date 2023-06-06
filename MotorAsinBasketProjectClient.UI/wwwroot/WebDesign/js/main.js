@@ -4,6 +4,11 @@ $(function() {
 });
 
 
+$(function () {
+	$(" #loading-wrapperExcel").fadeOut(1000);
+});
+
+
 // Toggle sidebar
 $("#toggle-sidebar").on('click', function () {
 	$(".page-wrapper").toggleClass("toggled");
