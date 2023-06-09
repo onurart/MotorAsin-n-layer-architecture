@@ -11,11 +11,11 @@
     <link rel="stylesheet" href="~/WebDesign/vendor/search-filter/search-filter.css">
     <link rel="stylesheet" href="~/WebDesign/vendor/search-filter/custom-search-filter.css">
     <style>
-    
+
         .content-wrapper::-webkit-scrollbar {
             width: .6em;
-            border-radius:50%;
-            width:8px;
+            border-radius: 50%;
+            width: 8px;
         }
 
         .content-wrapper::-webkit-scrollbar-track {
@@ -26,11 +26,12 @@
             background: linear-gradient(45deg, #e02539, #e02539);
             border-radius: 0px 20px 0px 0px;
         }
+
         .content-wrapper {
             background: whitesmoke;
             overflow-y: scroll;
             padding: 3em;
-            border-radius:10px 10px 10px 10px;
+            border-radius: 10px 10px 10px 10px;
             border-left: .3px solid rgba(224, 37, 57);
             border-top: .3px solid rgba(224, 37, 57);
             border-bottom: .3px solid rgba(224, 37, 57);
@@ -131,26 +132,17 @@
                             @await Component.InvokeAsync("ClientUserSettings")
                         </ul>
                     </div>
-            @RenderBody()   
+                    @RenderBody()
                 </div>
             </div>
         </div>
     </div>
-    <script>
-        function toggleDarkMode() {
-            var body = document.body;
-            body.classList.toggle("dark-mode");
-        }
-    </script>
-        
-    <script src="~/WebDesign/js/jquery.min.js"></script>
+    <script src="~/WebDesign/vendor/apex/apexcharts.min.js"></script>
+        <script src="~/WebDesign/js/jquery.min.js"></script>
     <script src="~/WebDesign/js/bootstrap.bundle.min.js"></script>
     <script src="~/WebDesign/js/modernizr.js"></script>
     <script src="~/WebDesign/js/moment.js"></script>
 
-    <!-- *************
-        ************ Vendor Js Files *************
-    ************* -->
     <!-- Megamenu JS -->
     <script src="~/WebDesign/vendor/megamenu/js/megamenu.js"></script>
     <script src="~/WebDesign/vendor/megamenu/js/custom.js"></script>
@@ -164,7 +156,8 @@
     <script src="~/WebDesign/vendor/search-filter/custom-search-filter.js"></script>
 
     <!-- Apex Charts -->
-    <script src="~/WebDesign/vendor/apex/apexcharts.min.js"></script>
+
+
     <!-- Area Graphs -->
     <script src="~/WebDesign/vendor/apex/examples/area/basic-area-graph.js"></script>
     <script src="~/WebDesign/vendor/apex/examples/area/basic-area-graph-spline.js"></script>
@@ -202,6 +195,7 @@
     <script src="~/WebDesign/vendor/apex/examples/pie/basic-pie-graph-gradient.js"></script>
     <script src="~/WebDesign/vendor/apex/examples/pie/basic-pie-graph-monochrome.js"></script>
     <script src="~/WebDesign/vendor/apex/examples/pie/basic-pie-graph-monochrome-gradient.js"></script>
+
     <script src="~/WebDesign/js/main.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>

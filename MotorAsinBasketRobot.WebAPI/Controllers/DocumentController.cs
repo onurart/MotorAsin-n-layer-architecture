@@ -63,7 +63,7 @@ namespace MotorAsinBasketRobot.WebAPI.Controllers
                     worksheet.Cell(i + 2, 7).Value = document.CustomerReferance;
                     worksheet.Cell(i + 2, 8).Value = document.DocumentNo;
                     worksheet.Cell(i + 2, 9).Value = document.DocumentDate;
-                    worksheet.Cell(i + 2, 10).Value = document.IsActive;
+                    worksheet.Cell(i + 2, 10).Value = (bool)document.IsActive;
                 }
 
                 var stream = new MemoryStream();

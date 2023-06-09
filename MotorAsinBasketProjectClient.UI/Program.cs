@@ -13,8 +13,22 @@ using MotorAsinBasketRobotProject.Core.Permissions;
 using Newtonsoft.Json.Serialization;
 using Newtonsoft.Json;
 using MotorAsinBasketProjectClient.UI.MemberService;
+using Autofac.Core;
 
 var builder = WebApplication.CreateBuilder(args);
+// CORS politikalarýný yapýlandýrma
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAnyOrigin", builder =>
+    {
+        builder.AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader();
+    });
+});
+
+// Kontrolör ve görünüm hizmetlerini ekleme
+builder.Services.AddControllersWithViews();
 builder.Services.AddLocalization(opt => opt.ResourcesPath = "Resources");
 //builder.Services.AddControllersWithViews().AddJsonOptions(options => options.JsonSerializerOptions.PropertyNamingPolicy = null).AddRazorRuntimeCompilation();
 builder.Services.AddControllers().AddNewtonsoftJson(options =>
@@ -148,11 +162,16 @@ builder.Services.AddHttpClient<IncomingOrderRequestsApiSevice>(opt =>
 {
     opt.BaseAddress = new Uri(builder.Configuration["ApiBaseUrl"]);
 });
+
+
+
 var app = builder.Build();
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
 }
+app.UseCors("AllowAnyOrigin");
+
 app.UseSession();
 app.UseStaticFiles();
 app.UseRouting();

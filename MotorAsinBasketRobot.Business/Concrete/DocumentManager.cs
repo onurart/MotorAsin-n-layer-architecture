@@ -84,7 +84,7 @@ namespace MotorAsinBasketRobot.Business.Concrete
                 using (var dbContext = new AppDbContext())
                 {
                     var query = dbContext.Documents
-                        .Where(d =>d.IsActive /* Belirli bir kriteri sağlayan belgeleri filtreleyin, dto parametresini kullanabilirsiniz */)
+                        .Where(d =>(bool)d.IsActive /* Belirli bir kriteri sağlayan belgeleri filtreleyin, dto parametresini kullanabilirsiniz */)
                         .OrderBy(d => d.Id /* Belge listesini belirli bir özelliğe göre sıralayın, istediğiniz sıralama ifadesini kullanabilirsiniz */)
                         .Skip(startIndex)
                         .Take(batchSize);
@@ -137,7 +137,7 @@ namespace MotorAsinBasketRobot.Business.Concrete
             using (var dbContext = new AppDbContext())
             {
                 int totalCount = await dbContext.Documents
-                    .Where(d =>d.IsActive /* Belirli bir kriteri sağlayan belgeleri filtreleyin, dto parametresini kullanabilirsiniz */)
+                    .Where(d =>(bool)d.IsActive /* Belirli bir kriteri sağlayan belgeleri filtreleyin, dto parametresini kullanabilirsiniz */)
                     .CountAsync();
 
                 return totalCount;

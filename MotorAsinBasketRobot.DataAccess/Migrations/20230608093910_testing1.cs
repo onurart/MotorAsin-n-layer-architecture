@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace MotorAsinBasketRobot.DataAccess.Migrations
 {
     /// <inheritdoc />
-    public partial class motrasındb : Migration
+    public partial class testing1 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -54,12 +54,12 @@ namespace MotorAsinBasketRobot.DataAccess.Migrations
                 name: "BasketStatuses",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ProductCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CustomerCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: true),
                     CreatorId = table.Column<long>(type: "bigint", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     LastModifiedId = table.Column<long>(type: "bigint", nullable: true),
@@ -76,12 +76,13 @@ namespace MotorAsinBasketRobot.DataAccess.Migrations
                 name: "Customers",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CustomerReferance = table.Column<int>(type: "int", nullable: true),
                     CustomerCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    CustomerName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IsActive = table.Column<bool>(type: "bit", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: true),
                     CreatorId = table.Column<long>(type: "bigint", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     LastModifiedId = table.Column<long>(type: "bigint", nullable: true),
@@ -95,44 +96,16 @@ namespace MotorAsinBasketRobot.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Documents",
-                columns: table => new
-                {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    DocumetType = table.Column<short>(type: "smallint", nullable: true),
-                    LineType = table.Column<short>(type: "smallint", nullable: true),
-                    Billed = table.Column<short>(type: "smallint", nullable: true),
-                    TlToltal = table.Column<double>(type: "float", nullable: true),
-                    ProductReferance = table.Column<int>(type: "int", nullable: true),
-                    CustomerReferance = table.Column<int>(type: "int", nullable: true),
-                    DocumentNo = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    DocumentDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                    CreatorId = table.Column<long>(type: "bigint", nullable: true),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    LastModifiedId = table.Column<long>(type: "bigint", nullable: true),
-                    LastModificationTime = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    DeletedId = table.Column<long>(type: "bigint", nullable: true),
-                    DeletedTime = table.Column<DateTime>(type: "datetime2", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Documents", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "IncomingOrderRequests",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Desction = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     RequestsTimes = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: true),
                     CreatorId = table.Column<long>(type: "bigint", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     LastModifiedId = table.Column<long>(type: "bigint", nullable: true),
@@ -149,13 +122,13 @@ namespace MotorAsinBasketRobot.DataAccess.Migrations
                 name: "Offers",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CustomerCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ProductCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Quantity = table.Column<int>(type: "int", nullable: true),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: true),
                     CreatorId = table.Column<long>(type: "bigint", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     LastModifiedId = table.Column<long>(type: "bigint", nullable: true),
@@ -172,14 +145,14 @@ namespace MotorAsinBasketRobot.DataAccess.Migrations
                 name: "ProductCampaigns",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ProductReferance = table.Column<int>(type: "int", nullable: true),
                     ProductCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ProductGroup = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     MinOrder = table.Column<double>(type: "float", nullable: true),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: true),
                     CreatorId = table.Column<long>(type: "bigint", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     LastModifiedId = table.Column<long>(type: "bigint", nullable: true),
@@ -196,16 +169,21 @@ namespace MotorAsinBasketRobot.DataAccess.Migrations
                 name: "Products",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ProductReferance = table.Column<int>(type: "int", nullable: true),
                     ProductCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ProductName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ProductGroup1 = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ProductGroup2 = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ProductGroup3 = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ProductGroup4 = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    DisplayProduct = table.Column<int>(type: "int", nullable: true),
+                    SoldOfferrd = table.Column<int>(type: "int", nullable: true),
+                    IsSoldOrdered = table.Column<int>(type: "int", nullable: true),
+                    StandbyTime = table.Column<int>(type: "int", nullable: true),
+                    IsActive = table.Column<bool>(type: "bit", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: true),
                     CreatorId = table.Column<long>(type: "bigint", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     LastModifiedId = table.Column<long>(type: "bigint", nullable: true),
@@ -324,6 +302,47 @@ namespace MotorAsinBasketRobot.DataAccess.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Documents",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    DocumetType = table.Column<short>(type: "smallint", nullable: true),
+                    LineType = table.Column<short>(type: "smallint", nullable: true),
+                    Billed = table.Column<short>(type: "smallint", nullable: true),
+                    Quantity = table.Column<int>(type: "int", nullable: false),
+                    TlToltal = table.Column<double>(type: "float", nullable: true),
+                    ProductReferance = table.Column<int>(type: "int", nullable: true),
+                    CustomerReferance = table.Column<int>(type: "int", nullable: true),
+                    DocumentNo = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DocumentDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Content = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    FileName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IsActive = table.Column<bool>(type: "bit", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: true),
+                    CreatorId = table.Column<long>(type: "bigint", nullable: true),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    LastModifiedId = table.Column<long>(type: "bigint", nullable: true),
+                    LastModificationTime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DeletedId = table.Column<long>(type: "bigint", nullable: true),
+                    DeletedTime = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Documents", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Documents_Customers_CustomerReferance",
+                        column: x => x.CustomerReferance,
+                        principalTable: "Customers",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Documents_Products_ProductReferance",
+                        column: x => x.ProductReferance,
+                        principalTable: "Products",
+                        principalColumn: "Id");
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -362,6 +381,16 @@ namespace MotorAsinBasketRobot.DataAccess.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Documents_CustomerReferance",
+                table: "Documents",
+                column: "CustomerReferance");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Documents_ProductReferance",
+                table: "Documents",
+                column: "ProductReferance");
         }
 
         /// <inheritdoc />
@@ -386,9 +415,6 @@ namespace MotorAsinBasketRobot.DataAccess.Migrations
                 name: "BasketStatuses");
 
             migrationBuilder.DropTable(
-                name: "Customers");
-
-            migrationBuilder.DropTable(
                 name: "Documents");
 
             migrationBuilder.DropTable(
@@ -401,13 +427,16 @@ namespace MotorAsinBasketRobot.DataAccess.Migrations
                 name: "ProductCampaigns");
 
             migrationBuilder.DropTable(
-                name: "Products");
-
-            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Customers");
+
+            migrationBuilder.DropTable(
+                name: "Products");
         }
     }
 }

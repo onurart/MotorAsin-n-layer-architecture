@@ -9,10 +9,10 @@ namespace MotorAsinBasketRobot.Entities.Concrete
 {
     public class BaseEntity : IEntityDetail//, IMultiTenant
     {
-        public long Id { get; set; }
+        public int Id { get; set; }
        // public long? TenantId { get; set; }
-        public bool IsActive { get; set; }
-        public bool IsDeleted { get; set; }
+        public bool? IsActive { get; set; }
+        public bool? IsDeleted { get; set; }
         public long? CreatorId { get; set; }
         public DateTime? CreatedDate { get; set; }
         public long? LastModifiedId { get; set; }
