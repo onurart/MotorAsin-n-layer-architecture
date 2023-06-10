@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MotorAsinBasketProjectClient.UI.Models;
 using MotorAsinBasketRobot.DataAccess.Concrete.EntityFramework.Context;
+using MotorAsinBasketRobot.Entities.Concrete;
 using Newtonsoft.Json;
 using System.Diagnostics;
 
@@ -43,6 +44,23 @@ namespace MotorAsinBasketProjectClient.UI.Controllers
             return Json(result);
         }
 
+
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<Customer>>> GetCustomerPurchases()
+        {
+            var query = from d in _dbContext.Documents
+                        join c in _dbContext.Customers on d.CustomerReferance equals c.CustomerReferance
+                        group d by new { c.CustomerName, PurchaseDate = d.DocumentDate.Value.Date } into g
+                        orderby g.Key.CustomerName, g.Key.PurchaseDate
+                        select new Customer
+                        {
+                            CustomerName = g.Key.CustomerName,
+                            //PurchaseDate = g.Key.PurchaseDate,
+                            //PurchaseCount = g.Count()
+                        };
+            var result = await query.ToListAsync();
+            return Json(result);
+        }
         //public async Task<ActionResult<IEnumerable<object>>> GetTopDocuments()
         //{
         //    var query = (

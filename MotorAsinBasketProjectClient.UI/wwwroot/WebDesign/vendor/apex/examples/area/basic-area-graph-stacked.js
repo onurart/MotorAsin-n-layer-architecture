@@ -1,103 +1,51 @@
-var options = {
-	chart: {
-		height: 300,
-		type: 'area',
-		stacked: true,
-		toolbar: {
-			show: false,
-		},
-		dropShadow: {
-			enabled: true,
-			opacity: 0.1,
-			blur: 5,
-			left: -10,
-			top: 10
-		},
-		events: {
-			selection: function(chart, e) {
-				console.log(new Date(e.xaxis.min) )
-			}
-		},
-	},
-	dataLabels: {
-		enabled: false
-	},
-	stroke: {
-		curve: 'straight',
-		width: 3
-	},
-	series: [{
-		name: 'iPhone',
-		data: generateDayWiseTimeSeries(new Date('11 Feb 2019 GMT').getTime(), 20, {
-			min: 10,
-			max: 60
-		})
-	},{
-		name: 'Samsung',
-		data: generateDayWiseTimeSeries(new Date('11 Feb 2019 GMT').getTime(), 20, {
-			min: 10,
-			max: 20
-		})
-	},{
-		name: 'Pixel',
-		data: generateDayWiseTimeSeries(new Date('11 Feb 2019 GMT').getTime(), 20, {
-			min: 10,
-			max: 15
-		})
-	}],
-	theme: {
-		monochrome: {
-			enabled: true,
-			color: '#e02539',
-			shadeIntensity: 0.1
-		},
-	},
-	grid: {
-    borderColor: '#e0e6ed',
-    strokeDashArray: 5,
-    xaxis: {
-      lines: {
-        show: true
-      }
-    },   
-    yaxis: {
-      lines: {
-        show: false,
-      } 
-    },
-    padding: {
-      top: 0,
-      right: 0,
-      bottom: 20,
-      left: 0
-    }, 
-  },
-	legend: {
-		position: 'bottom',
-		horizontalAlign: 'center'
-	},
-	xaxis: {
-		type: 'datetime'
-	},
+$(document).ready(function () {
+    GetCustomerPurchases();
+});
+
+function GetCustomerPurchases() {
+    // Müþteri satýn alma verilerini almak için AJAX isteði yapýn
+    $.ajax({
+        url: '/home/getcustomerpurchases', // Verileri almak için uygun URL'yi ayarlayýn
+        method: 'GET',
+        success: function (data) {
+            // AJAX isteði baþarýlý olduðunda çalýþacak kod
+            var purchases = data; // Alýnan verileri purchases deðiþkenine atayýn
+
+            // Grafik için gerekli series verisini oluþturun
+            var series = purchases.map(function (item) {
+                return {
+                    name: item.customerName,
+                    data: generateDayWiseTimeSeries(new Date(item.purchaseDate).getTime(), item.purchaseCount, {
+                        min: 10,
+                        max: 60
+                    })
+                };
+            });
+
+            // options nesnesini güncelleyin
+            options.series = series;
+
+            // Grafik nesnesini yeniden oluþturun ve yeniden çizin
+            var chart = new ApexCharts(document.querySelector("#basic-area-stack-graph"), options);
+            chart.render();
+        },
+        error: function (xhr, status, error) {
+            // AJAX isteði baþarýsýz olduðunda çalýþacak kod
+            console.log("Hata alýndý:", error);
+        }
+    });
 }
 
-var chart = new ApexCharts(
-	document.querySelector("#basic-area-stack-graph"),
-	options
-);
-
-chart.render();
-
 function generateDayWiseTimeSeries(baseval, count, yrange) {
-	var i = 0;
-	var series = [];
-	while (i < count) {
-		var x = baseval;
-		var y = Math.floor(Math.random() * (yrange.max - yrange.min + 1)) + yrange.min;
+    var i = 0;
+    var series = [];
+    while (i < count) {
+        var x = baseval;
+        var y = Math.floor(Math.random() * (yrange.max - yrange.min + 1)) + yrange.min;
 
-		series.push([x, y]);
-		baseval += 86400000;
-		i++;
-	}
-	return series;
+        series.push([x, y]);
+        baseval += 86400000;
+        i++;
+    }
+    return series;
 }

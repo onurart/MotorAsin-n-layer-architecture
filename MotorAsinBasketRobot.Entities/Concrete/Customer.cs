@@ -11,5 +11,7 @@ namespace MotorAsinBasketRobot.Entities.Concrete
         public int? CustomerReferance { get; set; }
         public string? CustomerCode { get; set; }
         public string? CustomerName { get; set; }
+        //public DateTime PurchaseDate { get; set; }
+        //public int PurchaseCount { get; set; }
     }
 }

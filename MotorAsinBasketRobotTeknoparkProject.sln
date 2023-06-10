@@ -15,12 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MotorAsinBasketRobot.Busine
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MotorAsinBasketRobot.WebAPI", "MotorAsinBasketRobot.WebAPI\MotorAsinBasketRobot.WebAPI.csproj", "{929291B1-CC5A-42CF-B732-14A1866C01F3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MotorAsinBasketProjectClient.UI", "MotorAsinBasketProjectClient.UI\MotorAsinBasketProjectClient.UI.csproj", "{33F11D68-3254-4B86-AA3D-AE0E08A5819E}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DevExtreme NuGet.config", "DevExtreme NuGet.config", "{487E27DA-6441-423F-A6AC-28E085337923}"
-	ProjectSection(SolutionItems) = preProject
-		NuGet.config = NuGet.config
-	EndProjectSection
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MotorAsinBasketProjectClient.UI", "MotorAsinBasketProjectClient.UI\MotorAsinBasketProjectClient.UI.csproj", "{33F11D68-3254-4B86-AA3D-AE0E08A5819E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

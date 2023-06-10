@@ -9,7 +9,10 @@ fetch('/home/gettopdocuments')
         var chartContainer = document.getElementById('chart-container');
         var barBorderColor = '#FFFF00'; // Yellow
         var barColor = '#db273c'; // Black
-
+        var barBorderColor = '#FFFF00'; // Yellow
+        var barBorderWidth = 10; // Border geniþlið
+        //var barColor = '#585858'; // Green
+        var barBorderRadius = 2; // Border yuvarlaklýðý
         // Grafik oluþturma
         var chart = new ApexCharts(chartContainer, {
             chart: {
@@ -26,10 +29,14 @@ fetch('/home/gettopdocuments')
                             {
                                 from: 0,
                                 to: 0,
-                                color: barBorderColor // çubuk kenar rengini barBorderColor deðiþkenine atanan deðere ayarlar
                             }
                         ],
-                        backgroundBarColors: [barColor] // çubuk rengini barColor deðiþkenine atanan deðere ayarlar
+                        backgroundBarColors: [barColor],     // çubuk rengini barColor deðiþkenine atanan deðere ayarlar
+                        barHeight: '100%', // çubuk yüksekliði
+                        barWidth: '100%', // çubuk geniþliði
+                        borderWidth: barBorderWidth, // çubuk kenar geniþliði
+                        borderColor: barBorderColor, // çubuk kenar rengi
+                        borderRadius: barBorderRadius, // çubuklara border-radius uygula
                     }
                 }
             },

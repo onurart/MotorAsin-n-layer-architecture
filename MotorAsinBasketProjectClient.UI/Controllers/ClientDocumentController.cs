@@ -1,9 +1,5 @@
-﻿using DevExtreme.AspNet.Data;
-using DevExtreme.AspNet.Mvc;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using MotorAsinBasketProjectClient.UI.ApiServices;
-using MotorAsinBasketRobot.Entities.Dtos.Documents;
-using MotorAsinBasketRobot.Entities.Dtos.ProductsCampaigns;
 
 namespace MotorAsinBasketProjectClient.UI.Controllers
 {
@@ -19,13 +15,6 @@ namespace MotorAsinBasketProjectClient.UI.Controllers
         public IActionResult Index()
         {
             return View();
-        }
-
-
-        public async Task<object> ClientDocumentList(DataSourceLoadOptions loadOptions, DocumentListPramertDto dto)
-        {
-            var productCampaingApiService = await _clientDocumentApiService.GetClientDocumentllAsync();
-            return DataSourceLoader.Load(productCampaingApiService, loadOptions);
         }
     }
 }
