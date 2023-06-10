@@ -5,9 +5,10 @@ fetch('/home/gettopdocuments')
         var labels = jsonData.map(item => item.CustomerName);
         var data = jsonData.map(item => item.TotalQuantity);
         var productNames = jsonData.map(item => item.ProductName);
-
         // Grafik konteynerini al
         var chartContainer = document.getElementById('chart-container');
+        var barBorderColor = '#FFFF00'; // Yellow
+        var barColor = '#db273c'; // Black
 
         // Grafik oluþturma
         var chart = new ApexCharts(chartContainer, {
@@ -15,7 +16,21 @@ fetch('/home/gettopdocuments')
                 type: 'bar',
                 height: 300,
                 toolbar: {
-                    show: false
+                    show: false,
+                }
+            },
+            plotOptions: {
+                bar: {
+                    colors: {
+                        ranges: [
+                            {
+                                from: 0,
+                                to: 0,
+                                color: barBorderColor // çubuk kenar rengini barBorderColor deðiþkenine atanan deðere ayarlar
+                            }
+                        ],
+                        backgroundBarColors: [barColor] // çubuk rengini barColor deðiþkenine atanan deðere ayarlar
+                    }
                 }
             },
             series: [{
